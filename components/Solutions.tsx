@@ -56,26 +56,26 @@ export const Solutions: React.FC = () => {
   ];
   
   return (
-    <section className="py-20 relative bg-[#0d0420]">
+    <section className="py-20 relative bg-surface-highlight">
       <div className="absolute inset-0 grid-bg opacity-20"></div>
       <div className="container mx-auto px-6 text-center relative z-10">
-        <h2 className="text-3xl lg:text-4xl font-bold mb-12 font-display">
+        <h2 className="text-3xl lg:text-4xl font-bold mb-12 font-display text-textMain">
           Une Stack Technique <span className="text-fuchsia-400">Robuste</span>
         </h2>
         
-        <Card className="max-w-4xl mx-auto border-white/5 bg-[#1a0c35]/60 backdrop-blur-xl">
+        <Card className="max-w-4xl mx-auto border-border bg-background/60 backdrop-blur-xl">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center py-8 px-4">
             {brands.map((brand, idx) => (
               <div key={idx} className="flex flex-col items-center gap-4 group cursor-default">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 border border-white/5 group-hover:border-fuchsia-500/30 group-hover:shadow-[0_0_15px_rgba(217,70,239,0.2)] text-gray-400 group-hover:text-white">
+                <div className="w-16 h-16 rounded-2xl bg-surface flex items-center justify-center group-hover:bg-surface-highlight group-hover:scale-110 transition-all duration-300 border border-border group-hover:border-fuchsia-500/30 group-hover:shadow-[0_0_15px_rgba(217,70,239,0.2)] text-textMuted group-hover:text-textMain">
                    {brand.icon}
                 </div>
-                <span className="font-bold text-gray-500 group-hover:text-fuchsia-300 text-xs tracking-wider transition-colors uppercase">{brand.name}</span>
+                <span className="font-bold text-textMuted group-hover:text-fuchsia-400 text-xs tracking-wider transition-colors uppercase">{brand.name}</span>
               </div>
             ))}
           </div>
-          <div className="mt-8 pt-8 border-t border-white/5 px-4">
-            <p className="text-gray-400 max-w-2xl mx-auto">
+          <div className="mt-8 pt-8 border-t border-border px-4">
+            <p className="text-textMuted max-w-2xl mx-auto">
               Nemphisia utilise les technologies les plus modernes pour garantir pérennité et évolutivité à vos projets web. Nous ne faisons aucun compromis sur la qualité du code.
             </p>
           </div>

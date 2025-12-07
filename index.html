@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // Force Dark Mode by default unless user explicitly chose light
+      if (localStorage.theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+        // We do not check system preference here to enforce our branding style as default
+      }
+
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
@@ -17,11 +26,16 @@
               display: ['Outfit', 'sans-serif'],
             },
             colors: {
-              background: '#090014', // Deep synthwave void
-              surface: '#150528', // Dark violet surface
-              primary: '#d946ef', // Fuchsia 500 (Neon Pink)
+              background: 'var(--background)',
+              surface: 'var(--surface)',
+              'surface-highlight': 'var(--surface-highlight)',
+              textMain: 'var(--text-main)',
+              textMuted: 'var(--text-muted)',
+              border: 'var(--border)',
+              
+              primary: '#d946ef', // Fuchsia 500
               primaryDark: '#a21caf',
-              secondary: '#f97316', // Orange 500 (Sunset)
+              secondary: '#f97316', // Orange 500
               secondaryLight: '#fbbf24', // Amber
               accent: '#22d3ee', // Cyan
             },
@@ -61,19 +75,44 @@
       }
     </script>
     <style>
-      body {
-        background-color: #090014;
-        color: #f3f4f6;
-        overflow-x: hidden;
-        /* Automatic dezoom 1.2 (1 / 1.2 ≈ 0.8333) */
-        zoom: 0.8333;
+      :root {
+        /* Light Mode Defaults */
+        --background: #ffffff;
+        --surface: #f8fafc; /* Slate 50 */
+        --surface-highlight: #f1f5f9; /* Slate 100 */
+        --text-main: #0f172a; /* Slate 900 */
+        --text-muted: #475569; /* Slate 600 */
+        --border: rgba(0, 0, 0, 0.08);
+        --glass-bg: rgba(255, 255, 255, 0.8);
+        --glass-border: rgba(0, 0, 0, 0.05);
       }
+
+      .dark {
+        /* Dark Mode (Synthwave) Defaults */
+        --background: #090014;
+        --surface: #150528;
+        --surface-highlight: #1e0b36;
+        --text-main: #f3f4f6;
+        --text-muted: #9ca3af;
+        --border: rgba(255, 255, 255, 0.1);
+        --glass-bg: rgba(26, 12, 45, 0.4);
+        --glass-border: rgba(217, 70, 239, 0.15);
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--text-main);
+        overflow-x: hidden;
+        zoom: 0.8333;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #090014; 
+        background: var(--background); 
       }
       ::-webkit-scrollbar-thumb {
         background: #d946ef; 
@@ -84,19 +123,26 @@
       }
       
       .glass-panel {
-        background: rgba(26, 12, 45, 0.4);
+        background: var(--glass-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(217, 70, 239, 0.15);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       }
-      
+
+      /* In light mode, reduce grid visibility */
       .grid-bg {
         background-size: 60px 60px;
         background-image: 
           linear-gradient(to right, rgba(217, 70, 239, 0.1) 1px, transparent 1px),
           linear-gradient(to bottom, rgba(217, 70, 239, 0.1) 1px, transparent 1px);
         mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
+      }
+      
+      html:not(.dark) .grid-bg {
+        background-image: 
+          linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
       }
       
       .synthwave-gradient-text {
@@ -110,7 +156,10 @@
         background: radial-gradient(circle at center, rgba(249, 115, 22, 0.15) 0%, rgba(217, 70, 239, 0.05) 40%, transparent 70%);
       }
       
-      /* Smooth scrolling for anchor links */
+      html:not(.dark) .synthwave-sun-glow {
+        opacity: 0.5;
+      }
+
       html {
         scroll-behavior: smooth;
       }

@@ -1,18 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Rocket } from 'lucide-react';
+import { Menu, X, Rocket, Sun, Moon } from 'lucide-react';
 import { Button } from './ui/Button';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
+    // Force Dark Mode by default if no preference is stored
+    if (localStorage.theme === 'light') {
+      setIsDark(false);
+      document.documentElement.classList.remove('dark');
+    } else {
+      // Default to dark even if system is light, unless user explicitly chose light previously
+      setIsDark(true);
+      document.documentElement.classList.add('dark');
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+      setIsDark(true);
+    }
+  };
 
   const navLinks = [
     { label: 'Accueil', href: '#home' },
@@ -28,7 +51,6 @@ export const Navbar: React.FC = () => {
     const element = document.getElementById(targetId);
     
     if (element) {
-      // Offset for fixed header (approx 80px)
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
@@ -51,19 +73,46 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#090014]/80 backdrop-blur-xl border-b border-white/5 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-xl border-b border-border py-4 shadow-[0_4px_30px_rgba(0,0,0,0.05)]' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a 
-          href="#home" 
-          onClick={(e) => handleNavClick(e, '#home')}
-          className="flex items-center gap-2 group"
-        >
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-600 to-orange-500 flex items-center justify-center shadow-[0_0_15px_rgba(217,70,239,0.4)] group-hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all">
-            <Rocket className="w-5 h-5 text-white transform -rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </div>
-          <span className="text-xl font-bold tracking-tight text-white font-display">Nemphisia</span>
-        </a>
+        <div className="flex items-center gap-6">
+          <a 
+            href="#home" 
+            onClick={(e) => handleNavClick(e, '#home')}
+            className="flex items-center gap-2 group"
+          >
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-600 to-orange-500 flex items-center justify-center shadow-[0_0_15px_rgba(217,70,239,0.4)] group-hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all">
+              <Rocket className="w-5 h-5 text-white transform -rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-textMain font-display">Nemphisia</span>
+          </a>
+
+          {/* THEME TOGGLE BUTTON (Redesigned) */}
+          <button
+            onClick={toggleTheme}
+            className={`
+              hidden md:flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300
+              ${isDark 
+                ? 'bg-surface border-fuchsia-500/30 text-textMuted hover:text-white hover:border-fuchsia-500 hover:bg-surface-highlight hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]' 
+                : 'bg-white border-slate-200 text-slate-600 hover:text-orange-500 hover:border-orange-500 hover:shadow-md'
+              }
+            `}
+            aria-label="Changer le thème"
+          >
+            {isDark ? (
+              <>
+                <Sun className="w-4 h-4 text-fuchsia-400" />
+                <span className="text-xs font-bold uppercase tracking-wide">Activer luminosité</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-4 h-4 text-indigo-500" />
+                <span className="text-xs font-bold uppercase tracking-wide">Désactiver luminosité</span>
+              </>
+            )}
+          </button>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-8">
@@ -72,7 +121,7 @@ export const Navbar: React.FC = () => {
               key={link.label} 
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)} 
-              className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group py-1"
+              className="text-sm font-medium text-textMuted hover:text-textMain transition-colors relative group py-1"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-fuchsia-500 to-orange-500 transition-all group-hover:w-full opacity-0 group-hover:opacity-100" />
@@ -88,22 +137,32 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button 
-          className="lg:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-colors"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="lg:hidden flex items-center gap-4">
+           {/* Mobile Theme Toggle (Simple Icon) */}
+           <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-surface border border-border text-textMuted"
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+
+          <button 
+            className="text-textMain p-2 hover:bg-surface rounded-lg transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-[#0f0b29]/95 backdrop-blur-xl border-b border-fuchsia-500/20 p-6 lg:hidden flex flex-col gap-4 animate-in slide-in-from-top-5 shadow-2xl z-40">
+        <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border p-6 lg:hidden flex flex-col gap-4 animate-in slide-in-from-top-5 shadow-2xl z-40">
           {navLinks.map((link) => (
             <a 
               key={link.label} 
               href={link.href}
-              className="text-lg font-medium text-gray-300 py-3 border-b border-white/5 hover:text-fuchsia-400 transition-colors"
+              className="text-lg font-medium text-textMain py-3 border-b border-border hover:text-fuchsia-500 transition-colors"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.label}

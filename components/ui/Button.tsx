@@ -20,8 +20,8 @@ export const Button: React.FC<ButtonProps> = ({
     primary: "bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white hover:shadow-[0_0_25px_rgba(217,70,239,0.6)] border border-transparent hover:scale-105",
     // Secondary: Orange/Sunset gradient
     secondary: "bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] border border-transparent hover:-translate-y-0.5",
-    // Outline
-    outline: "bg-transparent border border-fuchsia-500/30 text-white hover:bg-fuchsia-500/10 hover:border-fuchsia-500/60 shadow-[0_0_10px_rgba(217,70,239,0.1)]",
+    // Outline - Modified to use text-textMain instead of text-white for Light Mode visibility
+    outline: "bg-transparent border border-fuchsia-500/30 text-textMain hover:bg-fuchsia-500/10 hover:border-fuchsia-500/60 shadow-[0_0_10px_rgba(217,70,239,0.1)]",
     ghost: "bg-transparent text-gray-300 hover:text-white hover:bg-white/5"
   };
 

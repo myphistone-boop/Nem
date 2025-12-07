@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -15,7 +14,7 @@ import { Footer } from './components/Footer';
 
 const App: React.FC = () => {
   return (
-    <div className="font-sans antialiased text-gray-100 min-h-screen flex flex-col bg-[#090014]">
+    <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300">
       <Navbar />
       <main className="flex-grow">
         <Hero />

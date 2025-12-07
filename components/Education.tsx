@@ -30,11 +30,11 @@ export const Education: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#090014]" id="education">
+    <section className="py-24 bg-background" id="education">
       <div className="container mx-auto px-6">
         <div className="mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6">Comprendre <br/><span className="text-fuchsia-400">la technique</span></h2>
-          <p className="text-gray-400 max-w-2xl text-lg">
+          <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">la technique</span></h2>
+          <p className="text-textMuted max-w-2xl text-lg">
             Le web est complexe. Nous rendons la technologie transparente pour que vous compreniez ce que vous achetez.
           </p>
         </div>
@@ -48,8 +48,8 @@ export const Education: React.FC = () => {
                 onClick={() => setActiveTab(index)}
                 className={`text-left p-6 rounded-2xl transition-all duration-300 border flex items-center justify-between group ${
                   activeTab === index 
-                    ? 'bg-[#150528] border-fuchsia-500/50 shadow-[0_0_20px_rgba(217,70,239,0.15)]' 
-                    : 'bg-transparent border-white/5 hover:bg-white/5'
+                    ? 'bg-surface border-fuchsia-500/50 shadow-[0_0_20px_rgba(217,70,239,0.15)]' 
+                    : 'bg-transparent border-border hover:bg-surface'
                 }`}
               >
                 <div className="flex items-center gap-4">
@@ -57,28 +57,28 @@ export const Education: React.FC = () => {
                     <topic.icon className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className={`font-bold text-lg ${activeTab === index ? 'text-white' : 'text-gray-400 group-hover:text-gray-200'}`}>
+                    <h3 className={`font-bold text-lg ${activeTab === index ? 'text-textMain' : 'text-textMuted group-hover:text-textMain'}`}>
                       {topic.short}
                     </h3>
                   </div>
                 </div>
-                <ChevronRight className={`w-5 h-5 transition-transform ${activeTab === index ? 'text-fuchsia-400 rotate-90 lg:rotate-0' : 'text-gray-600'}`} />
+                <ChevronRight className={`w-5 h-5 transition-transform ${activeTab === index ? 'text-fuchsia-400 rotate-90 lg:rotate-0' : 'text-textMuted'}`} />
               </button>
             ))}
           </div>
 
           {/* Content Area */}
           <div className="lg:col-span-8">
-            <Card className="h-full bg-[#150528]/60 border-white/10 flex flex-col justify-center p-8 lg:p-12 min-h-[400px]">
+            <Card className="h-full bg-surface/60 border-border flex flex-col justify-center p-8 lg:p-12 min-h-[400px]">
               <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${topics[activeTab].color} flex items-center justify-center mb-6 shadow-xl animate-in fade-in zoom-in duration-500`}>
                 {React.createElement(topics[activeTab].icon, { className: "w-8 h-8 text-white" })}
               </div>
               
-              <h3 className="text-3xl font-bold text-white mb-6 font-display animate-in slide-in-from-bottom-2 duration-500 key={activeTab}">
+              <h3 className="text-3xl font-bold text-textMain mb-6 font-display animate-in slide-in-from-bottom-2 duration-500 key={activeTab}">
                 {topics[activeTab].title}
               </h3>
               
-              <p className="text-gray-300 text-lg leading-relaxed animate-in slide-in-from-bottom-4 duration-500 key={activeTab}-p">
+              <p className="text-textMuted text-lg leading-relaxed animate-in slide-in-from-bottom-4 duration-500 key={activeTab}-p">
                 {topics[activeTab].content}
               </p>
             </Card>
