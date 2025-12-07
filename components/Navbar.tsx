@@ -5,15 +5,21 @@ import { Button } from './ui/Button';
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  
+  // Initialize state based on the DOM to match the head script immediately
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof document !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return true;
+  });
 
   useEffect(() => {
-    // Force Dark Mode by default if no preference is stored
+    // We double check local storage just in case, but rely on the class presence mostly
     if (localStorage.theme === 'light') {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
     } else {
-      // Default to dark even if system is light, unless user explicitly chose light previously
       setIsDark(true);
       document.documentElement.classList.add('dark');
     }
