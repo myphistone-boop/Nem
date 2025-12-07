@@ -75,8 +75,8 @@ export const Navbar: React.FC = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-xl border-b border-border py-4 shadow-[0_4px_30px_rgba(0,0,0,0.05)]' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-6">
+        {/* Logo and Theme Toggle Group */}
+        <div className="flex items-center">
           <a 
             href="#home" 
             onClick={(e) => handleNavClick(e, '#home')}
@@ -88,30 +88,32 @@ export const Navbar: React.FC = () => {
             <span className="text-xl font-bold tracking-tight text-textMain font-display">Nemphisia</span>
           </a>
 
-          {/* THEME TOGGLE BUTTON (Redesigned) */}
-          <button
-            onClick={toggleTheme}
-            className={`
-              hidden md:flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300
-              ${isDark 
-                ? 'bg-surface border-fuchsia-500/30 text-textMuted hover:text-white hover:border-fuchsia-500 hover:bg-surface-highlight hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]' 
-                : 'bg-white border-slate-200 text-slate-600 hover:text-orange-500 hover:border-orange-500 hover:shadow-md'
-              }
-            `}
-            aria-label="Changer le thème"
-          >
-            {isDark ? (
-              <>
-                <Sun className="w-4 h-4 text-fuchsia-400" />
-                <span className="text-xs font-bold uppercase tracking-wide">Activer luminosité</span>
-              </>
-            ) : (
-              <>
-                <Moon className="w-4 h-4 text-indigo-500" />
-                <span className="text-xs font-bold uppercase tracking-wide">Désactiver luminosité</span>
-              </>
-            )}
-          </button>
+          {/* Vertical Divider and Theme Toggle - Separated for better visual balance */}
+          <div className="hidden md:flex items-center ml-8 pl-8 border-l border-border h-8">
+            <button
+              onClick={toggleTheme}
+              className={`
+                flex items-center gap-3 px-5 py-2.5 rounded-full border transition-all duration-300
+                ${isDark 
+                  ? 'bg-surface border-fuchsia-500/30 text-textMuted hover:text-white hover:border-fuchsia-500 hover:bg-surface-highlight hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]' 
+                  : 'bg-white border-slate-200 text-slate-600 hover:text-orange-500 hover:border-orange-500 hover:shadow-md'
+                }
+              `}
+              aria-label="Changer le thème"
+            >
+              {isDark ? (
+                <>
+                  <Sun className="w-4 h-4 text-fuchsia-400" />
+                  <span className="text-xs font-bold uppercase tracking-wide">Activer luminosité</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4 text-indigo-500" />
+                  <span className="text-xs font-bold uppercase tracking-wide">Désactiver luminosité</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Desktop Nav */}
