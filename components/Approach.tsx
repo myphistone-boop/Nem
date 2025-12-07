@@ -1,0 +1,82 @@
+import React from 'react';
+import { Button } from './ui/Button';
+import { ArrowRight, Smartphone, Shield, Zap } from 'lucide-react';
+import { Card } from './ui/Card';
+
+export const Approach: React.FC = () => {
+  return (
+    <section className="py-24 relative overflow-hidden bg-[#090014]">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Text Content */}
+          <div className="order-2 lg:order-1">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-display">
+              La technologie au service de <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre performance</span>
+            </h2>
+            <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+              Un site web n'est pas une simple vitrine, c'est une infrastructure critique. Sécurité faillible, chargement lent ou bugs d'affichage vous coûtent des clients chaque jour.
+            </p>
+            <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+              Chez Nemphisia, nous codons des solutions robustes, maintenables et ultra-rapides qui inspirent confiance immédiate à vos visiteurs.
+            </p>
+            <Button variant="secondary">
+              Lancer votre projet
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+
+          {/* Visual Content */}
+          <div className="order-1 lg:order-2 relative">
+             {/* Abstract background shape */}
+             <div className="absolute -inset-4 bg-gradient-to-tr from-fuchsia-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse-glow"></div>
+             
+             <Card className="relative z-10 p-8 border-white/10 bg-[#150528]/80 backdrop-blur-xl">
+                <div className="flex flex-col gap-6">
+                  {/* Step 1 */}
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors group">
+                    <div className="p-3 rounded-lg bg-fuchsia-500/20 text-fuchsia-400 group-hover:scale-110 transition-transform">
+                      <Zap className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-white">Vitesse Fulgurante</h4>
+                      <p className="text-sm text-gray-400">Optimisation du code pour un chargement instantané.</p>
+                    </div>
+                  </div>
+
+                   {/* Connector */}
+                   <div className="h-6 w-0.5 bg-gradient-to-b from-fuchsia-500/50 to-orange-500/50 ml-9 shadow-[0_0_10px_rgba(217,70,239,0.5)]"></div>
+
+                   {/* Step 2 */}
+                   <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors group">
+                    <div className="p-3 rounded-lg bg-orange-500/20 text-orange-400 group-hover:scale-110 transition-transform">
+                      <Shield className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-white">Sécurité Maximale</h4>
+                      <p className="text-sm text-gray-400">Protection contre les attaques et failles de sécurité.</p>
+                    </div>
+                  </div>
+
+                   {/* Connector */}
+                   <div className="h-6 w-0.5 bg-gradient-to-b from-orange-500/50 to-cyan-500/50 ml-9 shadow-[0_0_10px_rgba(249,115,22,0.5)]"></div>
+
+                   {/* Step 3 */}
+                   <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors group">
+                    <div className="p-3 rounded-lg bg-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
+                      <Smartphone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-white">Expérience Mobile</h4>
+                      <p className="text-sm text-gray-400">Interface fluide et responsive sur tous les appareils.</p>
+                    </div>
+                  </div>
+                </div>
+             </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
