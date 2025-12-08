@@ -1,0 +1,91 @@
+/* Scope global du thème Astral */
+.astral-theme {
+    --astral-bg: #030014;
+    --astral-card: rgba(10, 10, 30, 0.6);
+    --astral-border: rgba(100, 100, 255, 0.1);
+    --astral-primary: #4F46E5;
+    --astral-accent: #0EA5E9;
+    --astral-text: #E2E8F0;
+    font-family: 'Outfit', sans-serif;
+    color: var(--astral-text);
+  }
+  
+  /* Background Animation - Stars */
+  .astral-star-field {
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    overflow: hidden;
+  }
+  
+  .astral-star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: astral-twinkle var(--duration) ease-in-out infinite;
+    opacity: var(--opacity);
+  }
+  
+  @keyframes astral-twinkle {
+    0%, 100% { opacity: var(--opacity); transform: scale(1); }
+    50% { opacity: 0.2; transform: scale(0.8); }
+  }
+  
+  /* Floating Elements */
+  .astral-float {
+    animation: astral-float 6s ease-in-out infinite;
+  }
+  
+  .astral-float-delayed {
+    animation: astral-float 8s ease-in-out infinite 1s;
+  }
+  
+  @keyframes astral-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  /* Nebula Effect */
+  .astral-nebula {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: astral-nebula-pulse 10s ease-in-out infinite;
+  }
+  
+  @keyframes astral-nebula-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.1); opacity: 0.6; }
+  }
+  
+  /* Glass Card Specific to Astral */
+  .astral-glass {
+    background: var(--astral-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--astral-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Button Glow */
+  .astral-btn-glow {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .astral-btn-glow::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+  
+  .astral-btn-glow:hover::after {
+    transform: scale(1);
+    opacity: 1;
+  }

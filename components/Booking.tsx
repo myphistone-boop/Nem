@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Calendar, Clock, Sparkles } from 'lucide-react';
 import { Card } from './ui/Card';

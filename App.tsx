@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Approach } from './components/Approach';
@@ -10,11 +10,25 @@ import { Education } from './components/Education';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { Booking } from './components/Booking';
+import { AstralTheme } from './components/themes/AstralTheme';
+import { NatureTheme } from './components/themes/NatureTheme';
 
 const App: React.FC = () => {
+  const [isAstralOpen, setIsAstralOpen] = useState(false);
+  const [isNatureOpen, setIsNatureOpen] = useState(false);
+
   return (
-    <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300">
-      <Navbar />
+    <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
+      <Navbar 
+        onOpenAstral={() => setIsAstralOpen(true)} 
+        onOpenNature={() => setIsNatureOpen(true)}
+      />
+      
+      {/* Themes Overlays */}
+      <AstralTheme isOpen={isAstralOpen} onClose={() => setIsAstralOpen(false)} />
+      <NatureTheme isOpen={isNatureOpen} onClose={() => setIsNatureOpen(false)} />
+
       <main className="flex-grow">
         <Hero />
         <Approach />
@@ -23,6 +37,7 @@ const App: React.FC = () => {
         <Benefits />
         <Comparison />
         <Education />
+        <Booking />
         <FAQ />
         <Contact />
       </main>

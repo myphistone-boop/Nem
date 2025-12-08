@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Rocket, Sun, Moon } from 'lucide-react';
+import { Menu, X, Rocket, Sun, Moon, Palette, ChevronDown, Sparkles, Leaf } from 'lucide-react';
 import { Button } from './ui/Button';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  onOpenAstral: () => void;
+  onOpenNature: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onOpenAstral, onOpenNature }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -137,6 +142,54 @@ export const Navbar: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-fuchsia-500 to-orange-500 transition-all group-hover:w-full opacity-0 group-hover:opacity-100" />
             </a>
           ))}
+
+          {/* Style Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-2 text-sm font-medium text-textMuted hover:text-textMain transition-colors py-1">
+              <Palette className="w-4 h-4" />
+              <span>Styles</span>
+              <ChevronDown className="w-3 h-3 group-hover:rotate-180 transition-transform" />
+            </button>
+            <div className="absolute top-full right-0 pt-2 w-56 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+              <div className="bg-surface/90 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 flex flex-col gap-1 overflow-hidden">
+                <div className="px-3 py-2 text-xs font-bold text-textMuted uppercase tracking-wider">Thèmes Démo</div>
+                
+                {/* Astral Button */}
+                <button 
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenAstral();
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shrink-0">
+                    <Sparkles className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Astral</span>
+                    <span className="text-[10px] text-textMuted">Design Ethereal</span>
+                  </div>
+                </button>
+
+                {/* Nature Button */}
+                <button 
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenNature();
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center shrink-0">
+                    <Leaf className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Nature & Gold</span>
+                    <span className="text-[10px] text-textMuted">Design Thérapeute</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* CTA */}
@@ -167,7 +220,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border p-6 lg:hidden flex flex-col gap-4 animate-in slide-in-from-top-5 shadow-2xl z-40">
+        <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border p-6 lg:hidden flex flex-col gap-4 animate-in slide-in-from-top-5 shadow-2xl z-40 max-h-[80vh] overflow-y-auto">
           {navLinks.map((link) => (
             <a 
               key={link.label} 
@@ -178,6 +231,36 @@ export const Navbar: React.FC = () => {
               {link.label}
             </a>
           ))}
+
+          {/* Mobile Style Buttons */}
+          <div className="py-2 border-b border-border">
+             <p className="text-xs font-bold text-textMuted uppercase tracking-wider mb-2">Thèmes</p>
+             <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenAstral();
+                }}
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-indigo-400 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-indigo-500/20 text-indigo-400">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                Thème Astral
+              </button>
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenNature();
+                }}
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-emerald-400 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-emerald-500/20 text-emerald-400">
+                  <Leaf className="w-5 h-5" />
+                </div>
+                Thème Nature
+              </button>
+          </div>
+
           <Button className="w-full mt-4" onClick={scrollToContact}>Nous contacter</Button>
         </div>
       )}
