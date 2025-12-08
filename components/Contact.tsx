@@ -5,9 +5,9 @@ import { Button } from './ui/Button';
 import emailjs from '@emailjs/browser';
 
 // Configuration EmailJS
-const SERVICE_ID = "service_jihajwy";
-const TEMPLATE_ID = "template_uru60s8";
-const PUBLIC_KEY = "tEQkg5ut1bS_3U_R8";
+const SERVICE_ID = "service_nojvkzo";
+const TEMPLATE_ID = "template_0pmrqy8";
+const PUBLIC_KEY = "5--S4w9ONU_9K-_eL";
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ export const Contact: React.FC = () => {
   const openMailClient = () => {
     const subject = `Projet Web Nemphisia: ${formData.firstName} ${formData.lastName}`;
     const body = `Nom: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    window.location.href = `mailto:myphistone@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:contact@nemphisia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,7 +41,7 @@ export const Contact: React.FC = () => {
       last_name: formData.lastName,
       email: formData.email,
       message: formData.message,
-      to_email: 'myphistone@gmail.com' 
+      to_email: 'contact@nemphisia.com' 
     };
 
     try {
@@ -102,8 +102,8 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-orange-400 uppercase font-bold tracking-wider">Email</p>
-                  <a href="mailto:myphistone@gmail.com" className="text-textMain text-lg font-medium hover:text-fuchsia-400 transition-colors">
-                    myphistone@gmail.com
+                  <a href="mailto:contact@nemphisia.com" className="text-textMain text-lg font-medium hover:text-fuchsia-400 transition-colors">
+                    contact@nemphisia.com
                   </a>
                 </div>
               </Card>

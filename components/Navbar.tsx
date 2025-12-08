@@ -45,7 +45,6 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Accueil', href: '#home' },
-    { label: 'Notre Équipe', href: '#team' },
     { label: 'Pourquoi Nemphisia ?', href: '#why' },
     { label: "Qu'est-ce que c'est ?", href: '#education' },
     { label: 'Une question ?', href: '#faq' },

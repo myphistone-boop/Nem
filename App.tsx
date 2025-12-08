@@ -6,7 +6,6 @@ import { Solutions } from './components/Solutions';
 import { Services } from './components/Services';
 import { Benefits } from './components/Benefits';
 import { Comparison } from './components/Comparison';
-import { Team } from './components/Team';
 import { Education } from './components/Education';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -24,7 +23,6 @@ const App: React.FC = () => {
         <Benefits />
         <Comparison />
         <Education />
-        <Team />
         <FAQ />
         <Contact />
       </main>
