@@ -1,53 +1,31 @@
 
 /* Scope global du thème Nature & Gold */
 .nature-theme {
-    --nature-bg: #0f1c15; /* Forest Deep Green */
-    --nature-bg-secondary: #1a2e24;
-    --nature-gold: #d4af37; /* Metallic Gold */
-    --nature-gold-dim: rgba(212, 175, 55, 0.3);
-    --nature-cream: #f2efe4;
-    --nature-sage: #8da399;
+    /* Fond plus lumineux et vert émeraude */
+    --nature-bg: #104130; 
+    --nature-bg-gradient: radial-gradient(circle at center, #166534 0%, #064e3b 100%);
+    
+    --nature-gold: #fbbf24; /* Amber 400 - Plus jaune/vif */
+    --nature-gold-dim: rgba(251, 191, 36, 0.4);
+    --nature-cream: #ffffff; /* Blanc pur pour contraste */
+    --nature-sage: #a7f3d0; /* Emerald 200 - Plus clair */
     
     font-family: 'Playfair Display', serif;
     color: var(--nature-cream);
 }
 
-/* Background Gradients & Mist */
-.nature-mist {
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(26, 46, 36, 0.8) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(141, 163, 153, 0.15) 0%, transparent 50%);
-    filter: blur(40px);
-}
-
-/* Stars Background */
-.nature-star {
+/* Background Gradients Static */
+.nature-bg-static {
+    background: var(--nature-bg-gradient);
     position: absolute;
-    background: #ffffff;
-    border-radius: 50%;
-    animation: nature-twinkle var(--duration) ease-in-out infinite;
-    opacity: var(--opacity);
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+    inset: 0;
 }
 
-@keyframes nature-twinkle {
-    0%, 100% { opacity: var(--opacity); transform: scale(1); }
-    50% { opacity: 0.2; transform: scale(0.5); }
-}
-
-/* Golden Particles / Fireflies */
-.nature-particle {
+/* Light beam static effect */
+.nature-beam {
     position: absolute;
-    background: var(--nature-gold);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--nature-gold);
-    animation: nature-float-particle var(--duration) ease-in-out infinite;
-    opacity: var(--opacity);
-}
-
-@keyframes nature-float-particle {
-    0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-    50% { transform: translateY(-50px) translateX(20px); opacity: var(--max-opacity); }
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
+    filter: blur(60px);
 }
 
 /* Sacred Mandala System */
@@ -65,12 +43,15 @@
     border-radius: 50%;
     border: 1px solid var(--nature-gold-dim);
     transition: all 0.5s ease;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.1);
 }
 
 .nature-ring-1 {
     width: 300px;
     height: 300px;
     border-style: solid;
+    border-width: 2px;
+    border-color: rgba(251, 191, 36, 0.3);
     animation: nature-spin-slow 60s linear infinite;
 }
 
@@ -79,18 +60,18 @@
     height: 450px;
     border-style: dashed;
     border-width: 1px;
-    opacity: 0.6;
+    opacity: 0.8;
     animation: nature-spin-reverse 120s linear infinite;
 }
 
 .nature-ring-3 {
     width: 600px;
     height: 600px;
-    border: 1px solid rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.2);
     animation: nature-pulse-gold 6s ease-in-out infinite;
 }
 
-/* Planètes et Orbites */
+/* Planètes et Orbites - Simplified */
 .nature-orbit {
     position: absolute;
     top: 50%;
@@ -98,7 +79,7 @@
     transform: translate(-50%, -50%);
     border-radius: 50%;
     pointer-events: none;
-    border: 1px solid rgba(212, 175, 55, 0.05); /* Very subtle track */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
 .nature-orbit-inner {
@@ -124,13 +105,13 @@
     top: 50%;
     transform: translateY(-50%);
     border-radius: 50%;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
 }
 
 .nature-planet-1 {
     width: 16px;
     height: 16px;
-    background: var(--nature-cream);
+    background: #fff;
     right: -8px;
 }
 
@@ -139,7 +120,7 @@
     height: 28px;
     background: var(--nature-gold);
     right: -14px;
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 35px rgba(251, 191, 36, 0.8); /* Glow plus fort */
 }
 
 .nature-planet-3 {
@@ -153,32 +134,26 @@
 /* Central Glyph */
 .nature-glyph {
     color: var(--nature-gold);
-    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.8));
     animation: nature-breathe 4s ease-in-out infinite;
 }
 
 /* Buttons & UI */
-.nature-glass {
-    background: rgba(15, 28, 21, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
 .nature-btn {
     position: relative;
     overflow: hidden;
-    background: transparent;
+    background: rgba(255,255,255,0.1);
     border: 1px solid var(--nature-gold);
     color: var(--nature-gold);
     font-family: 'Playfair Display', serif;
     transition: all 0.4s ease;
+    font-weight: 600;
 }
 
 .nature-btn:hover {
     background: var(--nature-gold);
-    color: var(--nature-bg);
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    color: #064e3b; /* Vert foncé au survol */
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
 }
 
 .nature-line-decoration {
@@ -189,7 +164,7 @@
 }
 
 .nature-line {
-    height: 1px;
+    height: 2px;
     background: linear-gradient(90deg, transparent, var(--nature-gold), transparent);
     width: 100px;
 }
@@ -206,16 +181,11 @@
 }
 
 @keyframes nature-pulse-gold {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.02); }
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
 }
 
 @keyframes nature-breathe {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6)); }
-    50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); }
-}
-
-/* Scrollbar specific to theme */
-.nature-theme ::webkit-scrollbar-thumb {
-    background-color: var(--nature-gold);
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.6)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 35px rgba(251, 191, 36, 0.9)); }
 }

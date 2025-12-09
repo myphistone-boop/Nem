@@ -23,14 +23,14 @@ export const Services: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 relative bg-background" id="services">
+    <section className="py-16 lg:py-20 xl:py-24 relative bg-background" id="services">
       {/* Background decoration */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-fuchsia-900/10 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-900/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-display text-textMain">Des services complets pour <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre infrastructure web</span></h2>
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">Des services complets pour <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre infrastructure web</span></h2>
           <p className="text-textMuted text-lg">
             Nous ne faisons pas que livrer du code. Nous assurons la stabilité, la sécurité et la pérennité de votre outil de travail digital.
           </p>

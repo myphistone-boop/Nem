@@ -89,9 +89,9 @@ export const Contact: React.FC = () => {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs text-fuchsia-400 uppercase font-bold tracking-wider">Téléphone</p>
+                  <p className="text-xs text-fuchsia-400 uppercase font-bold tracking-wider">Téléphone / WhatsApp</p>
                   <a href="tel:+33651553268" className="text-textMain text-lg font-medium hover:text-orange-400 transition-colors">
-                    +33 6 51 55 32 68
+                    +33 7 87 81 98 71
                   </a>
                 </div>
               </Card>

@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[110vh] flex items-center pt-24 pb-12 overflow-hidden bg-background transition-colors duration-300" id="home">
+    <section className="relative min-h-screen lg:min-h-[90vh] xl:min-h-[100vh] flex items-center pt-28 pb-12 lg:pt-32 overflow-hidden bg-background transition-colors duration-300" id="home">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Synthwave Sun Glow */}
@@ -29,37 +29,37 @@ export const Hero: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-900/10 rounded-full blur-[100px]"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
         
         {/* Left Column: Copy */}
-        <div className="lg:col-span-5 flex flex-col gap-8 text-center lg:text-left">
+        <div className="lg:col-span-5 flex flex-col gap-6 lg:gap-8 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-highlight border border-border w-fit mx-auto lg:mx-0 backdrop-blur-md shadow-[0_0_15px_rgba(217,70,239,0.1)]">
             <ShieldCheck className="w-4 h-4 text-orange-400 animate-pulse" />
             <span className="text-xs font-bold text-textMain tracking-wide uppercase">Agence Web & Cybersécurité</span>
           </div>
           
-          <h1 className="text-4xl lg:text-7xl font-bold leading-[1.1] tracking-tight font-display text-textMain">
+          <h1 className="text-4xl lg:text-5xl xl:text-7xl font-bold leading-[1.1] tracking-tight font-display text-textMain">
             L'élite du <br />
             <span className="synthwave-gradient-text drop-shadow-[0_0_15px_rgba(217,70,239,0.3)]">Développement Web</span>
           </h1>
           
-          <p className="text-lg text-textMuted leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+          <p className="text-base lg:text-lg text-textMuted leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
             Conception de sites sur mesure, maintenance proactive et sécurité impénétrable. Nous construisons l'infrastructure digitale qui protège et propulse votre entreprise.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-2">
-            <Button variant="primary" size="lg" onClick={scrollToContact}>
+            <Button variant="primary" size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
               <Calendar className="w-5 h-5" />
               Demander un audit
             </Button>
-            <Button variant="outline" size="lg" onClick={scrollToFAQ}>
+            <Button variant="outline" size="lg" onClick={scrollToFAQ} className="w-full sm:w-auto">
               <MessageCircle className="w-5 h-5" />
               Poser une question
             </Button>
           </div>
 
           {/* Trust Signals */}
-          <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+          <div className="pt-6 lg:pt-8 border-t border-border flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
             <div className="flex -space-x-3">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="w-10 h-10 rounded-full border-2 border-background bg-surface flex items-center justify-center text-xs text-textMain font-bold ring-2 ring-fuchsia-500/20">
@@ -74,7 +74,8 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Right Column: Animation Composition */}
-        <div className="lg:col-span-7 relative h-[600px] w-full hidden lg:block perspective-[1000px]">
+        {/* Added scale transform for LG screens to fit smaller laptops */}
+        <div className="lg:col-span-7 relative h-[500px] lg:h-[600px] w-full hidden lg:block perspective-[1000px] lg:scale-[0.85] xl:scale-100 origin-center lg:origin-right transition-transform duration-500">
           
           {/* Main Dashboard Card */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[460px] h-[340px] z-20 animate-float-slow rotate-y-6 rotate-x-6">

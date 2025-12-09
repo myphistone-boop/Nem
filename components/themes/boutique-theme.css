@@ -1,0 +1,94 @@
+
+/* Scope global du thème Boutique */
+.boutique-theme {
+    --boutique-bg: #ffffff;
+    --boutique-text: #1a1a1a;
+    --boutique-text-light: #555555;
+    --boutique-border: #e5e5e5;
+    --boutique-accent: #000000;
+    --boutique-accent-hover: #333333;
+    --boutique-light-gray: #f9f9f9;
+    
+    font-family: 'Inter', sans-serif;
+    color: var(--boutique-text);
+    background-color: var(--boutique-bg);
+}
+
+/* Animations d'apparition douces */
+.boutique-fade-in {
+    opacity: 0;
+    animation: boutiqueFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.boutique-delay-1 { animation-delay: 0.2s; }
+.boutique-delay-2 { animation-delay: 0.4s; }
+.boutique-delay-3 { animation-delay: 0.6s; }
+
+@keyframes boutiqueFade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typographie spécifique */
+.boutique-heading {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.boutique-nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--boutique-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.boutique-nav-link:hover {
+    border-bottom-color: var(--boutique-accent);
+}
+
+/* Boutons classiques */
+.boutique-btn {
+    background-color: var(--boutique-accent);
+    color: white;
+    padding: 16px 32px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+.boutique-btn:hover {
+    background-color: var(--boutique-accent-hover);
+}
+
+.boutique-btn-outline {
+    background-color: transparent;
+    color: var(--boutique-accent);
+    padding: 14px 30px;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid var(--boutique-accent);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.boutique-btn-outline:hover {
+    background-color: var(--boutique-accent);
+    color: white;
+}

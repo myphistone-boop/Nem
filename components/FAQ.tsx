@@ -7,20 +7,40 @@ export const FAQ: React.FC = () => {
 
   const faqs = [
     {
-      question: "Mon site est-il protégé contre le piratage ?",
-      answer: "Oui. La sécurité est notre priorité absolue. Nous implémentons des pare-feux (WAF), sécurisons les bases de données et effectuons des mises à jour constantes pour fermer toute brèche potentielle."
+      question: "Pourquoi le prix est-il aussi accessible ?",
+      answer: "Parce que je maîtrise parfaitement ce type de site : j’ai déjà développé de nombreux projets similaires, ce qui me permet d’aller très vite et d’éviter les heures de travail superflues. Je ne pars pas de blocs préfabriqués : je code moi-même les sections essentielles, avec une structure déjà optimisée que j’adapte à votre activité. Cette expertise me permet d’offrir un site professionnel, propre et performant, à un tarif beaucoup plus accessible que les agences traditionnelles."
     },
     {
-      question: "Utilisez-vous des templates ou du code sur mesure ?",
-      answer: "Nous privilégions le développement sur mesure pour garantir performance et unicité. Si votre budget est serré, nous pouvons adapter des solutions existantes, mais toujours en optimisant le code source."
+      question: "Est-ce que je pourrai modifier mon site moi-même ?",
+      answer: "Non. Pour garantir la stabilité, la qualité visuelle et éviter toute erreur technique, l’accès n’est pas ouvert. Je gère entièrement votre site pour vous, afin que vous n’ayez jamais à toucher à l’aspect technique."
     },
     {
-      question: "Que se passe-t-il si mon site tombe en panne ?",
-      answer: "Avec notre forfait maintenance, nous sommes alertés instantanément grâce à nos sondes de monitoring. Nous intervenons généralement dans l'heure pour rétablir le service."
+      question: "Et si je veux changer quelque chose plus tard ?",
+      answer: "Le site est pensé pour être durable et ne pas nécessiter de modifications fréquentes. Si vous souhaitez une mise à jour ponctuelle (texte, photo, information importante), elle peut être faite sur demande et facturée simplement selon le temps nécessaire."
     },
     {
-      question: "Puis-je modifier le contenu moi-même ?",
-      answer: "Absolument. Même pour un site sur mesure, nous intégrons une interface d'administration (CMS) intuitive qui vous permet de changer textes et images sans toucher une ligne de code."
+      question: "Que comprend l’abonnement mensuel de 29- ?",
+      answer: "L’abonnement couvre : l’hébergement sécurisé, les mises à jour techniques, la maintenance, la surveillance du site et les corrections techniques si nécessaire. L’objectif est que votre site fonctionne parfaitement sans que vous ayez à vous en occuper."
+    },
+    {
+      question: "Puis-je arrêter l’abonnement quand je veux ?",
+      answer: "Oui. L’abonnement est sans engagement. En cas d’arrêt, une copie du site vous est fournie, mais il ne sera plus maintenu ni hébergé par mes services."
+    },
+    {
+      question: "Est-ce que mon site sera vraiment professionnel ?",
+      answer: "Oui. Le design repose sur un thème premium que j’adapte à votre activité. Votre site sera clair, moderne, optimisé pour mobile et donnera une image sérieuse dès la première seconde."
+    },
+    {
+      question: "Et le référencement, comment ça marche ?",
+      answer: "Votre site est optimisé techniquement pour être correctement lu par Google : structure propre, rapidité, version mobile, balises essentielles. Cela suffit pour une présence locale normale. Le référencement avancé (SEO) n’est pas inclus mais peut être ajouté en option si vous en avez besoin."
+    },
+    {
+      question: "Combien de temps faut-il pour recevoir mon site ?",
+      answer: "En général, votre site est livré rapidement, dans les 48–72 heures une fois que vous avez fourni vos textes et images."
+    },
+    {
+      question: "Est-ce que je dois m’occuper de la technique ?",
+      answer: "Non. Je gère tout : hébergement, mises à jour, sécurité, maintenance. Vous pouvez vous concentrer sur votre activité."
     }
   ];
 
@@ -36,7 +56,7 @@ export const FAQ: React.FC = () => {
           </div>
           <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4 text-textMain">Une <span className="text-orange-400">question ?</span></h2>
           <p className="text-textMuted">
-            Des réponses claires sur notre expertise technique.
+            Tout ce que vous devez savoir sur le fonctionnement.
           </p>
         </div>
 
@@ -51,15 +71,15 @@ export const FAQ: React.FC = () => {
                 className="flex items-center justify-between p-2"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <h3 className={`text-lg font-medium transition-colors ${openIndex === index ? 'text-textMain' : 'text-textMuted'}`}>
+                <h3 className={`text-lg font-medium transition-colors pr-8 ${openIndex === index ? 'text-textMain' : 'text-textMuted'}`}>
                   {faq.question}
                 </h3>
-                <ChevronDown className={`w-5 h-5 text-fuchsia-500 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-fuchsia-500 transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-180' : ''}`} />
               </div>
               
               <div className={`grid transition-all duration-300 ease-in-out ${openIndex === index ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}>
                 <div className="overflow-hidden">
-                  <p className="text-textMuted leading-relaxed pb-2 border-t border-border pt-4">
+                  <p className="text-textMuted leading-relaxed pb-2 border-t border-border pt-4 whitespace-pre-line">
                     {faq.answer}
                   </p>
                 </div>

@@ -1,0 +1,93 @@
+/* Scope global du thème Impact (Nike/Apple style) */
+.impact-theme {
+    /* Fond très clair, presque blanc (style Apple store) */
+    --impact-bg: #F5F5F7; 
+    --impact-text: #1d1d1f; /* Noir Apple */
+    --impact-text-secondary: #86868b;
+    --impact-accent: #0071e3; /* Bleu Apple */
+    
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--impact-text);
+}
+
+/* Animations d'entrée */
+.impact-fade-up {
+    animation: impactFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.impact-delay-1 { animation-delay: 0.1s; }
+.impact-delay-2 { animation-delay: 0.2s; }
+.impact-delay-3 { animation-delay: 0.4s; }
+
+@keyframes impactFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Glassmorphism façon Apple/iOS */
+.impact-glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+}
+
+/* Typographie Massive */
+.impact-big-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    background: linear-gradient(135deg, #000 0%, #444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Floating Product Container */
+.impact-float-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.impact-card-3d {
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+}
+
+/* Boutons arrondis */
+.impact-btn {
+    background: #1d1d1f;
+    color: white;
+    border-radius: 9999px;
+    padding: 16px 32px;
+    font-weight: 600;
+    font-size: 17px;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), background 0.2s;
+}
+
+.impact-btn:hover {
+    transform: scale(1.02);
+    background: #333;
+}
+
+.impact-btn-outline {
+    background: transparent;
+    color: #1d1d1f;
+    border: 1px solid #1d1d1f;
+    border-radius: 9999px;
+    padding: 16px 32px;
+    font-weight: 600;
+    font-size: 17px;
+    transition: all 0.2s ease;
+}
+
+.impact-btn-outline:hover {
+    background: #1d1d1f;
+    color: white;
+}

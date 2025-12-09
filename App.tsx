@@ -10,9 +10,11 @@ import { Education } from './components/Education';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { Booking } from './components/Booking';
+import { Pricing } from './components/Pricing';
 import { AstralTheme } from './components/themes/AstralTheme';
 import { NatureTheme } from './components/themes/NatureTheme';
+import { ImpactTheme } from './components/themes/ImpactTheme';
+import { BoutiqueTheme } from './components/themes/BoutiqueTheme';
 
 const App: React.FC = () => {
   // Simple routing based on Query Parameters
@@ -35,6 +37,16 @@ const App: React.FC = () => {
     return <NatureTheme />;
   }
 
+  // Render Impact Theme Page
+  if (theme === 'impact') {
+    return <ImpactTheme />;
+  }
+
+  // Render Boutique Theme Page
+  if (theme === 'boutique') {
+    return <BoutiqueTheme />;
+  }
+
   // Render Main Agency Site
   return (
     <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
@@ -48,7 +60,7 @@ const App: React.FC = () => {
         <Benefits />
         <Comparison />
         <Education />
-        <Booking />
+        <Pricing />
         <FAQ />
         <Contact />
       </main>

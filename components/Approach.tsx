@@ -5,13 +5,13 @@ import { Card } from './ui/Card';
 
 export const Approach: React.FC = () => {
   return (
-    <section className="py-24 relative overflow-hidden bg-background">
+    <section className="py-16 lg:py-20 xl:py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Text Content */}
           <div className="order-2 lg:order-1">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-display text-textMain">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">
               La technologie au service de <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre performance</span>
             </h2>
@@ -32,7 +32,7 @@ export const Approach: React.FC = () => {
              {/* Abstract background shape */}
              <div className="absolute -inset-4 bg-gradient-to-tr from-fuchsia-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse-glow"></div>
              
-             <Card className="relative z-10 p-8 border-border bg-surface/80 backdrop-blur-xl">
+             <Card className="relative z-10 p-6 lg:p-8 border-border bg-surface/80 backdrop-blur-xl">
                 <div className="flex flex-col gap-6">
                   {/* Step 1 */}
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border hover:bg-surface-highlight transition-colors group">

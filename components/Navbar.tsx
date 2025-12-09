@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Rocket, Sun, Moon, Palette, ChevronDown, Sparkles, Leaf } from 'lucide-react';
+import { Menu, X, Rocket, Sun, Moon, Palette, ChevronDown, Sparkles, Leaf, Zap, ShoppingBag } from 'lucide-react';
 import { Button } from './ui/Button';
 
 export const Navbar: React.FC = () => {
@@ -100,11 +100,12 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Vertical Divider and Theme Toggle - Separated for better visual balance */}
-          <div className="hidden md:flex items-center ml-8 pl-8 border-l border-border h-8">
+          {/* Optimization: Reduced margins and hidden text on smaller laptops (lg) */}
+          <div className="hidden md:flex items-center ml-4 pl-4 xl:ml-8 xl:pl-8 border-l border-border h-8 transition-all">
             <button
               onClick={toggleTheme}
               className={`
-                flex items-center gap-3 px-5 py-2.5 rounded-full border transition-all duration-300
+                flex items-center gap-2 xl:gap-3 px-3 py-2 xl:px-5 xl:py-2.5 rounded-full border transition-all duration-300
                 ${isDark 
                   ? 'bg-surface border-fuchsia-500/30 text-textMuted hover:text-white hover:border-fuchsia-500 hover:bg-surface-highlight hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]' 
                   : 'bg-white border-slate-200 text-slate-600 hover:text-orange-500 hover:border-orange-500 hover:shadow-md'
@@ -115,12 +116,14 @@ export const Navbar: React.FC = () => {
               {isDark ? (
                 <>
                   <Sun className="w-4 h-4 text-fuchsia-400" />
-                  <span className="text-xs font-bold uppercase tracking-wide">Activer luminosité</span>
+                  {/* Text hidden on lg (laptops), visible on xl (desktops) */}
+                  <span className="hidden xl:inline text-xs font-bold uppercase tracking-wide">Activer luminosité</span>
                 </>
               ) : (
                 <>
                   <Moon className="w-4 h-4 text-indigo-500" />
-                  <span className="text-xs font-bold uppercase tracking-wide">Désactiver luminosité</span>
+                  {/* Text hidden on lg (laptops), visible on xl (desktops) */}
+                  <span className="hidden xl:inline text-xs font-bold uppercase tracking-wide">Désactiver luminosité</span>
                 </>
               )}
             </button>
@@ -128,13 +131,14 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+        {/* Optimization: Reduced gap on lg from gap-6 to gap-3 */}
+        <div className="hidden lg:flex items-center gap-3 xl:gap-8 transition-all">
           {navLinks.map((link) => (
             <a 
               key={link.label} 
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)} 
-              className="text-sm font-medium text-textMuted hover:text-textMain transition-colors relative group py-1"
+              className="text-sm font-medium text-textMuted hover:text-textMain transition-colors relative group py-1 whitespace-nowrap"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-fuchsia-500 to-orange-500 transition-all group-hover:w-full opacity-0 group-hover:opacity-100" />
@@ -143,12 +147,12 @@ export const Navbar: React.FC = () => {
 
           {/* Style Dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-2 text-sm font-medium text-textMuted hover:text-textMain transition-colors py-1">
+            <button className="flex items-center gap-2 text-sm font-medium text-textMuted hover:text-textMain transition-colors py-1 whitespace-nowrap">
               <Palette className="w-4 h-4" />
               <span>Styles</span>
               <ChevronDown className="w-3 h-3 group-hover:rotate-180 transition-transform" />
             </button>
-            <div className="absolute top-full right-0 pt-2 w-56 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+            <div className="absolute top-full right-0 pt-2 w-64 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
               <div className="bg-surface/90 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 flex flex-col gap-1 overflow-hidden">
                 <div className="px-3 py-2 text-xs font-bold text-textMuted uppercase tracking-wider">Thèmes Démo</div>
                 
@@ -177,6 +181,34 @@ export const Navbar: React.FC = () => {
                   <div>
                     <span className="block font-medium">Nature & Gold</span>
                     <span className="text-[10px] text-textMuted">Design Thérapeute</span>
+                  </div>
+                </a>
+
+                {/* Impact Button */}
+                <a 
+                  href="?theme=impact"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-white border border-gray-200 flex items-center justify-center shrink-0">
+                    <Zap className="w-4 h-4 text-black" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Impact</span>
+                    <span className="text-[10px] text-textMuted">Style Nike / Apple</span>
+                  </div>
+                </a>
+
+                 {/* Boutique Button */}
+                 <a 
+                  href="?theme=boutique"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-neutral-100 border border-gray-300 flex items-center justify-center shrink-0">
+                    <ShoppingBag className="w-4 h-4 text-black" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Boutique</span>
+                    <span className="text-[10px] text-textMuted">Classique Shopify</span>
                   </div>
                 </a>
               </div>
@@ -244,6 +276,24 @@ export const Navbar: React.FC = () => {
                   <Leaf className="w-5 h-5" />
                 </div>
                 Thème Nature
+              </a>
+              <a 
+                href="?theme=impact"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-gray-900 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-white border border-gray-200 text-black">
+                  <Zap className="w-5 h-5" />
+                </div>
+                Thème Impact
+              </a>
+              <a 
+                href="?theme=boutique"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-gray-600 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-neutral-100 border border-gray-300 text-black">
+                  <ShoppingBag className="w-5 h-5" />
+                </div>
+                Thème Boutique
               </a>
           </div>
 
