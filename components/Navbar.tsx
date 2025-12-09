@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Rocket, Sun, Moon, Palette, ChevronDown, Sparkles, Leaf } from 'lucide-react';
 import { Button } from './ui/Button';
 
-interface NavbarProps {
-  onOpenAstral: () => void;
-  onOpenNature: () => void;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ onOpenAstral, onOpenNature }) => {
+export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -56,6 +51,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAstral, onOpenNature }) =>
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Only intercept anchor links starting with #
+    if (!href.startsWith('#')) return;
+
     e.preventDefault();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
@@ -155,11 +153,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAstral, onOpenNature }) =>
                 <div className="px-3 py-2 text-xs font-bold text-textMuted uppercase tracking-wider">Thèmes Démo</div>
                 
                 {/* Astral Button */}
-                <button 
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onOpenAstral();
-                  }}
+                <a 
+                  href="?theme=astral"
                   className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
                 >
                   <div className="w-8 h-8 rounded-md bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shrink-0">
@@ -169,14 +164,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAstral, onOpenNature }) =>
                     <span className="block font-medium">Astral</span>
                     <span className="text-[10px] text-textMuted">Design Ethereal</span>
                   </div>
-                </button>
+                </a>
 
                 {/* Nature Button */}
-                <button 
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onOpenNature();
-                  }}
+                <a 
+                  href="?theme=nature"
                   className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
                 >
                   <div className="w-8 h-8 rounded-md bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center shrink-0">
@@ -186,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAstral, onOpenNature }) =>
                     <span className="block font-medium">Nature & Gold</span>
                     <span className="text-[10px] text-textMuted">Design Thérapeute</span>
                   </div>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -235,30 +227,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAstral, onOpenNature }) =>
           {/* Mobile Style Buttons */}
           <div className="py-2 border-b border-border">
              <p className="text-xs font-bold text-textMuted uppercase tracking-wider mb-2">Thèmes</p>
-             <button 
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onOpenAstral();
-                }}
+             <a 
+                href="?theme=astral"
                 className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-indigo-400 transition-colors text-left"
               >
                 <div className="p-1 rounded bg-indigo-500/20 text-indigo-400">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 Thème Astral
-              </button>
-              <button 
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onOpenNature();
-                }}
+              </a>
+              <a 
+                href="?theme=nature"
                 className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-emerald-400 transition-colors text-left"
               >
                 <div className="p-1 rounded bg-emerald-500/20 text-emerald-400">
                   <Leaf className="w-5 h-5" />
                 </div>
                 Thème Nature
-              </button>
+              </a>
           </div>
 
           <Button className="w-full mt-4" onClick={scrollToContact}>Nous contacter</Button>

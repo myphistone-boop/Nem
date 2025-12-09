@@ -15,20 +15,31 @@ import { AstralTheme } from './components/themes/AstralTheme';
 import { NatureTheme } from './components/themes/NatureTheme';
 
 const App: React.FC = () => {
-  const [isAstralOpen, setIsAstralOpen] = useState(false);
-  const [isNatureOpen, setIsNatureOpen] = useState(false);
+  // Simple routing based on Query Parameters
+  // e.g. ?theme=astral
+  const [theme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('theme');
+    }
+    return null;
+  });
 
+  // Render Astral Theme Page
+  if (theme === 'astral') {
+    return <AstralTheme />;
+  }
+
+  // Render Nature Theme Page
+  if (theme === 'nature') {
+    return <NatureTheme />;
+  }
+
+  // Render Main Agency Site
   return (
     <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
-      <Navbar 
-        onOpenAstral={() => setIsAstralOpen(true)} 
-        onOpenNature={() => setIsNatureOpen(true)}
-      />
+      <Navbar />
       
-      {/* Themes Overlays */}
-      <AstralTheme isOpen={isAstralOpen} onClose={() => setIsAstralOpen(false)} />
-      <NatureTheme isOpen={isNatureOpen} onClose={() => setIsNatureOpen(false)} />
-
       <main className="flex-grow">
         <Hero />
         <Approach />

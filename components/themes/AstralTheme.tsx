@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { X, ArrowRight, Zap, Globe, Cpu } from 'lucide-react';
 import './astral-theme.css';
 
-interface AstralThemeProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 // Composant interne Hero spécifique au thème Astral
 const AstralHero = () => (
-  <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+  <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 pt-20">
     <div className="astral-glass px-4 py-2 rounded-full mb-8 astral-float">
       <span className="text-cyan-300 text-xs font-bold tracking-widest uppercase">Design System V2.0</span>
     </div>
@@ -36,7 +31,7 @@ const AstralHero = () => (
     </div>
 
     {/* Floating Cards Demo */}
-    <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl pb-12">
       {[
         { icon: Globe, title: "Global Reach", val: "100%" },
         { icon: Zap, title: "Performance", val: "< 50ms" },
@@ -66,7 +61,7 @@ const AstralBackground = () => {
   }));
 
   return (
-    <div className="absolute inset-0 astral-star-field z-0">
+    <div className="fixed inset-0 astral-star-field z-0">
       {/* Nebulas */}
       <div className="astral-nebula bg-indigo-600 top-[-10%] left-[20%] w-[500px] h-[500px] opacity-30"></div>
       <div className="astral-nebula bg-cyan-600 bottom-[-10%] right-[10%] w-[600px] h-[600px] opacity-20 animation-delay-2000"></div>
@@ -93,29 +88,12 @@ const AstralBackground = () => {
   );
 };
 
-export const AstralTheme: React.FC<AstralThemeProps> = ({ isOpen, onClose }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setMounted(true);
-      document.body.style.overflow = 'hidden'; // Empêcher le scroll du site principal
-    } else {
-      const timer = setTimeout(() => setMounted(false), 500); // Délai pour l'animation de sortie
-      document.body.style.overflow = 'unset';
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
-
-  if (!mounted && !isOpen) return null;
-
+export const AstralTheme: React.FC = () => {
   return (
-    <div 
-      className={`fixed inset-0 z-[100] transition-opacity duration-500 astral-theme ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-    >
+    <div className="min-h-screen astral-theme bg-[#030014] overflow-x-hidden relative">
       <AstralBackground />
       
-      <div className="relative z-50 h-full w-full overflow-y-auto">
+      <div className="relative z-50 min-h-screen flex flex-col">
         {/* Header Astral */}
         <header className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-50">
           <div className="flex items-center gap-2">
@@ -125,19 +103,19 @@ export const AstralTheme: React.FC<AstralThemeProps> = ({ isOpen, onClose }) => 
             <span className="font-display font-bold text-white tracking-widest">ASTRAL UI</span>
           </div>
 
-          <button 
-            onClick={onClose}
+          <a 
+            href="/"
             className="group flex items-center gap-2 px-4 py-2 rounded-full astral-glass hover:bg-white/10 transition-all text-white"
           >
             <span className="text-sm font-medium opacity-70 group-hover:opacity-100">Retour au site</span>
             <div className="bg-white/20 rounded-full p-1 group-hover:bg-white/30 transition-colors">
               <X className="w-4 h-4" />
             </div>
-          </button>
+          </a>
         </header>
 
         {/* Contenu Principal */}
-        <main className="min-h-screen flex flex-col">
+        <main className="flex-grow flex items-center justify-center">
           <AstralHero />
         </main>
       </div>

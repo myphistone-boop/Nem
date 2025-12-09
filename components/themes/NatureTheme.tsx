@@ -1,12 +1,6 @@
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { X, ArrowRight, Flower2, Sparkles } from 'lucide-react';
 import './nature-theme.css';
-
-interface NatureThemeProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
 
 // Background organique avec brume et particules
 const NatureBackground = () => {
@@ -29,7 +23,7 @@ const NatureBackground = () => {
   }));
 
   return (
-    <div className="absolute inset-0 z-0 bg-[#0f1c15] overflow-hidden">
+    <div className="fixed inset-0 z-0 bg-[#0f1c15] overflow-hidden">
       {/* Étoiles en arrière-plan */}
       {stars.map((s, i) => (
         <div 
@@ -78,7 +72,7 @@ const NatureBackground = () => {
 
 // Hero section avec le Mandala
 const NatureHero = () => (
-  <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen px-6 lg:gap-24">
+  <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen px-6 lg:gap-24 py-20 lg:py-0">
     
     {/* Colonne Gauche : Texte */}
     <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-xl animate-in fade-in slide-in-from-left-10 duration-1000">
@@ -116,7 +110,7 @@ const NatureHero = () => (
 
     {/* Colonne Droite : Le Mandala et les Planètes */}
     <div className="relative mt-12 lg:mt-0 animate-in fade-in zoom-in duration-1000 delay-300">
-      <div className="nature-mandala-container">
+      <div className="nature-mandala-container scale-75 lg:scale-100">
         {/* Cercles concentriques animés (Mandala de base) */}
         <div className="nature-ring nature-ring-1"></div>
         <div className="nature-ring nature-ring-2"></div>
@@ -149,45 +143,28 @@ const NatureHero = () => (
   </div>
 );
 
-export const NatureTheme: React.FC<NatureThemeProps> = ({ isOpen, onClose }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setMounted(true);
-      document.body.style.overflow = 'hidden';
-    } else {
-      const timer = setTimeout(() => setMounted(false), 500);
-      document.body.style.overflow = 'unset';
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
-
-  if (!mounted && !isOpen) return null;
-
+export const NatureTheme: React.FC = () => {
   return (
-    <div 
-      className={`fixed inset-0 z-[100] transition-opacity duration-700 nature-theme ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-    >
+    <div className="min-h-screen nature-theme bg-[#0f1c15] overflow-x-hidden relative">
       <NatureBackground />
       
-      <div className="relative z-50 h-full w-full overflow-y-auto">
+      <div className="relative z-50 min-h-screen flex flex-col">
         <header className="absolute top-0 left-0 right-0 p-8 flex justify-between items-center z-50">
           <div className="flex items-center gap-3">
              <div className="h-[1px] w-8 bg-[#d4af37]"></div>
              <span className="font-serif text-xl tracking-widest text-[#f2efe4] uppercase">Nature & Gold</span>
           </div>
 
-          <button 
-            onClick={onClose}
+          <a 
+            href="/"
             className="group flex items-center gap-2 px-6 py-2 border border-[#d4af37]/30 rounded-full hover:bg-[#d4af37] hover:text-[#0f1c15] transition-all duration-500"
           >
             <span className="text-sm font-serif tracking-wider uppercase">Fermer</span>
             <X className="w-4 h-4" />
-          </button>
+          </a>
         </header>
 
-        <main className="min-h-screen">
+        <main className="flex-grow flex items-center justify-center">
           <NatureHero />
         </main>
       </div>
