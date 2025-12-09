@@ -1,0 +1,121 @@
+
+/* Scope global du thème Commerce */
+.commerce-theme {
+    /* Palette Chaleureuse & Artisanale */
+    --commerce-bg: #fffaf5; /* Cream/Beige très clair */
+    --commerce-text: #4a4a4a; /* Warm Grey */
+    --commerce-text-heading: #5c4d41; /* Brown */
+    
+    --commerce-primary: #c27a63; /* Terracotta */
+    --commerce-secondary: #838c74; /* Olive doux */
+    --commerce-accent: #e8dccb; /* Sable */
+    
+    --commerce-border: #e6e1db;
+    
+    font-family: 'Outfit', sans-serif;
+    color: var(--commerce-text);
+    background-color: var(--commerce-bg);
+}
+
+/* Typography */
+.commerce-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.commerce-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--commerce-text-heading);
+}
+
+/* Boutons Arrondis & Doux */
+.commerce-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.commerce-btn-primary {
+    background-color: var(--commerce-primary);
+    color: white;
+    border: 1px solid var(--commerce-primary);
+}
+
+.commerce-btn-primary:hover {
+    background-color: #a86550;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(194, 122, 99, 0.3);
+}
+
+.commerce-btn-outline {
+    background-color: transparent;
+    color: var(--commerce-text-heading);
+    border: 1px solid #d6d3ce;
+}
+
+.commerce-btn-outline:hover {
+    border-color: var(--commerce-primary);
+    color: var(--commerce-primary);
+    background-color: white;
+}
+
+/* Cartes Services */
+.commerce-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--commerce-border);
+    transition: all 0.3s ease;
+}
+
+.commerce-card:hover {
+    border-color: var(--commerce-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(194, 122, 99, 0.1);
+}
+
+/* Galerie Images */
+.commerce-gallery-img {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.commerce-gallery-img img {
+    transition: transform 0.7s ease;
+}
+
+.commerce-gallery-img:hover img {
+    transform: scale(1.05);
+}
+
+/* Info Box */
+.commerce-info-box {
+    background-color: white;
+    border: 1px solid var(--commerce-border);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+/* Form */
+.commerce-input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #d6d3ce;
+    background-color: #fffaf5;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.commerce-input:focus {
+    background-color: white;
+    border-color: var(--commerce-primary);
+}

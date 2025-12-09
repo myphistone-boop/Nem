@@ -1,0 +1,147 @@
+
+/* Scope global du thème Esthétique */
+.esthetic-theme {
+    /* Palette Rose Poudré, Beige, Or */
+    --esthetic-bg: #fdfbf7; /* Warm White / Eggshell */
+    --esthetic-surface: #ffffff;
+    --esthetic-surface-alt: #fce7f3; /* Very pale pink */
+    
+    --esthetic-primary: #be185d; /* Pink 700 - Elegant Rose */
+    --esthetic-secondary: #d4af37; /* Metallic Gold */
+    --esthetic-accent: #fbcfe8; /* Pink 200 */
+    
+    --esthetic-text-main: #4a4a4a; /* Warm Grey */
+    --esthetic-text-light: #78716c; /* Stone 500 */
+    --esthetic-border: #f3e8e8;
+    
+    font-family: 'Inter', sans-serif;
+    color: var(--esthetic-text-main);
+    background-color: var(--esthetic-bg);
+    line-height: 1.6;
+}
+
+/* Typography élégante */
+.esthetic-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.esthetic-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    color: #1c1917; /* Dark Stone */
+    letter-spacing: -0.01em;
+}
+
+/* Boutons Doux & Arrondis */
+.esthetic-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    background: #1c1917;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.esthetic-btn:hover {
+    background: #44403c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.esthetic-btn-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #b08d26 100%);
+    color: white;
+}
+
+.esthetic-btn-gold:hover {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.esthetic-btn-outline {
+    background: transparent;
+    border: 1px solid #d6d3d1;
+    color: var(--esthetic-text-main);
+}
+
+.esthetic-btn-outline:hover {
+    background: white;
+    border-color: #a8a29e;
+}
+
+/* Images avec Glow doux */
+.esthetic-image-glow {
+    position: relative;
+    border-radius: 24px; /* Soft rounding */
+    overflow: hidden;
+    box-shadow: 0 20px 40px -10px rgba(190, 24, 93, 0.15); /* Pinkish shadow */
+}
+
+.esthetic-image-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+/* Cartes Services */
+.esthetic-card {
+    background: white;
+    border: 1px solid #fdf2f8;
+    border-radius: 24px;
+    padding: 32px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.esthetic-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(251, 207, 232, 0.3); /* Pink glow */
+    border-color: #fce7f3;
+}
+
+/* Animations */
+.esthetic-fade-up {
+    animation: estheticFadeUp 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.esthetic-delay-1 { animation-delay: 0.2s; }
+.esthetic-delay-2 { animation-delay: 0.4s; }
+.esthetic-delay-3 { animation-delay: 0.6s; }
+
+@keyframes estheticFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Decorative Sparkles (CSS only, no JS particles) */
+.esthetic-sparkle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 10px 2px rgba(212, 175, 55, 0.6);
+    animation: estheticTwinkle 4s infinite ease-in-out;
+}
+
+@keyframes estheticTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Background Texture Pattern */
+.esthetic-texture {
+    background-color: var(--esthetic-bg);
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 40px 40px;
+}

@@ -1,0 +1,138 @@
+
+/* Scope global du thème Consultant / Profession Libérale */
+.consultant-theme {
+    /* Palette: Bleu Nuit, Beige, Gris Pro */
+    --consultant-bg: #F8FAFC; /* Slate 50 */
+    --consultant-text: #334155; /* Slate 700 */
+    --consultant-text-dark: #0F172A; /* Slate 900 - Midnight */
+    
+    --consultant-primary: #0B1120; /* Midnight Blue */
+    --consultant-secondary: #C5A47E; /* Professional Beige/Gold */
+    --consultant-secondary-light: #E8DCCB; /* Light Beige */
+    
+    --consultant-border: #E2E8F0;
+    
+    font-family: 'Inter', sans-serif;
+    color: var(--consultant-text);
+    background-color: var(--consultant-bg);
+}
+
+/* Typography & Layout */
+.consultant-heading {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--consultant-primary);
+}
+
+/* Animations */
+.consultant-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.consultant-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 4px;
+    background-color: var(--consultant-secondary);
+    animation: consultantUnderline 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.5s;
+}
+
+@keyframes consultantUnderline {
+    to {
+        width: 100%;
+    }
+}
+
+/* Buttons */
+.consultant-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 2px; /* Sharp corners for professional look */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.consultant-btn-primary {
+    background-color: var(--consultant-secondary);
+    color: white;
+    border: 1px solid var(--consultant-secondary);
+}
+
+.consultant-btn-primary:hover {
+    background-color: #B08D64;
+    border-color: #B08D64;
+    transform: translateY(-1px);
+}
+
+.consultant-btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.consultant-btn-outline:hover {
+    background-color: rgba(255,255,255,0.05);
+    border-color: white;
+}
+
+.consultant-btn-dark {
+    background-color: var(--consultant-primary);
+    color: white;
+}
+
+.consultant-btn-dark:hover {
+    opacity: 0.9;
+}
+
+/* Cards */
+.consultant-card {
+    background-color: white;
+    border: 1px solid var(--consultant-border);
+    padding: 32px;
+    transition: all 0.3s ease;
+    border-radius: 0; /* Square cards */
+}
+
+.consultant-card:hover {
+    border-color: var(--consultant-secondary);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+    transform: translateY(-4px);
+}
+
+/* Form Inputs */
+.consultant-input {
+    width: 100%;
+    padding: 16px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 2px;
+    color: #0F172A;
+    transition: border-color 0.2s;
+}
+
+.consultant-input:focus {
+    outline: none;
+    border-color: var(--consultant-secondary);
+    background: white;
+}
+
+/* Timeline / Steps */
+.consultant-step-line {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #E2E8F0;
+    z-index: 0;
+}

@@ -11,14 +11,21 @@ import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Pricing } from './components/Pricing';
-import { AstralTheme } from './components/themes/AstralTheme';
-import { NatureTheme } from './components/themes/NatureTheme';
+import { DemoNav } from './components/ui/DemoNav';
+import { DesignInspiration } from './components/DesignInspiration';
+
+// Import Themes
 import { ImpactTheme } from './components/themes/ImpactTheme';
-import { BoutiqueTheme } from './components/themes/BoutiqueTheme';
+import { NatureCareTheme } from './components/themes/NatureCareTheme';
+import { EstheticTheme } from './components/themes/EstheticTheme';
+import { CoachingTheme } from './components/themes/CoachingTheme';
+import { ArtisanTheme } from './components/themes/ArtisanTheme';
+import { ConsultantTheme } from './components/themes/ConsultantTheme';
+import { ClassicTheme } from './components/themes/ClassicTheme';
+import { CommerceTheme } from './components/themes/CommerceTheme';
 
 const App: React.FC = () => {
   // Simple routing based on Query Parameters
-  // e.g. ?theme=astral
   const [theme] = useState(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -27,25 +34,23 @@ const App: React.FC = () => {
     return null;
   });
 
-  // Render Astral Theme Page
-  if (theme === 'astral') {
-    return <AstralTheme />;
-  }
+  // Helper to wrap themes with the Demo Navigation
+  const renderTheme = (Component: React.FC) => (
+    <>
+      <DemoNav />
+      <Component />
+    </>
+  );
 
-  // Render Nature Theme Page
-  if (theme === 'nature') {
-    return <NatureTheme />;
-  }
-
-  // Render Impact Theme Page
-  if (theme === 'impact') {
-    return <ImpactTheme />;
-  }
-
-  // Render Boutique Theme Page
-  if (theme === 'boutique') {
-    return <BoutiqueTheme />;
-  }
+  // Render Theme Pages
+  if (theme === 'care') return renderTheme(NatureCareTheme);
+  if (theme === 'esthetic') return renderTheme(EstheticTheme);
+  if (theme === 'coaching') return renderTheme(CoachingTheme);
+  if (theme === 'consultant') return renderTheme(ConsultantTheme);
+  if (theme === 'artisan') return renderTheme(ArtisanTheme);
+  if (theme === 'classic') return renderTheme(ClassicTheme);
+  if (theme === 'impact') return renderTheme(ImpactTheme);
+  if (theme === 'commerce') return renderTheme(CommerceTheme);
 
   // Render Main Agency Site
   return (
@@ -54,6 +59,7 @@ const App: React.FC = () => {
       
       <main className="flex-grow">
         <Hero />
+        <DesignInspiration />
         <Approach />
         <Solutions />
         <Services />

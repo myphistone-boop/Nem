@@ -1,0 +1,131 @@
+
+/* Scope global du thème Coaching */
+.coaching-theme {
+    /* Palette sombre premium */
+    --coaching-bg: #0f172a; /* Slate 900 */
+    --coaching-surface: #1e293b; /* Slate 800 */
+    --coaching-surface-highlight: #334155; /* Slate 700 */
+    
+    --coaching-primary: #8b5cf6; /* Violet 500 */
+    --coaching-primary-dark: #7c3aed; /* Violet 600 */
+    --coaching-accent: #38bdf8; /* Sky 400 */
+    
+    --coaching-text: #f8fafc; /* Slate 50 */
+    --coaching-text-muted: #94a3b8; /* Slate 400 */
+    
+    font-family: 'Outfit', sans-serif;
+    color: var(--coaching-text);
+    background-color: var(--coaching-bg);
+}
+
+/* Background Gradient Animation Lente */
+.coaching-hero-bg {
+    background: linear-gradient(125deg, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);
+    background-size: 200% 200%;
+    animation: coachingGradient 15s ease infinite;
+}
+
+@keyframes coachingGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Typographie Impactante */
+.coaching-title {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.coaching-gradient-text {
+    background: linear-gradient(to right, #ffffff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Cartes Géométriques */
+.coaching-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.coaching-card:hover {
+    border-color: var(--coaching-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px -10px rgba(139, 92, 246, 0.25);
+}
+
+/* Boutons Modernes */
+.coaching-btn {
+    background: var(--coaching-primary);
+    color: white;
+    padding: 16px 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border: none;
+    transition: all 0.2s;
+    border-radius: 4px; /* Slightly rounded, almost sharp */
+}
+
+.coaching-btn:hover {
+    background: var(--coaching-primary-dark);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.coaching-btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 16px 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+    border-radius: 4px;
+}
+
+.coaching-btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: white;
+}
+
+/* Feature Icons */
+.coaching-icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(56, 189, 248, 0.1); /* Sky blue tint */
+    border-radius: 12px;
+    color: var(--coaching-accent);
+    margin-bottom: 20px;
+}
+
+/* Portrait Coach Frame */
+.coaching-portrait-frame {
+    position: relative;
+}
+
+.coaching-portrait-frame::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--coaching-primary);
+    z-index: 0;
+}
+
+.coaching-portrait-frame img {
+    position: relative;
+    z-index: 1;
+}

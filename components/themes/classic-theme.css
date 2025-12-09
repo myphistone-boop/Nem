@@ -1,0 +1,115 @@
+
+/* Scope global du thème Classique */
+.classic-theme {
+    /* Palette Minimaliste Premium */
+    --classic-bg: #ffffff;
+    --classic-bg-alt: #f9fafb; /* Gray 50 */
+    --classic-text-main: #111827; /* Gray 900 */
+    --classic-text-muted: #4b5563; /* Gray 600 */
+    
+    --classic-accent: #334155; /* Slate 700 - Professional Accent */
+    --classic-accent-light: #f1f5f9; /* Slate 100 */
+    --classic-border: #e5e7eb; /* Gray 200 */
+    
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--classic-text-main);
+    background-color: var(--classic-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+.classic-heading {
+    font-weight: 700;
+    letter-spacing: -0.025em; /* Tight tracking */
+    color: var(--classic-text-main);
+}
+
+/* Boutons Minimalistes */
+.classic-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 6px;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    cursor: pointer;
+}
+
+.classic-btn-primary {
+    background-color: var(--classic-text-main);
+    color: white;
+    border: 1px solid var(--classic-text-main);
+}
+
+.classic-btn-primary:hover {
+    background-color: #374151; /* Gray 700 */
+    border-color: #374151;
+    transform: translateY(-1px);
+}
+
+.classic-btn-outline {
+    background-color: white;
+    color: var(--classic-text-main);
+    border: 1px solid #d1d5db; /* Gray 300 */
+}
+
+.classic-btn-outline:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+/* Cartes Services */
+.classic-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Inputs */
+.classic-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db; /* Gray 300 */
+    border-radius: 6px;
+    font-size: 15px;
+    color: var(--classic-text-main);
+    background-color: white;
+    transition: border-color 0.2s ease;
+}
+
+.classic-input:focus {
+    outline: none;
+    border-color: var(--classic-text-main);
+    ring: 1px solid var(--classic-text-main);
+}
+
+/* Animations Soft Fade In */
+.classic-fade-in {
+    animation: classicFadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.classic-delay-1 { animation-delay: 0.2s; }
+.classic-delay-2 { animation-delay: 0.3s; }
+.classic-delay-3 { animation-delay: 0.4s; }
+
+@keyframes classicFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Subtle Hover Lift for Images */
+.classic-img-hover {
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+}
+.classic-img-hover:hover {
+    transform: scale(1.02);
+}

@@ -1,0 +1,124 @@
+
+/* Scope global du thème Nature & Soins */
+.care-theme {
+    /* Palette douce et naturelle */
+    --care-bg: #fafaf9; /* Stone 50 */
+    --care-surface: #ffffff;
+    --care-section: #f0fdf4; /* Green 50 very light */
+    
+    --care-primary: #14532d; /* Green 900 */
+    --care-secondary: #4d7c0f; /* Green 700 */
+    --care-accent: #d4a373; /* Soft Gold/Beige */
+    
+    --care-text-main: #1c1917; /* Stone 900 */
+    --care-text-muted: #57534e; /* Stone 600 */
+    
+    font-family: 'Inter', sans-serif;
+    color: var(--care-text-main);
+    background-color: var(--care-bg);
+    line-height: 1.6;
+}
+
+/* Titres en Serif pour l'élégance */
+.care-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    color: var(--care-primary);
+}
+
+/* Boutons Doux */
+.care-btn {
+    background-color: var(--care-primary);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px; /* Pill shape */
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.care-btn:hover {
+    background-color: var(--care-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 83, 45, 0.15);
+}
+
+.care-btn-outline {
+    background-color: transparent;
+    color: var(--care-primary);
+    border: 1px solid var(--care-primary);
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.care-btn-outline:hover {
+    background-color: var(--care-primary);
+    color: white;
+}
+
+/* Cartes "Papier" */
+.care-card {
+    background-color: var(--care-surface);
+    border-radius: 24px;
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    transition: all 0.4s ease;
+}
+
+.care-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Animations Soft Fade */
+.care-fade-in {
+    animation: careFade 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.care-delay-1 { animation-delay: 0.2s; }
+.care-delay-2 { animation-delay: 0.4s; }
+.care-delay-3 { animation-delay: 0.6s; }
+
+@keyframes careFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Formulaire Soft */
+.care-input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #e7e5e4;
+    background-color: #fafaf9;
+    color: var(--care-text-main);
+    transition: all 0.3s;
+}
+
+.care-input:focus {
+    outline: none;
+    border-color: var(--care-secondary);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(77, 124, 15, 0.1);
+}
+
+/* Texture Grain Optionnelle */
+.care-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    z-index: 50;
+    opacity: 0.5;
+}

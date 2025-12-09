@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Rocket, Sun, Moon, Palette, ChevronDown, Sparkles, Leaf, Zap, ShoppingBag } from 'lucide-react';
+import { Menu, X, Rocket, Sun, Moon, Palette, ChevronDown, Sparkles, Leaf, Zap, ShoppingBag, HeartHandshake, Briefcase, Hammer, Flower2, PenTool, LayoutTemplate } from 'lucide-react';
 import { Button } from './ui/Button';
 
 export const Navbar: React.FC = () => {
@@ -153,37 +153,9 @@ export const Navbar: React.FC = () => {
               <ChevronDown className="w-3 h-3 group-hover:rotate-180 transition-transform" />
             </button>
             <div className="absolute top-full right-0 pt-2 w-64 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
-              <div className="bg-surface/90 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 flex flex-col gap-1 overflow-hidden">
+              <div className="bg-surface/90 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 flex flex-col gap-1 overflow-hidden max-h-[400px] overflow-y-auto">
                 <div className="px-3 py-2 text-xs font-bold text-textMuted uppercase tracking-wider">Thèmes Démo</div>
                 
-                {/* Astral Button */}
-                <a 
-                  href="?theme=astral"
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
-                >
-                  <div className="w-8 h-8 rounded-md bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shrink-0">
-                    <Sparkles className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <span className="block font-medium">Astral</span>
-                    <span className="text-[10px] text-textMuted">Design Ethereal</span>
-                  </div>
-                </a>
-
-                {/* Nature Button */}
-                <a 
-                  href="?theme=nature"
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
-                >
-                  <div className="w-8 h-8 rounded-md bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center shrink-0">
-                    <Leaf className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <span className="block font-medium">Nature & Gold</span>
-                    <span className="text-[10px] text-textMuted">Design Thérapeute</span>
-                  </div>
-                </a>
-
                 {/* Impact Button */}
                 <a 
                   href="?theme=impact"
@@ -198,17 +170,101 @@ export const Navbar: React.FC = () => {
                   </div>
                 </a>
 
-                 {/* Boutique Button */}
-                 <a 
-                  href="?theme=boutique"
+                {/* Care Button */}
+                <a 
+                  href="?theme=care"
                   className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
                 >
-                  <div className="w-8 h-8 rounded-md bg-neutral-100 border border-gray-300 flex items-center justify-center shrink-0">
-                    <ShoppingBag className="w-4 h-4 text-black" />
+                  <div className="w-8 h-8 rounded-md bg-[#e2e8f0] border border-gray-200 flex items-center justify-center shrink-0">
+                    <HeartHandshake className="w-4 h-4 text-[#3f6212]" />
                   </div>
                   <div>
-                    <span className="block font-medium">Boutique</span>
-                    <span className="text-[10px] text-textMuted">Classique Shopify</span>
+                    <span className="block font-medium">Nature & Soins</span>
+                    <span className="text-[10px] text-textMuted">Design Thérapeute</span>
+                  </div>
+                </a>
+
+                {/* Esthetic Button */}
+                <a 
+                  href="?theme=esthetic"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-[#fdf2f8] border border-pink-200 flex items-center justify-center shrink-0">
+                    <Flower2 className="w-4 h-4 text-[#be185d]" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Esthétique</span>
+                    <span className="text-[10px] text-textMuted">Beauté & Spa</span>
+                  </div>
+                </a>
+
+                {/* Coaching Button */}
+                <a 
+                  href="?theme=coaching"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-slate-900 border border-slate-700 flex items-center justify-center shrink-0">
+                    <Briefcase className="w-4 h-4 text-violet-400" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Coaching</span>
+                    <span className="text-[10px] text-textMuted">Style Business</span>
+                  </div>
+                </a>
+
+                {/* Consultant Button */}
+                <a 
+                  href="?theme=consultant"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-[#0B1120] border border-slate-700 flex items-center justify-center shrink-0">
+                    <PenTool className="w-4 h-4 text-[#C5A47E]" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Profession Libérale</span>
+                    <span className="text-[10px] text-textMuted">Consultant / Expert</span>
+                  </div>
+                </a>
+
+                 {/* Artisan Button */}
+                 <a 
+                  href="?theme=artisan"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-blue-800 border border-blue-700 flex items-center justify-center shrink-0">
+                    <Hammer className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Artisan</span>
+                    <span className="text-[10px] text-textMuted">BTP & Services</span>
+                  </div>
+                </a>
+                
+                {/* Commerce Button */}
+                <a 
+                  href="?theme=commerce"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-[#c27a63] border border-orange-200 flex items-center justify-center shrink-0">
+                    <ShoppingBag className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Commerce</span>
+                    <span className="text-[10px] text-textMuted">Boutique Locale</span>
+                  </div>
+                </a>
+
+                {/* Classic Button */}
+                <a 
+                  href="?theme=classic"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-highlight text-textMain text-sm transition-colors text-left group/item"
+                >
+                  <div className="w-8 h-8 rounded-md bg-slate-200 border border-slate-300 flex items-center justify-center shrink-0">
+                    <LayoutTemplate className="w-4 h-4 text-slate-700" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">Classique</span>
+                    <span className="text-[10px] text-textMuted">Universel / Minimal</span>
                   </div>
                 </a>
               </div>
@@ -259,24 +315,6 @@ export const Navbar: React.FC = () => {
           {/* Mobile Style Buttons */}
           <div className="py-2 border-b border-border">
              <p className="text-xs font-bold text-textMuted uppercase tracking-wider mb-2">Thèmes</p>
-             <a 
-                href="?theme=astral"
-                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-indigo-400 transition-colors text-left"
-              >
-                <div className="p-1 rounded bg-indigo-500/20 text-indigo-400">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                Thème Astral
-              </a>
-              <a 
-                href="?theme=nature"
-                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-emerald-400 transition-colors text-left"
-              >
-                <div className="p-1 rounded bg-emerald-500/20 text-emerald-400">
-                  <Leaf className="w-5 h-5" />
-                </div>
-                Thème Nature
-              </a>
               <a 
                 href="?theme=impact"
                 className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-gray-900 transition-colors text-left"
@@ -286,14 +324,68 @@ export const Navbar: React.FC = () => {
                 </div>
                 Thème Impact
               </a>
-              <a 
-                href="?theme=boutique"
-                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-gray-600 transition-colors text-left"
+               <a 
+                href="?theme=care"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-emerald-400 transition-colors text-left"
               >
-                <div className="p-1 rounded bg-neutral-100 border border-gray-300 text-black">
+                <div className="p-1 rounded bg-emerald-100 text-emerald-700">
+                  <HeartHandshake className="w-5 h-5" />
+                </div>
+                Thème Nature & Soins
+              </a>
+              <a 
+                href="?theme=esthetic"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-pink-400 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-pink-100 text-pink-700">
+                  <Flower2 className="w-5 h-5" />
+                </div>
+                Thème Esthétique
+              </a>
+              <a 
+                href="?theme=coaching"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-violet-400 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-slate-800 text-violet-400">
+                  <Briefcase className="w-5 h-5" />
+                </div>
+                Thème Coaching
+              </a>
+              <a 
+                href="?theme=consultant"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-[#C5A47E] transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-[#0B1120] text-[#C5A47E]">
+                  <PenTool className="w-5 h-5" />
+                </div>
+                Thème Profession Libérale
+              </a>
+              <a 
+                href="?theme=artisan"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-blue-600 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-blue-100 text-blue-800">
+                  <Hammer className="w-5 h-5" />
+                </div>
+                Thème Artisan
+              </a>
+              <a 
+                href="?theme=commerce"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-orange-600 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-orange-100 text-orange-800">
                   <ShoppingBag className="w-5 h-5" />
                 </div>
-                Thème Boutique
+                Thème Commerce
+              </a>
+              <a 
+                href="?theme=classic"
+                className="w-full flex items-center gap-3 text-lg font-medium text-textMain py-2 hover:text-slate-600 transition-colors text-left"
+              >
+                <div className="p-1 rounded bg-slate-200 text-slate-800">
+                  <LayoutTemplate className="w-5 h-5" />
+                </div>
+                Thème Classique
               </a>
           </div>
 

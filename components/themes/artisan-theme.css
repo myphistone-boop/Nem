@@ -1,0 +1,117 @@
+
+/* Scope global du thème Artisan */
+.artisan-theme {
+    /* Palette Professionnelle et Robuste */
+    --artisan-bg: #ffffff; 
+    --artisan-text: #1e293b; /* Slate 800 */
+    --artisan-text-light: #64748b; /* Slate 500 */
+    
+    --artisan-primary: #1e40af; /* Blue 800 - Confiance */
+    --artisan-primary-hover: #1e3a8a; /* Blue 900 */
+    
+    --artisan-secondary: #ea580c; /* Orange 600 - Action/Urgence */
+    --artisan-secondary-hover: #c2410c; /* Orange 700 */
+    
+    --artisan-border: #e2e8f0; /* Slate 200 */
+    --artisan-light-bg: #f8fafc; /* Slate 50 */
+    
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--artisan-text);
+    background-color: var(--artisan-bg);
+}
+
+/* Typography */
+.artisan-heading {
+    font-weight: 700;
+    color: #0f172a; /* Slate 900 */
+    letter-spacing: -0.01em;
+}
+
+/* Boutons Robustes */
+.artisan-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.artisan-btn-primary {
+    background-color: var(--artisan-secondary);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.3);
+}
+
+.artisan-btn-primary:hover {
+    background-color: var(--artisan-secondary-hover);
+    transform: translateY(-1px);
+}
+
+.artisan-btn-dark {
+    background-color: var(--artisan-primary);
+    color: white;
+    border: none;
+}
+
+.artisan-btn-dark:hover {
+    background-color: var(--artisan-primary-hover);
+}
+
+.artisan-btn-outline {
+    background-color: white;
+    color: var(--artisan-primary);
+    border: 2px solid var(--artisan-primary);
+}
+
+.artisan-btn-outline:hover {
+    background-color: #eff6ff;
+}
+
+/* Cartes Services Carrées */
+.artisan-card {
+    background: white;
+    border: 1px solid var(--artisan-border);
+    border-radius: 4px;
+    padding: 24px;
+    transition: all 0.2s ease;
+}
+
+.artisan-card:hover {
+    border-color: var(--artisan-primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Section Backgrounds */
+.artisan-section-light {
+    background-color: white;
+}
+.artisan-section-grey {
+    background-color: var(--artisan-light-bg);
+}
+.artisan-section-dark {
+    background-color: #0f172a;
+    color: white;
+}
+
+/* Phone Block */
+.artisan-phone-block {
+    display: flex;
+    flex-direction: column;
+}
+.artisan-phone-number {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--artisan-secondary);
+}
+.artisan-hours {
+    font-size: 12px;
+    color: var(--artisan-text-light);
+}
