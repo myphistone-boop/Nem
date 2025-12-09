@@ -62,7 +62,7 @@ export const CommerceTheme: React.FC = () => {
             <div className="order-1 lg:order-2">
                 <div className="relative aspect-[4/5] rounded-t-full rounded-b-[200px] overflow-hidden border-8 border-white shadow-xl">
                     <img 
-                        src="https://lh3.googleusercontent.com/d/1apoPUrfR0kywqdVyqqu-1SWdGTUfKTv1" 
+                        src="https://lh3.googleusercontent.com/d/1c3b6gNUyyMSNQ2VgPTgxhWjXJf26aho7" 
                         alt="Fleuriste Boutique" 
                         className="w-full h-full object-cover"
                     />
@@ -118,7 +118,7 @@ export const CommerceTheme: React.FC = () => {
                     <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=2080&auto=format&fit=crop" className="w-full h-full object-cover" alt="Fleurs" />
                 </div>
                 <div className="commerce-gallery-img h-full">
-                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=2029&auto=format&fit=crop" className="w-full h-full object-cover" alt="Déco" />
+                    <img src="https://lh3.googleusercontent.com/d/1czvHvyOx4ZjGRWFiEh2XHeLVCXxstt6O" className="w-full h-full object-cover" alt="Déco" />
                 </div>
                 <div className="commerce-gallery-img col-span-2 h-full">
                      <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover" alt="Atelier" />
