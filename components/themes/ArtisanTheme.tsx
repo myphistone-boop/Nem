@@ -82,7 +82,7 @@ export const ArtisanTheme: React.FC = () => {
 
             <div className="order-1 lg:order-2 relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl border-4 border-white">
                 <img 
-                    src="https://images.unsplash.com/photo-1581578731117-104f2a863727?q=80&w=2070&auto=format&fit=crop" 
+                    src="https://lh3.googleusercontent.com/d/1TkEPhEYKmWOKJVSdbDv7KxOiGV7tFpGS" 
                     alt="Artisan au travail" 
                     className="w-full h-full object-cover"
                 />
