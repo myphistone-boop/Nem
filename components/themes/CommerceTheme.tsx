@@ -62,7 +62,7 @@ export const CommerceTheme: React.FC = () => {
             <div className="order-1 lg:order-2">
                 <div className="relative aspect-[4/5] rounded-t-full rounded-b-[200px] overflow-hidden border-8 border-white shadow-xl">
                     <img 
-                        src="https://images.unsplash.com/photo-1591241123495-23c21d8b671c?q=80&w=1974&auto=format&fit=crop" 
+                        src="https://lh3.googleusercontent.com/d/1apoPUrfR0kywqdVyqqu-1SWdGTUfKTv1" 
                         alt="Fleuriste Boutique" 
                         className="w-full h-full object-cover"
                     />
