@@ -1,7 +1,21 @@
+
 import React from 'react';
 import { Rocket } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenLegal: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
+  
+  const scrollToSection = (id: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-surface-highlight border-t border-border py-12">
       <div className="container mx-auto px-6">
@@ -14,10 +28,15 @@ export const Footer: React.FC = () => {
           </div>
           
           <div className="flex flex-wrap gap-8 justify-center">
-            <a href="#" className="text-textMuted hover:text-textMain text-sm transition-colors">Accueil</a>
-            <a href="#" className="text-textMuted hover:text-textMain text-sm transition-colors">Services</a>
-            <a href="#" className="text-textMuted hover:text-textMain text-sm transition-colors">Contact</a>
-            <a href="#" className="text-textMuted hover:text-textMain text-sm transition-colors">Mentions Légales</a>
+            <a href="#home" onClick={scrollToSection('home')} className="text-textMuted hover:text-textMain text-sm transition-colors">Accueil</a>
+            <a href="#services" onClick={scrollToSection('services')} className="text-textMuted hover:text-textMain text-sm transition-colors">Services</a>
+            <a href="#contact" onClick={scrollToSection('contact')} className="text-textMuted hover:text-textMain text-sm transition-colors">Contact</a>
+            <button 
+              onClick={onOpenLegal} 
+              className="text-textMuted hover:text-textMain text-sm transition-colors cursor-pointer"
+            >
+              Mentions Légales
+            </button>
           </div>
         </div>
         

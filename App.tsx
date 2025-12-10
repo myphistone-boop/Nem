@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -13,6 +14,7 @@ import { Footer } from './components/Footer';
 import { Pricing } from './components/Pricing';
 import { DemoNav } from './components/ui/DemoNav';
 import { DesignInspiration } from './components/DesignInspiration';
+import { LegalModal } from './components/LegalModal';
 
 // Import Themes
 import { ImpactTheme } from './components/themes/ImpactTheme';
@@ -33,6 +35,8 @@ const App: React.FC = () => {
     }
     return null;
   });
+
+  const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
 
   // Helper to wrap themes with the Demo Navigation
   const renderTheme = (Component: React.FC) => (
@@ -70,7 +74,10 @@ const App: React.FC = () => {
         <FAQ />
         <Contact />
       </main>
-      <Footer />
+      <Footer onOpenLegal={() => setIsLegalModalOpen(true)} />
+      
+      {/* Modale Mentions Légales */}
+      <LegalModal isOpen={isLegalModalOpen} onClose={() => setIsLegalModalOpen(false)} />
     </div>
   );
 };

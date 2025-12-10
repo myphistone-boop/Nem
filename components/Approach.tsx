@@ -1,9 +1,15 @@
+
 import React from 'react';
 import { Button } from './ui/Button';
 import { ArrowRight, Smartphone, Shield, Zap } from 'lucide-react';
 import { Card } from './ui/Card';
 
 export const Approach: React.FC = () => {
+  const scrollToContact = () => {
+    const el = document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="py-16 lg:py-20 xl:py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-6 relative z-10">
@@ -21,7 +27,7 @@ export const Approach: React.FC = () => {
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
               Chez Nemphisia, nous créons des sites sur mesure, pensés pour convertir vos visiteurs en clients. Nous mettons en place les meilleures pratiques techniques pour maximiser votre visibilité et vos résultats.
             </p>
-            <Button variant="secondary">
+            <Button variant="secondary" onClick={scrollToContact}>
               Discuter de mon projet
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
