@@ -12,17 +12,17 @@ export const Approach: React.FC = () => {
           {/* Text Content */}
           <div className="order-2 lg:order-1">
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">
-              La technologie au service de <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre performance</span>
+              Notre expertise technique au <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">service de votre entreprise</span>
             </h2>
             <p className="text-textMuted text-lg mb-6 leading-relaxed">
-              Un site web n'est pas une simple vitrine, c'est une infrastructure critique. Sécurité faillible, chargement lent ou bugs d'affichage vous coûtent des clients chaque jour.
+              Un site internet ne doit pas seulement être beau, il doit être rentable. Un site lent ou mal conçu vous fait perdre des clients chaque jour et nuit à votre image de marque.
             </p>
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
-              Chez Nemphisia, nous codons des solutions robustes, maintenables et ultra-rapides qui inspirent confiance immédiate à vos visiteurs.
+              Chez Nemphisia, nous créons des sites sur mesure, pensés pour convertir vos visiteurs en clients. Nous mettons en place les meilleures pratiques techniques pour maximiser votre visibilité et vos résultats.
             </p>
             <Button variant="secondary">
-              Lancer votre projet
+              Discuter de mon projet
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
@@ -40,8 +40,8 @@ export const Approach: React.FC = () => {
                       <Zap className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-textMain">Vitesse Fulgurante</h4>
-                      <p className="text-sm text-textMuted">Optimisation du code pour un chargement instantané.</p>
+                      <h4 className="font-semibold text-textMain">Performance & Conversion</h4>
+                      <p className="text-sm text-textMuted">Un site rapide retient les visiteurs et favorise les ventes.</p>
                     </div>
                   </div>
 
@@ -54,8 +54,8 @@ export const Approach: React.FC = () => {
                       <Shield className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-textMain">Sécurité Maximale</h4>
-                      <p className="text-sm text-textMuted">Protection contre les attaques et failles de sécurité.</p>
+                      <h4 className="font-semibold text-textMain">Sérénité Technique</h4>
+                      <p className="text-sm text-textMuted">Maintenance régulière pour prévenir les failles et bugs.</p>
                     </div>
                   </div>
 
@@ -69,7 +69,7 @@ export const Approach: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-textMain">Expérience Mobile</h4>
-                      <p className="text-sm text-textMuted">Interface fluide et responsive sur tous les appareils.</p>
+                      <p className="text-sm text-textMuted">Une navigation parfaite pour capturer le trafic mobile.</p>
                     </div>
                   </div>
                 </div>

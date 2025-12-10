@@ -6,19 +6,19 @@ import { Benefit } from '../types';
 export const Benefits: React.FC = () => {
   const benefits: Benefit[] = [
     {
-      title: "Performance Extrême",
-      description: "Des temps de chargement réduits au minimum pour un meilleur référencement et une expérience utilisateur fluide.",
-      badge: "Vitesse"
+      title: "Visibilité Accrue",
+      description: "Un site techniquement optimisé favorise votre référencement naturel et offre une expérience utilisateur qui incite vos visiteurs à rester.",
+      badge: "Croissance"
     },
     {
-      title: "Sécurité Maximale",
-      description: "Protection proactive contre les piratages et fuites de données. Vos clients sont en sécurité chez vous.",
-      badge: "Zéro Risque"
+      title: "Site Sécurisé",
+      description: "Nous mettons en place des protocoles de sécurité et une surveillance active pour limiter les risques et protéger votre activité en ligne.",
+      badge: "Protection"
     },
     {
-      title: "Sérénité Totale",
-      description: "Déléguez la technique. En cas de bug ou de panne, nous intervenons immédiatement sans surcoût.",
-      badge: "Maintenance"
+      title: "Expertise Technique",
+      description: "Profitez d'un partenaire technique fiable. Nous gérons la complexité du code et des serveurs pour que vous puissiez vous concentrer sur votre business.",
+      badge: "Sérénité"
     }
   ];
 
@@ -28,13 +28,13 @@ export const Benefits: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-12 items-center mb-16">
           <div className="lg:w-1/2">
              <h2 className="text-3xl lg:text-5xl font-bold leading-tight font-display text-textMain">
-              Imaginé pour votre <br/>
-              <span className="synthwave-gradient-text drop-shadow-[0_0_10px_rgba(249,115,22,0.3)]">tranquillité d'esprit</span>
+              Un partenaire dédié à <br/>
+              <span className="synthwave-gradient-text drop-shadow-[0_0_10px_rgba(249,115,22,0.3)]">votre développement</span>
             </h2>
           </div>
           <div className="lg:w-1/2">
             <p className="text-lg text-textMuted border-l-2 border-fuchsia-500/30 pl-6">
-              Concentrez-vous sur votre métier. Nemphisia gère la complexité technologique, les serveurs et la sécurité avec une rigueur militaire.
+              Ne laissez pas la technique freiner votre croissance. Nemphisia vous apporte les outils numériques performants dont vous avez besoin pour réussir.
             </p>
           </div>
         </div>

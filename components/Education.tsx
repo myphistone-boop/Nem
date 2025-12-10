@@ -11,21 +11,21 @@ export const Education: React.FC = () => {
       short: "Architecture Web",
       icon: Code,
       color: "from-fuchsia-500 to-purple-600",
-      content: "Le développement web se divise en deux. Le 'Front-end' est ce que vous voyez : le design, les animations, l'interface. Le 'Back-end' est la partie immergée de l'iceberg : les serveurs, la base de données, la logique de calcul. Chez Nemphisia, nous maîtrisons les deux pour des sites complets et cohérents."
+      content: "Le 'Front-end' est votre vitrine : c'est ce que vos clients voient et ce qui les convainc d'acheter. Le 'Back-end' est le moteur technique qui assure la rapidité et le bon fonctionnement. Chez Nemphisia, nous optimisons les deux pour maximiser votre chiffre d'affaires."
     },
     {
       title: "La Cybersécurité",
       short: "Sécurité",
       icon: ShieldAlert,
       color: "from-orange-500 to-red-600",
-      content: "La cybersécurité n'est pas une option. Chaque jour, des milliers de sites sont attaqués (injections SQL, DDoS, Malware). Nous intégrons la sécurité dès la première ligne de code (Security by Design) et mettons en place des pare-feux pour protéger vos données et celles de vos clients."
+      content: "Chaque site est protégé par un certificat SSL (HTTPS), garantissant un échange sécurisé entre le navigateur et le serveur. Les configurations techniques sont mises en place selon les bonnes pratiques du secteur, incluant une surveillance régulière et des protections adaptées aux besoins d’un site vitrine. L’objectif est de maintenir un environnement fiable, stable et conforme aux standards actuels, sans surcharge technique inutile."
     },
     {
       title: "Maintenance & Hosting",
       short: "Maintenance",
       icon: Server,
       color: "from-cyan-400 to-blue-600",
-      content: "Un site web est comme une voiture : sans entretien, il finit par tomber en panne. Les technologies évoluent, les failles se découvrent. Notre maintenance assure que votre site reste compatible avec les derniers navigateurs, rapide et sécurisé, mois après mois."
+      content: "Un site web repose sur plusieurs composants techniques qui doivent rester opérationnels en continu : hébergement, nom de domaine, certificats de sécurité, annuaires DNS et mises à jour de compatibilité. Une veille quotidienne est assurée afin de détecter rapidement tout comportement anormal, garantir la disponibilité du site et maintenir des performances stables. Les certificats SSL (HTTPS) assurent un échange chiffré entre le navigateur et le serveur, tandis que la gestion du domaine et des DNS veille à une résolution rapide et fiable. L’infrastructure d’hébergement optimise la vitesse de chargement et la stabilité, assurant au final une présence en ligne cohérente, professionnelle et durable, sans intervention technique nécessaire de la part du client."
     }
   ];
 
@@ -35,7 +35,7 @@ export const Education: React.FC = () => {
         <div className="mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">la technique</span></h2>
           <p className="text-textMuted max-w-2xl text-lg">
-            Le web est complexe. Nous rendons la technologie transparente pour que vous compreniez ce que vous achetez.
+            Nous rendons la technologie transparente pour vous permettre de comprendre comment elle sert votre croissance.
           </p>
         </div>
 

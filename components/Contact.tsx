@@ -76,11 +76,12 @@ export const Contact: React.FC = () => {
           {/* Info Side */}
           <div>
             <h2 className="text-4xl lg:text-5xl font-bold font-display mb-6 text-textMain">
-              Discutons de votre <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">Projet Web</span>
+              Boostez votre <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">Visibilité en ligne</span>
             </h2>
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
-              Vous avez besoin d'un site performant ou de sécuriser votre existant ? Nemphisia est là pour coder votre vision. Réponse technique sous 24h.
+              Prêt à décupler votre chiffre d'affaires avec un site sur mesure ? 
+              Bénéficiez de notre expertise technique pour propulser votre entreprise. Devis et réponse sous 24h.
             </p>
 
             <div className="space-y-6">
@@ -128,7 +129,7 @@ export const Contact: React.FC = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                     className="bg-background border border-border rounded-xl px-4 py-3 text-textMain focus:outline-none focus:border-fuchsia-500 focus:bg-surface-highlight transition-all placeholder-gray-500"
-                    placeholder="John"
+                    placeholder="Votre prénom"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -140,7 +141,7 @@ export const Contact: React.FC = () => {
                     value={formData.lastName}
                     onChange={handleChange}
                     className="bg-background border border-border rounded-xl px-4 py-3 text-textMain focus:outline-none focus:border-fuchsia-500 focus:bg-surface-highlight transition-all placeholder-gray-500"
-                    placeholder="Doe"
+                    placeholder="Votre nom"
                   />
                 </div>
               </div>
@@ -154,12 +155,12 @@ export const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="bg-background border border-border rounded-xl px-4 py-3 text-textMain focus:outline-none focus:border-fuchsia-500 focus:bg-surface-highlight transition-all placeholder-gray-500"
-                  placeholder="john@entreprise.com"
+                  placeholder="votre@email.com"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold uppercase text-textMuted tracking-wider">Détails techniques du projet</label>
+                <label className="text-xs font-bold uppercase text-textMuted tracking-wider">Votre projet</label>
                 <textarea 
                   name="message"
                   required
@@ -167,7 +168,7 @@ export const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   className="bg-background border border-border rounded-xl px-4 py-3 text-textMain focus:outline-none focus:border-fuchsia-500 focus:bg-surface-highlight transition-all resize-none placeholder-gray-500"
-                  placeholder="Type de site, technologies souhaitées, problèmes de sécurité rencontrés..."
+                  placeholder="Décrivez votre projet, vos objectifs de croissance..."
                 ></textarea>
               </div>
 
@@ -182,7 +183,7 @@ export const Contact: React.FC = () => {
                 {status === 'success' && <CheckCircle className="w-5 h-5" />}
                 {status === 'error' && <AlertTriangle className="w-5 h-5" />}
                 
-                {status === 'idle' && "Envoyer la demande"}
+                {status === 'idle' && "Demander mon devis"}
                 {status === 'loading' && "Envoi en cours..."}
                 {status === 'success' && "Message reçu !"}
                 {status === 'error' && "Erreur (Ouverture mail...)"}
@@ -197,7 +198,7 @@ export const Contact: React.FC = () => {
               )}
               
               <p className="text-center text-xs text-textMuted mt-2">
-                Vos données techniques restent confidentielles.
+                Vos informations restent strictement confidentielles.
               </p>
             </form>
           </Card>

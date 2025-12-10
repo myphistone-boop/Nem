@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="dark">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,12 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      // Force Dark Mode by default unless user explicitly chose light
-      if (localStorage.theme === 'light') {
-        document.documentElement.classList.remove('dark');
-      } else {
+      // Force Light Mode by default unless user explicitly chose dark
+      if (localStorage.theme === 'dark') {
         document.documentElement.classList.add('dark');
-        // We do not check system preference here to enforce our branding style as default
+      } else {
+        document.documentElement.classList.remove('dark');
       }
 
       tailwind.config = {

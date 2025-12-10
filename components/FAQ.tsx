@@ -7,42 +7,52 @@ export const FAQ: React.FC = () => {
 
   const faqs = [
     {
-      question: "Pourquoi le prix est-il aussi accessible ?",
-      answer: "Parce que je maîtrise parfaitement ce type de site : j’ai déjà développé de nombreux projets similaires, ce qui me permet d’aller très vite et d’éviter les heures de travail superflues. Je ne pars pas de blocs préfabriqués : je code moi-même les sections essentielles, avec une structure déjà optimisée que j’adapte à votre activité. Cette expertise me permet d’offrir un site professionnel, propre et performant, à un tarif beaucoup plus accessible que les agences traditionnelles."
+      question: "Pourquoi le tarif est-il aussi accessible ?",
+      answer:
+        "Le modèle repose sur une expertise éprouvée de ce type d’architecture, l’usage d’outils techniques performants et des processus de production optimisés. L’objectif est de moderniser les pratiques du marché et de rendre l’accès à un site réellement professionnel possible même pour les budgets les plus restreints, sans compromis sur la qualité."
     },
     {
-      question: "Est-ce que je pourrai modifier mon site moi-même ?",
-      answer: "Non. Pour garantir la stabilité, la qualité visuelle et éviter toute erreur technique, l’accès n’est pas ouvert. Je gère entièrement votre site pour vous, afin que vous n’ayez jamais à toucher à l’aspect technique."
+      question: "Le site peut-il être modifié directement par l’utilisateur ?",
+      answer:
+        "L’accès aux éléments techniques n’est pas ouvert afin de préserver la stabilité du système, la cohérence visuelle et l’intégrité de la structure. Toutes les interventions sont encadrées afin de garantir un résultat constant et fiable dans le temps."
     },
     {
-      question: "Et si je veux changer quelque chose plus tard ?",
-      answer: "Le site est pensé pour être durable et ne pas nécessiter de modifications fréquentes. Si vous souhaitez une mise à jour ponctuelle (texte, photo, information importante), elle peut être faite sur demande et facturée simplement selon le temps nécessaire."
+      question: "Comment sont gérées les mises à jour après la mise en ligne ?",
+      answer:
+        "La structure est conçue pour fonctionner durablement sans nécessité de modifications régulières. En cas d’évolution ponctuelle (texte, image ou information essentielle), une intervention peut être réalisée selon la grille tarifaire applicable."
     },
     {
-      question: "Que comprend l’abonnement mensuel de 29- ?",
-      answer: "L’abonnement couvre : l’hébergement sécurisé, les mises à jour techniques, la maintenance, la surveillance du site et les corrections techniques si nécessaire. L’objectif est que votre site fonctionne parfaitement sans que vous ayez à vous en occuper."
+      question: "Que couvre l’abonnement mensuel de 29 - ?",
+      answer:
+        "L’abonnement inclut l’hébergement sécurisé, la maintenance technique courante, les mises à jour nécessaires et la surveillance générale du bon fonctionnement du site. L’ensemble est conçu pour assurer une présence en ligne stable, performante et sans complexité technique."
     },
     {
-      question: "Puis-je arrêter l’abonnement quand je veux ?",
-      answer: "Oui. L’abonnement est sans engagement. En cas d’arrêt, une copie du site vous est fournie, mais il ne sera plus maintenu ni hébergé par mes services."
+      question: "Que se passe-t-il en cas d’arrêt du service ?",
+      answer:
+        "En cas de résiliation, une copie des composants essentiels du site est fournie. L’hébergement, la maintenance continue et la surveillance technique sont alors interrompus. Un échange préalable est recommandé afin d’identifier les solutions de transition les plus adaptées."
     },
     {
-      question: "Est-ce que mon site sera vraiment professionnel ?",
-      answer: "Oui. Le design repose sur un thème premium que j’adapte à votre activité. Votre site sera clair, moderne, optimisé pour mobile et donnera une image sérieuse dès la première seconde."
+      question: "Le site final bénéficie-t-il d’une qualité professionnelle ?",
+      answer:
+        "Le site est conçu sur mesure, sans recours à des blocs préfabriqués. Les idées de design proposées servent uniquement de repères visuels pour orienter les choix esthétiques. La structure finale est réalisée spécifiquement pour l’activité concernée, avec un rendu moderne, cohérent, responsive et conforme aux standards professionnels."
     },
     {
-      question: "Et le référencement, comment ça marche ?",
-      answer: "Votre site est optimisé techniquement pour être correctement lu par Google : structure propre, rapidité, version mobile, balises essentielles. Cela suffit pour une présence locale normale. Le référencement avancé (SEO) n’est pas inclus mais peut être ajouté en option si vous en avez besoin."
+      question: "Le site sera-t-il correctement visible sur Google ?",
+      answer:
+        "La construction respecte les standards techniques attendus par les moteurs de recherche : structure propre, chargement rapide, affichage mobile optimisé et balises essentielles configurées. Il s’agit du niveau de visibilité naturel attendu pour un site vitrine conforme aux bonnes pratiques."
     },
     {
-      question: "Combien de temps faut-il pour recevoir mon site ?",
-      answer: "En général, votre site est livré rapidement, dans les 48–72 heures une fois que vous avez fourni vos textes et images."
+      question: "Quel est le délai de réalisation ?",
+      answer:
+        "Le délai dépend principalement des contenus fournis. Une fois les textes et visuels transmis, la mise en ligne intervient en général sous 48 à 72 heures."
     },
     {
-      question: "Est-ce que je dois m’occuper de la technique ?",
-      answer: "Non. Je gère tout : hébergement, mises à jour, sécurité, maintenance. Vous pouvez vous concentrer sur votre activité."
+      question: "Une gestion technique est-elle nécessaire de la part du client ?",
+      answer:
+        "Aucune manipulation technique n’est requise. L’hébergement, la maintenance, les mises à jour et la sécurité de base sont entièrement pris en charge pour garantir une expérience fluide et sans contrainte."
     }
   ];
+
 
   return (
     <section className="py-24 bg-background relative" id="faq">

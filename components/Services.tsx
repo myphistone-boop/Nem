@@ -6,18 +6,18 @@ import { Service } from '../types';
 export const Services: React.FC = () => {
   const services: Service[] = [
     {
-      title: "Développement Sur Mesure",
-      description: "Sites vitrines, e-commerce ou applications web complexes. Nous codons des interfaces uniques, performantes et responsive.",
+      title: "Création de Site Sur Mesure",
+      description: "Que vous ayez besoin d'un site vitrine élégant ou d'une boutique en ligne performante, nous concevons des solutions adaptées à votre image et à vos objectifs de croissance.",
       icon: Layout
     },
     {
-      title: "Cybersécurité & Protection",
-      description: "Audit de vulnérabilité, mise en place de pare-feux et protection contre les attaques DDoS. Dormez sur vos deux oreilles.",
+      title: "Sécurité & Maintenance",
+      description: "Nous assurons une veille technique et mettons en place les protections nécessaires pour détecter les failles et sécuriser les données de votre entreprise.",
       icon: ShieldCheck
     },
     {
-      title: "Maintenance & Mises à Jour",
-      description: "Un site web doit vivre. Nous assurons les mises à jour techniques, les sauvegardes quotidiennes et le monitoring 24/7.",
+      title: "Optimisation de la Visibilité",
+      description: "Un site technique sain est la base d'un bon référencement. Nous assurons la rapidité et la stabilité nécessaires pour plaire à vos visiteurs et à Google.",
       icon: Server
     }
   ];
@@ -30,9 +30,9 @@ export const Services: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">Des services complets pour <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre infrastructure web</span></h2>
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">Des services complets pour <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre réussite en ligne</span></h2>
           <p className="text-textMuted text-lg">
-            Nous ne faisons pas que livrer du code. Nous assurons la stabilité, la sécurité et la pérennité de votre outil de travail digital.
+            Nous vous accompagnons de la conception à la maintenance, pour que votre site reste un atout commercial performant sur le long terme.
           </p>
         </div>
 
@@ -46,8 +46,8 @@ export const Services: React.FC = () => {
               <p className="text-textMuted leading-relaxed mb-6 group-hover:text-textMain transition-colors">
                 {service.description}
               </p>
-              <a href="#" className="inline-flex items-center text-sm font-semibold text-fuchsia-500 hover:text-orange-500 transition-colors uppercase tracking-wider">
-                Découvrir l'offre <span className="ml-1 text-lg group-hover:translate-x-1 transition-transform">→</span>
+              <a href="#contact" className="inline-flex items-center text-sm font-semibold text-fuchsia-500 hover:text-orange-500 transition-colors uppercase tracking-wider">
+                En savoir plus <span className="ml-1 text-lg group-hover:translate-x-1 transition-transform">→</span>
               </a>
             </Card>
           ))}

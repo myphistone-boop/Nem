@@ -11,17 +11,17 @@ export const Navbar: React.FC = () => {
     if (typeof document !== 'undefined') {
       return document.documentElement.classList.contains('dark');
     }
-    return true;
+    return false; // Default to light
   });
 
   useEffect(() => {
     // We double check local storage just in case, but rely on the class presence mostly
-    if (localStorage.theme === 'light') {
-      setIsDark(false);
-      document.documentElement.classList.remove('dark');
-    } else {
+    if (localStorage.theme === 'dark') {
       setIsDark(true);
       document.documentElement.classList.add('dark');
+    } else {
+      setIsDark(false);
+      document.documentElement.classList.remove('dark');
     }
 
     const handleScroll = () => {
