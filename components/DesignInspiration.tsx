@@ -13,7 +13,7 @@ export const DesignInspiration: React.FC = () => {
   const themes = [
     { 
       id: 'impact', 
-      label: 'Impact', 
+      label: 'Startup Tech', 
       icon: Zap, 
       color: 'text-yellow-400',
       description: "Style Nike/Apple. Typographie massive, animations 3D, contrastes forts. Idéal pour marquer les esprits.",

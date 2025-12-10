@@ -165,7 +165,7 @@ export const Navbar: React.FC = () => {
                     <Zap className="w-4 h-4 text-black" />
                   </div>
                   <div>
-                    <span className="block font-medium">Impact</span>
+                    <span className="block font-medium">Startup Tech</span>
                     <span className="text-[10px] text-textMuted">Style Nike / Apple</span>
                   </div>
                 </a>
@@ -322,7 +322,7 @@ export const Navbar: React.FC = () => {
                 <div className="p-1 rounded bg-white border border-gray-200 text-black">
                   <Zap className="w-5 h-5" />
                 </div>
-                Thème Impact
+                Startup Tech
               </a>
                <a 
                 href="?theme=care"
