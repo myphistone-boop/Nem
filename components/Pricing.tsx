@@ -13,11 +13,11 @@ export const Pricing: React.FC = () => {
       color: "cyan",
       gradient: "from-cyan-400 to-blue-500",
       features: [
-        "Site vitrine 1–2 pages",
+        "Site vitrine 1-3 pages",
+        "1 post-modification offerte",
+        "Formulaire de contact (180 mails /mois)",
         "Design sur mesure",
         "Optimisation mobile",
-        "Formulaire de contact (180 mails /mois)",
-        "1 post-modification offerte",
         "Hébergement + SSL",
         "Maintenance web (DNS, domaine)",
         "Maintenance technique (clés API, intégrations statiques)"
@@ -32,11 +32,11 @@ export const Pricing: React.FC = () => {
       gradient: "from-orange-500 to-amber-500",
       features: [
         "Site vitrine 1–6 pages",
-        "Design sur mesure",
-        "Optimisation mobile",
-        "Formulaire de contact (180 mails /mois)",
         "2 post-modifications offertes",
         "−25 % sur toute la main-d’œuvre",
+        "Formulaire de contact (180 mails /mois)",
+        "Design sur mesure",
+        "Optimisation mobile",
         "Hébergement + SSL",
         "Maintenance web (DNS, domaine)",
         "Maintenance technique (clés API, intégrations statiques)"
@@ -51,11 +51,11 @@ export const Pricing: React.FC = () => {
       gradient: "from-fuchsia-600 to-purple-600",
       features: [
         "Site vitrine 1–9 pages",
-        "Design sur mesure",
-        "Optimisation mobile",
-        "Formulaire de contact (180 mails /mois)",
         "3 post-modifications offertes",
         "−50 % sur toute la main-d’œuvre",
+        "Formulaire de contact (180 mails /mois)",
+        "Design sur mesure",
+        "Optimisation mobile",
         "Hébergement + SSL",
         "Maintenance web (DNS, domaine)",
         "Maintenance technique (clés API, intégrations statiques)"
