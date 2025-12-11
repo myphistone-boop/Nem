@@ -1,31 +1,66 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import Stripe from 'stripe';
-import { STRIPE_OFFERS } from '../config/stripe-config';
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import Stripe from "stripe";
 
+// On DUPLIQUE volontairement la config ici pour éviter tout problème d'import
+const OFFERS = [
+  {
+    key: "essential",
+    name: "Offre Essentiel",
+    amount: 19900,
+    currency: "eur",
+    description: "La solution de découverte efficace pour son activité",
+  },
+  {
+    key: "business",
+    name: "Offre Business",
+    amount: 39900,
+    currency: "eur",
+    description:
+      "La solution technique pour développer son chiffre d'affaires",
+  },
+  {
+    key: "elite",
+    name: "Offre Elite",
+    amount: 49900,
+    currency: "eur",
+    description:
+      "La solution d'architecture complète pour croissance avancée",
+  },
+];
 
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16' as any,
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  apiVersion: "2023-10-16",
 });
 
 export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
-  // Sécurité simple par token
+  // Optionnel : restreindre à GET seulement
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
+
+  // Sécurité simple par token dans la query
   const token = req.query.token;
-  if (token !== process.env.BOOTSTRAP_TOKEN) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  if (!token || token !== process.env.BOOTSTRAP_TOKEN) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
   if (!process.env.STRIPE_SECRET_KEY) {
-    return res.status(500).json({ error: 'STRIPE_SECRET_KEY is missing' });
+    return res
+      .status(500)
+      .json({ error: "STRIPE_SECRET_KEY is missing from environment" });
   }
 
-  const results: Array<{ key: string; priceId: string; status: 'created' | 'already_exists' }> = [];
+  const results: Array<{
+    key: string;
+    priceId: string;
+    status: "created" | "already_exists";
+  }> = [];
 
   try {
-    for (const offer of STRIPE_OFFERS) {
+    for (const offer of OFFERS) {
       // 1) Vérifier si un Price existe déjà avec cette lookup_key
       const existing = await stripe.prices.list({
         lookup_keys: [offer.key],
@@ -37,7 +72,7 @@ export default async function handler(
         results.push({
           key: offer.key,
           priceId: existing.data[0].id,
-          status: 'already_exists',
+          status: "already_exists",
         });
         continue;
       }
@@ -48,11 +83,11 @@ export default async function handler(
         description: offer.description,
       });
 
-      // 3) Créer le Price
+      // 3) Créer le Price associé
       const price = await stripe.prices.create({
-        product: product.id,
         unit_amount: offer.amount,
         currency: offer.currency,
+        product: product.id,
         lookup_key: offer.key,
         active: true,
       });
@@ -60,16 +95,18 @@ export default async function handler(
       results.push({
         key: offer.key,
         priceId: price.id,
-        status: 'created',
+        status: "created",
       });
     }
 
     return res.status(200).json({
-      message: 'Bootstrap Stripe terminé',
+      message: "Bootstrap Stripe terminé",
       results,
     });
   } catch (error: any) {
-    console.error('Stripe bootstrap error:', error);
-    return res.status(500).json({ error: error.message || 'Unknown error' });
+    console.error("Stripe bootstrap error:", error);
+    return res
+      .status(500)
+      .json({ error: error?.message || "Unknown Stripe error" });
   }
 }
