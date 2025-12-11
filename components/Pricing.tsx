@@ -1,11 +1,43 @@
-import React from 'react';
-import { Check, Zap, Rocket, Shield, Globe, Server } from 'lucide-react';
+
+import React, { useState } from 'react';
+import { Check, Zap, Rocket, Shield, Globe, Server, Loader2 } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Card } from './ui/Card';
 
 export const Pricing: React.FC = () => {
+  const [loadingKey, setLoadingKey] = useState<string | null>(null);
+
+  const handleCheckout = async (offerKey: string) => {
+    try {
+      setLoadingKey(offerKey);
+      
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ offerKey }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la création de la session');
+      }
+
+      const { url } = await response.json();
+      
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (error) {
+      console.error("Erreur de paiement:", error);
+      alert("Une erreur est survenue lors de l'initialisation du paiement. Veuillez réessayer.");
+      setLoadingKey(null);
+    }
+  };
+
   const plans = [
     {
+      key: "essential", // Clé correspondant à la config Stripe
       name: "Essentiel",
       price: "199",
       description: "La solution de découverte efficace pour son activité",
@@ -24,6 +56,7 @@ export const Pricing: React.FC = () => {
       ]
     },
     {
+      key: "business",
       name: "Business",
       price: "399",
       description: "La solution technique pour développer son chiffre d'affaires en ligne",
@@ -43,6 +76,7 @@ export const Pricing: React.FC = () => {
       ]
     },
     {
+      key: "elite",
       name: "Elite",
       price: "499",
       description: "La solution d'architecture complète pour soutenir une croissance avancée",
@@ -131,9 +165,17 @@ export const Pricing: React.FC = () => {
                 <Button 
                   variant={plan.price === "399" ? 'secondary' : 'outline'} 
                   className="w-full"
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => handleCheckout(plan.key)}
+                  disabled={loadingKey === plan.key}
                 >
-                  Choisir ce forfait
+                  {loadingKey === plan.key ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Redirection...
+                    </>
+                  ) : (
+                    "Choisir ce forfait"
+                  )}
                 </Button>
               </Card>
             </div>
