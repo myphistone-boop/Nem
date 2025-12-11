@@ -15,6 +15,7 @@ import { Pricing } from './components/Pricing';
 import { DemoNav } from './components/ui/DemoNav';
 import { DesignInspiration } from './components/DesignInspiration';
 import { LegalModal } from './components/LegalModal';
+import { AdminInit } from './components/AdminInit'; // Import de la page Admin
 
 // Import Themes
 import { ImpactTheme } from './components/themes/ImpactTheme';
@@ -36,6 +37,9 @@ const App: React.FC = () => {
     return null;
   });
 
+  // Check for admin mode
+  const isAdmin = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('admin') === 'true';
+
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
 
   // Helper to wrap themes with the Demo Navigation
@@ -45,6 +49,11 @@ const App: React.FC = () => {
       <Component />
     </>
   );
+
+  // Render Admin Page
+  if (isAdmin) {
+    return <AdminInit />;
+  }
 
   // Render Theme Pages
   if (theme === 'care') return renderTheme(NatureCareTheme);
