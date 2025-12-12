@@ -11,12 +11,12 @@ export const Approach: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-20 xl:py-24 relative overflow-hidden bg-background" id="approach">
+    <section className="py-16 lg:py-20 xl:py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Text Content */}
-          <div className="order-2 lg:order-1">
+          {/* Text Content - ID added here for direct scrolling */}
+          <div className="order-2 lg:order-1" id="approach">
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">
               Un accompagnement total au <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">service de votre entreprise</span>
