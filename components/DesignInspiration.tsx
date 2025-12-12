@@ -190,10 +190,10 @@ export const DesignInspiration: React.FC = () => {
                             hover:-translate-y-1 hover:shadow-xl
                             flex flex-col sm:flex-row sm:items-center justify-between gap-4
                             ${theme.bgBase} ${theme.borderBase} ${theme.hoverShadow}
-                            cursor-pointer
+                            cursor-pointer w-full h-full
                         `}
                     >
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 flex-1 min-w-0">
                             {/* Icon Container with solid color */}
                             <div className={`
                                 w-14 h-14 shrink-0 rounded-xl flex items-center justify-center 
@@ -204,11 +204,11 @@ export const DesignInspiration: React.FC = () => {
                             </div>
 
                             {/* Text Content - Titres blancs en dark mode */}
-                            <div>
-                                <h3 className={`text-lg font-bold transition-colors ${theme.color} dark:text-white group-hover:brightness-110`}>
+                            <div className="flex flex-col">
+                                <h3 className={`text-lg font-bold transition-colors ${theme.color} dark:text-white group-hover:brightness-110 truncate`}>
                                     {theme.label}
                                 </h3>
-                                <p className="text-xs font-medium text-textMuted dark:text-gray-100 dark:font-bold uppercase tracking-wider mt-0.5">
+                                <p className="text-xs font-medium text-textMuted dark:text-gray-100 dark:font-bold uppercase tracking-wider mt-0.5 truncate">
                                     {theme.tag}
                                 </p>
                             </div>
@@ -220,6 +220,7 @@ export const DesignInspiration: React.FC = () => {
                             bg-white dark:bg-surface border border-border/50 shadow-sm
                             group-hover:bg-fuchsia-600 group-hover:text-white group-hover:border-fuchsia-600 group-hover:shadow-lg
                             transition-all duration-300 flex items-center gap-2 self-start sm:self-center text-textMain dark:text-white
+                            shrink-0 ml-auto
                         `}>
                             Voir
                             <ArrowRight className="w-3 h-3" />
