@@ -4,14 +4,15 @@ import { ArrowRight, Zap, HeartHandshake, Flower2, Briefcase, PenTool, Hammer, L
 export const DesignInspiration: React.FC = () => {
   const [selectedMobileTheme, setSelectedMobileTheme] = useState('impact');
 
+  // Configuration des thèmes avec des couleurs renforcées pour le mode sombre
   const themes = [
     { 
       id: 'impact', 
       label: 'Startup Tech', 
       icon: Zap, 
       color: 'text-yellow-600 dark:text-yellow-400',
-      bgBase: 'bg-yellow-50 dark:bg-yellow-950/30',
-      borderBase: 'border-yellow-200 dark:border-yellow-500/50',
+      bgBase: 'bg-yellow-50 dark:bg-yellow-500/10',
+      borderBase: 'border-yellow-200 dark:border-yellow-400/50',
       hoverShadow: 'hover:shadow-yellow-500/20',
       tag: "Business Moderne"
     },
@@ -20,8 +21,8 @@ export const DesignInspiration: React.FC = () => {
       label: 'Nature & Soins', 
       icon: HeartHandshake, 
       color: 'text-emerald-600 dark:text-emerald-400',
-      bgBase: 'bg-emerald-50 dark:bg-emerald-950/30',
-      borderBase: 'border-emerald-200 dark:border-emerald-500/50',
+      bgBase: 'bg-emerald-50 dark:bg-emerald-500/10',
+      borderBase: 'border-emerald-200 dark:border-emerald-400/50',
       hoverShadow: 'hover:shadow-emerald-500/20',
       tag: "Santé / Bien-être"
     },
@@ -30,8 +31,8 @@ export const DesignInspiration: React.FC = () => {
       label: 'Esthétique', 
       icon: Flower2, 
       color: 'text-pink-600 dark:text-pink-400',
-      bgBase: 'bg-pink-50 dark:bg-pink-950/30',
-      borderBase: 'border-pink-200 dark:border-pink-500/50',
+      bgBase: 'bg-pink-50 dark:bg-pink-500/10',
+      borderBase: 'border-pink-200 dark:border-pink-400/50',
       hoverShadow: 'hover:shadow-pink-500/20',
       tag: "Beauté / Luxe"
     },
@@ -40,8 +41,8 @@ export const DesignInspiration: React.FC = () => {
       label: 'Coaching', 
       icon: Briefcase, 
       color: 'text-violet-600 dark:text-violet-400',
-      bgBase: 'bg-violet-50 dark:bg-violet-950/30',
-      borderBase: 'border-violet-200 dark:border-violet-500/50',
+      bgBase: 'bg-violet-50 dark:bg-violet-500/10',
+      borderBase: 'border-violet-200 dark:border-violet-400/50',
       hoverShadow: 'hover:shadow-violet-500/20',
       tag: "Business / Sport"
     },
@@ -50,8 +51,8 @@ export const DesignInspiration: React.FC = () => {
       label: 'Prof. Libérale', 
       icon: PenTool, 
       color: 'text-amber-600 dark:text-amber-400',
-      bgBase: 'bg-amber-50 dark:bg-amber-950/30',
-      borderBase: 'border-amber-200 dark:border-amber-500/50',
+      bgBase: 'bg-amber-50 dark:bg-amber-500/10',
+      borderBase: 'border-amber-200 dark:border-amber-400/50',
       hoverShadow: 'hover:shadow-amber-500/20',
       tag: "Corporate / Expert"
     },
@@ -60,8 +61,8 @@ export const DesignInspiration: React.FC = () => {
       label: 'Artisan', 
       icon: Hammer, 
       color: 'text-blue-600 dark:text-blue-400',
-      bgBase: 'bg-blue-50 dark:bg-blue-950/30',
-      borderBase: 'border-blue-200 dark:border-blue-500/50',
+      bgBase: 'bg-blue-50 dark:bg-blue-500/10',
+      borderBase: 'border-blue-200 dark:border-blue-400/50',
       hoverShadow: 'hover:shadow-blue-500/20',
       tag: "BTP / Services"
     },
@@ -70,8 +71,8 @@ export const DesignInspiration: React.FC = () => {
       label: 'Commerce', 
       icon: ShoppingBag, 
       color: 'text-orange-600 dark:text-orange-400',
-      bgBase: 'bg-orange-50 dark:bg-orange-950/30',
-      borderBase: 'border-orange-200 dark:border-orange-500/50',
+      bgBase: 'bg-orange-50 dark:bg-orange-500/10',
+      borderBase: 'border-orange-200 dark:border-orange-400/50',
       hoverShadow: 'hover:shadow-orange-500/20',
       tag: "Boutique / Artisanat"
     },
@@ -80,8 +81,8 @@ export const DesignInspiration: React.FC = () => {
       label: 'Classique', 
       icon: LayoutTemplate, 
       color: 'text-slate-600 dark:text-slate-400',
-      bgBase: 'bg-slate-100 dark:bg-slate-800/80',
-      borderBase: 'border-slate-200 dark:border-slate-500/50',
+      bgBase: 'bg-slate-100 dark:bg-slate-800',
+      borderBase: 'border-slate-200 dark:border-slate-400/50',
       hoverShadow: 'hover:shadow-slate-500/20',
       tag: "Universel"
     },
@@ -98,7 +99,6 @@ export const DesignInspiration: React.FC = () => {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left: Text Content (4 cols) */}
-          {/* Correction: lg:sticky et lg:top-32 pour n'activer le sticky que sur desktop */}
           <div className="lg:col-span-4 lg:sticky lg:top-32 relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-bold mb-8 shadow-[0_0_20px_rgba(217,70,239,0.4)] animate-pulse">
                 <MousePointerClick className="w-5 h-5" />
@@ -203,12 +203,12 @@ export const DesignInspiration: React.FC = () => {
                                 <theme.icon className={`w-7 h-7 ${theme.color}`} />
                             </div>
 
-                            {/* Text Content */}
+                            {/* Text Content - Titres blancs en dark mode */}
                             <div>
-                                <h3 className={`text-lg font-bold transition-colors ${theme.color} brightness-75 group-hover:brightness-100`}>
+                                <h3 className={`text-lg font-bold transition-colors ${theme.color} dark:text-white group-hover:brightness-110`}>
                                     {theme.label}
                                 </h3>
-                                <p className="text-xs font-medium text-textMuted uppercase tracking-wider mt-0.5">
+                                <p className="text-xs font-medium text-textMuted dark:text-gray-100 dark:font-bold uppercase tracking-wider mt-0.5">
                                     {theme.tag}
                                 </p>
                             </div>
@@ -219,9 +219,9 @@ export const DesignInspiration: React.FC = () => {
                             mt-2 sm:mt-0 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wide
                             bg-white dark:bg-surface border border-border/50 shadow-sm
                             group-hover:bg-fuchsia-600 group-hover:text-white group-hover:border-fuchsia-600 group-hover:shadow-lg
-                            transition-all duration-300 flex items-center gap-2 self-start sm:self-center text-textMain
+                            transition-all duration-300 flex items-center gap-2 self-start sm:self-center text-textMain dark:text-white
                         `}>
-                            Voir le thème
+                            Voir
                             <ArrowRight className="w-3 h-3" />
                         </div>
                     </a>
