@@ -188,36 +188,31 @@ export const DesignInspiration: React.FC = () => {
                             group relative overflow-hidden rounded-2xl p-6
                             border-2 transition-all duration-300
                             hover:-translate-y-1 hover:shadow-xl
-                            flex items-start justify-between gap-4
+                            flex items-center gap-4
                             ${theme.bgBase} ${theme.borderBase} ${theme.hoverShadow}
                             cursor-pointer w-full h-full
                         `}
                     >
-                        {/* Container Gauche: Icone + Texte */}
-                        <div className="flex items-center gap-4 flex-1 min-w-0">
-                            {/* Icon Container with solid color */}
-                            <div className={`
-                                w-14 h-14 shrink-0 rounded-xl flex items-center justify-center 
-                                bg-white dark:bg-surface border border-border/50 shadow-sm
-                                transition-transform duration-300 group-hover:scale-110
-                            `}>
-                                <theme.icon className={`w-7 h-7 ${theme.color}`} />
-                            </div>
-
-                            {/* Text Content - Titres blancs en dark mode */}
-                            <div className="flex flex-col min-w-0">
-                                <h3 className={`text-lg font-bold transition-colors ${theme.color} dark:text-white group-hover:brightness-110 truncate`}>
-                                    {theme.label}
-                                </h3>
-                                <p className="text-xs font-medium text-textMuted dark:text-gray-100 dark:font-bold uppercase tracking-wider mt-0.5 truncate">
-                                    {theme.tag}
-                                </p>
-                            </div>
+                        {/* Icon Container with solid color */}
+                        <div className={`
+                            w-14 h-14 shrink-0 rounded-xl flex items-center justify-center 
+                            bg-white dark:bg-surface border border-border/50 shadow-sm
+                            transition-transform duration-300 group-hover:scale-110
+                        `}>
+                            <theme.icon className={`w-7 h-7 ${theme.color}`} />
                         </div>
 
-                        {/* Button "Voir" - En Flux (pas absolu) pour éviter le chevauchement */}
+                        {/* Text Content - Padding right important pour ne pas toucher le bouton absolu */}
+                        <div className="flex flex-col pr-24">
+                            <h3 className={`text-lg font-bold leading-tight transition-colors ${theme.color} dark:text-white group-hover:brightness-110`}>
+                                {theme.label}
+                            </h3>
+                            {/* Sous-titre supprimé */}
+                        </div>
+
+                        {/* Button "Voir" - Position Absolue Top Right */}
                         <div className={`
-                            shrink-0
+                            absolute top-6 right-6
                             px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wide
                             bg-white dark:bg-surface border border-border/50 shadow-sm
                             group-hover:bg-fuchsia-600 group-hover:text-white group-hover:border-fuchsia-600 group-hover:shadow-lg
