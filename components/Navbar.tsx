@@ -45,9 +45,10 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Accueil', href: '#home' },
-    { label: 'Pourquoi Nemphisia ?', href: '#why' },
-    { label: "Qu'est-ce que c'est ?", href: '#education' },
-    { label: 'Une question ?', href: '#faq' },
+    { label: 'Accompagnement', href: '#approach' },
+    { label: 'Services', href: '#services' },
+    { label: 'Tarifs', href: '#pricing' },
+    { label: 'Questions', href: '#faq' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -147,11 +148,15 @@ export const Navbar: React.FC = () => {
 
           {/* Style Dropdown */}
           <div className="relative group">
-            <button className="flex items-center gap-2 text-sm font-medium text-textMuted hover:text-textMain transition-colors py-1 whitespace-nowrap">
+            <a 
+              href="#designs"
+              onClick={(e) => handleNavClick(e, '#designs')}
+              className="flex items-center gap-2 text-sm font-medium text-textMuted hover:text-textMain transition-colors py-1 whitespace-nowrap cursor-pointer"
+            >
               <Palette className="w-4 h-4" />
               <span>Styles</span>
               <ChevronDown className="w-3 h-3 group-hover:rotate-180 transition-transform" />
-            </button>
+            </a>
             <div className="absolute top-full right-0 pt-2 w-64 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
               <div className="bg-surface/90 backdrop-blur-xl border border-border rounded-xl shadow-xl p-2 flex flex-col gap-1 overflow-hidden max-h-[400px] overflow-y-auto">
                 <div className="px-3 py-2 text-xs font-bold text-textMuted uppercase tracking-wider">Thèmes Démo</div>

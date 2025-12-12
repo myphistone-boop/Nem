@@ -91,7 +91,7 @@ export const DesignInspiration: React.FC = () => {
   const activeMobileTheme = themes.find(t => t.id === selectedMobileTheme) || themes[0];
 
   return (
-    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden">
+    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden" id="designs">
        {/* Background Element */}
        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-fuchsia-900/5 rounded-full blur-[100px] pointer-events-none"></div>
 

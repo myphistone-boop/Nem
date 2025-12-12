@@ -11,7 +11,7 @@ export const Approach: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-20 xl:py-24 relative overflow-hidden bg-background">
+    <section className="py-16 lg:py-20 xl:py-24 relative overflow-hidden bg-background" id="approach">
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
