@@ -40,11 +40,11 @@ export const Hero: React.FC = () => {
           
           <h1 className="text-4xl lg:text-5xl xl:text-7xl font-bold leading-[1.1] tracking-tight font-display text-textMain">
             Votre Site Web <br />
-            <span className="synthwave-gradient-text drop-shadow-[0_0_15px_rgba(217,70,239,0.3)]">Sur Mesure</span>
+            <span className="synthwave-gradient-text drop-shadow-[0_0_15px_rgba(217,70,239,0.3)]">Sur Mesure <br /> 100% Accompagné </span>
           </h1>
           
           <p className="text-base lg:text-lg text-textMuted leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
-            Décuplez votre chiffre d'affaires et augmentez votre visibilité en ligne. Nous mettons notre expertise technique au service de votre entreprise pour créer des sites performants et sécurisés.
+            Décuplez votre chiffre d'affaires et augmentez votre visibilité en ligne. Profitez s'un accompagnement complet avec nos professionnels webs, car l'humain est au coeur de nos professions. Nous mettons notre expertise technique au service de votre entreprise pour créer des sites performants et sécurisés.
           </p>
           
           <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 justify-center lg:justify-start pt-2">

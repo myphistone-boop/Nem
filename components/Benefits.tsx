@@ -34,7 +34,7 @@ export const Benefits: React.FC = () => {
           </div>
           <div className="lg:w-1/2">
             <p className="text-lg text-textMuted border-l-2 border-fuchsia-500/30 pl-6">
-              Ne laissez pas la technique freiner votre croissance. Nemphisia vous apporte les outils numériques performants dont vous avez besoin pour réussir.
+              Ne laissez pas la technique freiner votre croissance. Nemphisia vous apporte les outils numériques performants pour développer sereinement vore activité.
             </p>
           </div>
         </div>

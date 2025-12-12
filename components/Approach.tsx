@@ -18,11 +18,11 @@ export const Approach: React.FC = () => {
           {/* Text Content */}
           <div className="order-2 lg:order-1">
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">
-              Notre expertise technique au <br />
+              Un accompagnement total au <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">service de votre entreprise</span>
             </h2>
             <p className="text-textMuted text-lg mb-6 leading-relaxed">
-              Un site internet ne doit pas seulement être beau, il doit être rentable. Un site lent ou mal conçu vous fait perdre des clients chaque jour et nuit à votre image de marque.
+              Nous vous accompagnons à 100% sur votre projet, en mettant à disposition notre expertise technique. Car un site lent ou mal conçu fait perdre des clients chaque jours, optez pour le professionnalisme. 
             </p>
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
               Chez Nemphisia, nous créons des sites sur mesure, pensés pour convertir vos visiteurs en clients. Nous mettons en place les meilleures pratiques techniques pour maximiser votre visibilité et vos résultats.
