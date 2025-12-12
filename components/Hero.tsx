@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen lg:min-h-[90vh] xl:min-h-[100vh] flex items-center pt-28 pb-12 lg:pt-32 overflow-hidden bg-background transition-colors duration-300" id="home">
+    <section className="relative min-h-screen lg:min-h-[90vh] xl:min-h-[100vh] flex items-center pt-28 pb-12 lg:pt-32 overflow-hidden bg-background transition-colors duration-300">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Synthwave Sun Glow */}
@@ -31,8 +31,8 @@ export const Hero: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         
-        {/* Left Column: Copy */}
-        <div className="flex flex-col gap-6 lg:gap-8 text-center lg:text-left">
+        {/* Left Column: Copy - ID added here for direct scrolling */}
+        <div className="flex flex-col gap-6 lg:gap-8 text-center lg:text-left" id="home">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-highlight border border-border w-fit mx-auto lg:mx-0 backdrop-blur-md shadow-[0_0_15px_rgba(217,70,239,0.1)]">
             <ShieldCheck className="w-4 h-4 text-orange-400 animate-pulse" />
             <span className="text-xs font-bold text-textMain tracking-wide uppercase">Agence Web & Expertise Technique</span>

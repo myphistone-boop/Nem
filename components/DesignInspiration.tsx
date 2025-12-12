@@ -91,7 +91,7 @@ export const DesignInspiration: React.FC = () => {
   const activeMobileTheme = themes.find(t => t.id === selectedMobileTheme) || themes[0];
 
   return (
-    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden" id="designs">
+    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden">
        {/* Background Element */}
        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-fuchsia-900/5 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -99,7 +99,7 @@ export const DesignInspiration: React.FC = () => {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left: Text Content (4 cols) */}
-          <div className="lg:col-span-4 lg:sticky lg:top-32 relative z-10">
+          <div className="lg:col-span-4 lg:sticky lg:top-32 relative z-10" id="designs">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-bold mb-8 shadow-[0_0_20px_rgba(217,70,239,0.4)] animate-pulse">
                 <MousePointerClick className="w-5 h-5" />
                 <span>DÉMO INTERACTIVE</span>

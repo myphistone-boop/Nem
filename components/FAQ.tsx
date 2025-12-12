@@ -55,11 +55,11 @@ export const FAQ: React.FC = () => {
 
 
   return (
-    <section className="py-24 bg-background relative" id="faq">
+    <section className="py-24 bg-background relative">
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-fuchsia-900/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" id="faq">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-medium mb-4">
             <HelpCircle className="w-4 h-4" />
             <span>FAQ Technique</span>

@@ -139,12 +139,12 @@ export const Pricing: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-20 xl:py-24 relative bg-background overflow-hidden" id="pricing">
+    <section className="py-16 lg:py-20 xl:py-24 relative bg-background overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-fuchsia-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16" id="pricing">
           <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-display text-textMain">
             Des tarifs <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">clairs</span>
           </h2>
