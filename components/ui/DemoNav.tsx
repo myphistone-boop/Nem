@@ -19,7 +19,7 @@ export const DemoNav: React.FC = () => {
   ];
 
   return (
-    <div className="fixed top-4 left-4 z-[9999] flex items-center gap-3 font-sans flex-wrap pointer-events-none">
+    <div className="fixed top-20 md:top-28 left-4 z-[9999] flex items-center gap-3 font-sans flex-wrap pointer-events-none">
       
       {/* Container interactif pour les boutons */}
       <div className="flex items-start gap-2 pointer-events-auto">
