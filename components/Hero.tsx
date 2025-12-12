@@ -29,10 +29,10 @@ export const Hero: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-900/10 rounded-full blur-[100px]"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         
         {/* Left Column: Copy */}
-        <div className="lg:col-span-5 flex flex-col gap-6 lg:gap-8 text-center lg:text-left">
+        <div className="flex flex-col gap-6 lg:gap-8 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-highlight border border-border w-fit mx-auto lg:mx-0 backdrop-blur-md shadow-[0_0_15px_rgba(217,70,239,0.1)]">
             <ShieldCheck className="w-4 h-4 text-orange-400 animate-pulse" />
             <span className="text-xs font-bold text-textMain tracking-wide uppercase">Agence Web & Expertise Technique</span>
@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
             Décuplez votre chiffre d'affaires et augmentez votre visibilité en ligne. Nous mettons notre expertise technique au service de votre entreprise pour créer des sites performants et sécurisés.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-2">
+          <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 justify-center lg:justify-start pt-2">
             <Button variant="primary" size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
               <Calendar className="w-5 h-5" />
               Lancer mon projet
@@ -75,7 +75,7 @@ export const Hero: React.FC = () => {
 
         {/* Right Column: Animation Composition */}
         {/* Added scale transform for LG screens to fit smaller laptops */}
-        <div className="lg:col-span-7 relative h-[500px] lg:h-[600px] w-full hidden lg:block perspective-[1000px] lg:scale-[0.85] xl:scale-100 origin-center lg:origin-right transition-transform duration-500">
+        <div className="relative h-[500px] lg:h-[600px] w-full hidden lg:block perspective-[1000px] lg:scale-[0.85] xl:scale-100 origin-center lg:origin-right transition-transform duration-500">
           
           {/* Main Dashboard Card */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[460px] h-[340px] z-20 animate-float-slow rotate-y-6 rotate-x-6">
