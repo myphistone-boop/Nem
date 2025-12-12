@@ -188,12 +188,13 @@ export const DesignInspiration: React.FC = () => {
                             group relative overflow-hidden rounded-2xl p-6
                             border-2 transition-all duration-300
                             hover:-translate-y-1 hover:shadow-xl
-                            flex items-center
+                            flex items-start justify-between gap-4
                             ${theme.bgBase} ${theme.borderBase} ${theme.hoverShadow}
                             cursor-pointer w-full h-full
                         `}
                     >
-                        <div className="flex items-center gap-4 flex-1 min-w-0 pr-24">
+                        {/* Container Gauche: Icone + Texte */}
+                        <div className="flex items-center gap-4 flex-1 min-w-0">
                             {/* Icon Container with solid color */}
                             <div className={`
                                 w-14 h-14 shrink-0 rounded-xl flex items-center justify-center 
@@ -214,9 +215,9 @@ export const DesignInspiration: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Button "Voir" - Positionné en absolu en haut à droite */}
+                        {/* Button "Voir" - En Flux (pas absolu) pour éviter le chevauchement */}
                         <div className={`
-                            absolute top-6 right-6
+                            shrink-0
                             px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wide
                             bg-white dark:bg-surface border border-border/50 shadow-sm
                             group-hover:bg-fuchsia-600 group-hover:text-white group-hover:border-fuchsia-600 group-hover:shadow-lg
