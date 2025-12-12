@@ -188,12 +188,12 @@ export const DesignInspiration: React.FC = () => {
                             group relative overflow-hidden rounded-2xl p-6
                             border-2 transition-all duration-300
                             hover:-translate-y-1 hover:shadow-xl
-                            flex flex-col sm:flex-row sm:items-center justify-between gap-4
+                            flex items-center
                             ${theme.bgBase} ${theme.borderBase} ${theme.hoverShadow}
                             cursor-pointer w-full h-full
                         `}
                     >
-                        <div className="flex items-center gap-4 flex-1 min-w-0">
+                        <div className="flex items-center gap-4 flex-1 min-w-0 pr-24">
                             {/* Icon Container with solid color */}
                             <div className={`
                                 w-14 h-14 shrink-0 rounded-xl flex items-center justify-center 
@@ -204,7 +204,7 @@ export const DesignInspiration: React.FC = () => {
                             </div>
 
                             {/* Text Content - Titres blancs en dark mode */}
-                            <div className="flex flex-col">
+                            <div className="flex flex-col min-w-0">
                                 <h3 className={`text-lg font-bold transition-colors ${theme.color} dark:text-white group-hover:brightness-110 truncate`}>
                                     {theme.label}
                                 </h3>
@@ -214,13 +214,13 @@ export const DesignInspiration: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Explicit Button "Voir le thème" */}
+                        {/* Button "Voir" - Positionné en absolu en haut à droite */}
                         <div className={`
-                            mt-2 sm:mt-0 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wide
+                            absolute top-6 right-6
+                            px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wide
                             bg-white dark:bg-surface border border-border/50 shadow-sm
                             group-hover:bg-fuchsia-600 group-hover:text-white group-hover:border-fuchsia-600 group-hover:shadow-lg
-                            transition-all duration-300 flex items-center gap-2 self-start sm:self-center text-textMain dark:text-white
-                            shrink-0 ml-auto
+                            transition-all duration-300 flex items-center gap-1.5 text-textMain dark:text-white
                         `}>
                             Voir
                             <ArrowRight className="w-3 h-3" />
