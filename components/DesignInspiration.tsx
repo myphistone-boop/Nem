@@ -1,241 +1,236 @@
 import React, { useState } from 'react';
-import { ChevronDown, ArrowRight, Paintbrush, Layout, Zap, CheckCircle2, MousePointerClick, Eye } from 'lucide-react';
-import { Button } from './ui/Button';
-import { Card } from './ui/Card';
-
-// Import Icons for themes
-import { HeartHandshake, Flower2, Briefcase, PenTool, Hammer, LayoutTemplate, ShoppingBag } from 'lucide-react';
+import { ArrowRight, Zap, HeartHandshake, Flower2, Briefcase, PenTool, Hammer, LayoutTemplate, ShoppingBag, MousePointerClick, Sparkles, ChevronDown } from 'lucide-react';
 
 export const DesignInspiration: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedThemeId, setSelectedThemeId] = useState('impact');
+  const [selectedMobileTheme, setSelectedMobileTheme] = useState('impact');
 
   const themes = [
     { 
       id: 'impact', 
       label: 'Startup Tech', 
       icon: Zap, 
-      color: 'text-yellow-400',
-      description: "Style Nike/Apple. Typographie massive, animations 3D, contrastes forts. Idéal pour marquer les esprits.",
+      color: 'text-yellow-600 dark:text-yellow-400',
+      bgBase: 'bg-yellow-50 dark:bg-yellow-950/30',
+      borderBase: 'border-yellow-200 dark:border-yellow-500/50',
+      hoverShadow: 'hover:shadow-yellow-500/20',
       tag: "Business Moderne"
     },
     { 
       id: 'care', 
       label: 'Nature & Soins', 
       icon: HeartHandshake, 
-      color: 'text-green-600',
-      description: "Palette végétale, douceur et sérénité. Parfait pour les thérapeutes, le bien-être et la santé naturelle.",
+      color: 'text-emerald-600 dark:text-emerald-400',
+      bgBase: 'bg-emerald-50 dark:bg-emerald-950/30',
+      borderBase: 'border-emerald-200 dark:border-emerald-500/50',
+      hoverShadow: 'hover:shadow-emerald-500/20',
       tag: "Santé / Bien-être"
     },
     { 
       id: 'esthetic', 
       label: 'Esthétique', 
       icon: Flower2, 
-      color: 'text-pink-400',
-      description: "L'élégance poudrée. Tons beiges et or, typographie raffinée. Pour les salons de beauté et le luxe accessible.",
+      color: 'text-pink-600 dark:text-pink-400',
+      bgBase: 'bg-pink-50 dark:bg-pink-950/30',
+      borderBase: 'border-pink-200 dark:border-pink-500/50',
+      hoverShadow: 'hover:shadow-pink-500/20',
       tag: "Beauté / Luxe"
     },
     { 
       id: 'coaching', 
       label: 'Coaching', 
       icon: Briefcase, 
-      color: 'text-violet-400',
-      description: "Sombre, dynamique et structuré. Un design qui inspire le leadership et la performance.",
+      color: 'text-violet-600 dark:text-violet-400',
+      bgBase: 'bg-violet-50 dark:bg-violet-950/30',
+      borderBase: 'border-violet-200 dark:border-violet-500/50',
+      hoverShadow: 'hover:shadow-violet-500/20',
       tag: "Business / Sport"
     },
     { 
       id: 'consultant', 
-      label: 'Profession Libérale', 
+      label: 'Prof. Libérale', 
       icon: PenTool, 
-      color: 'text-amber-600',
-      description: "Sobre, géométrique et rassurant. Le choix parfait pour les experts, avocats et consultants.",
+      color: 'text-amber-600 dark:text-amber-400',
+      bgBase: 'bg-amber-50 dark:bg-amber-950/30',
+      borderBase: 'border-amber-200 dark:border-amber-500/50',
+      hoverShadow: 'hover:shadow-amber-500/20',
       tag: "Corporate / Expert"
     },
     { 
       id: 'artisan', 
       label: 'Artisan', 
       icon: Hammer, 
-      color: 'text-blue-500',
-      description: "Pragmatique et efficace. Mise en avant des coordonnées et des services. Idéal pour le bâtiment.",
+      color: 'text-blue-600 dark:text-blue-400',
+      bgBase: 'bg-blue-50 dark:bg-blue-950/30',
+      borderBase: 'border-blue-200 dark:border-blue-500/50',
+      hoverShadow: 'hover:shadow-blue-500/20',
       tag: "BTP / Services"
     },
     { 
       id: 'commerce', 
-      label: 'Commerce Local', 
+      label: 'Commerce', 
       icon: ShoppingBag, 
-      color: 'text-orange-500',
-      description: "Chaleureux et visuel. Une vitrine numérique pour fleuristes, décorateurs et boutiques physiques.",
+      color: 'text-orange-600 dark:text-orange-400',
+      bgBase: 'bg-orange-50 dark:bg-orange-950/30',
+      borderBase: 'border-orange-200 dark:border-orange-500/50',
+      hoverShadow: 'hover:shadow-orange-500/20',
       tag: "Boutique / Artisanat"
     },
     { 
       id: 'classic', 
       label: 'Classique', 
       icon: LayoutTemplate, 
-      color: 'text-slate-400',
-      description: "Minimalisme pur. Fond blanc, lisibilité maximale. S'adapte à absolument tous les secteurs.",
+      color: 'text-slate-600 dark:text-slate-400',
+      bgBase: 'bg-slate-100 dark:bg-slate-800/80',
+      borderBase: 'border-slate-200 dark:border-slate-500/50',
+      hoverShadow: 'hover:shadow-slate-500/20',
       tag: "Universel"
     },
   ];
 
-  const currentTheme = themes.find(t => t.id === selectedThemeId) || themes[0];
+  const activeMobileTheme = themes.find(t => t.id === selectedMobileTheme) || themes[0];
 
   return (
-    <section className="py-20 bg-surface-highlight border-y border-border relative overflow-hidden">
+    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden">
        {/* Background Element */}
        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-fuchsia-900/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left: Text Content - REVAMPED FOR CLARITY & ACTION */}
-          <div className="relative">
-            {/* Blinking Badge */}
+          {/* Left: Text Content (4 cols) */}
+          {/* Correction: lg:sticky et lg:top-32 pour n'activer le sticky que sur desktop */}
+          <div className="lg:col-span-4 lg:sticky lg:top-32 relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-bold mb-8 shadow-[0_0_20px_rgba(217,70,239,0.4)] animate-pulse">
                 <MousePointerClick className="w-5 h-5" />
-                <span>ZONE DE TEST INTERACTIVE</span>
+                <span>DÉMO INTERACTIVE</span>
             </div>
             
-            <h2 className="text-4xl lg:text-6xl font-bold font-display mb-6 text-textMain leading-tight">
-              Ne l'imaginez pas. <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-orange-500">Testez-le maintenant.</span>
+            <h2 className="text-4xl lg:text-5xl font-bold font-display mb-6 text-textMain leading-tight">
+              Plongez dans un design <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-orange-500">en un seul clic.</span>
             </h2>
             
-            <p className="text-textMuted text-xl leading-relaxed mb-10">
-              Nous avons créé <strong>8 sites complets</strong> pour vous aider à vous projeter. 
-              C'est une expérience live : naviguez dedans comme si c'était le vôtre.
+            <p className="text-textMuted text-lg leading-relaxed mb-8">
+              Nous avons créé <strong>plusieurs univers complets</strong> pour vous aider à vous projeter. 
+              <br/><br/>
+              Chaque carte est une porte d'entrée : cliquez pour explorer instantanément le site de démonstration correspondant, comme si c'était le vôtre.
             </p>
 
-            {/* Instruction Steps */}
-            <div className="space-y-6 relative">
-                {/* Connecting Line */}
-                <div className="absolute left-[23px] top-8 bottom-8 w-0.5 bg-border -z-10"></div>
-
-                <div className="flex items-center gap-6 group cursor-default">
-                    <div className="w-12 h-12 rounded-full bg-surface border-2 border-fuchsia-500 flex items-center justify-center text-fuchsia-500 font-bold text-xl shadow-[0_0_15px_rgba(217,70,239,0.2)] group-hover:scale-110 transition-transform bg-background">1</div>
-                    <div>
-                        <h4 className="font-bold text-textMain text-lg group-hover:text-fuchsia-500 transition-colors">Choisissez un univers</h4>
-                        <p className="text-sm text-textMuted">Utilisez la liste déroulante ci-contre.</p>
-                    </div>
-                </div>
-                 <div className="flex items-center gap-6 group cursor-default">
-                    <div className="w-12 h-12 rounded-full bg-surface border-2 border-orange-500 flex items-center justify-center text-orange-500 font-bold text-xl shadow-[0_0_15px_rgba(249,115,22,0.2)] group-hover:scale-110 transition-transform bg-background">2</div>
-                    <div>
-                        <h4 className="font-bold text-textMain text-lg group-hover:text-orange-500 transition-colors">Cliquez sur "Voir le design"</h4>
-                        <p className="text-sm text-textMuted">Le site de démonstration s'ouvrira en plein écran.</p>
-                    </div>
-                </div>
+            <div className="hidden lg:flex items-center gap-3 text-sm font-medium text-textMuted/60">
+                <Sparkles className="w-5 h-5 text-fuchsia-500" />
+                <span>Testez l'expérience utilisateur dès maintenant</span>
             </div>
-
-            {/* Arrow pointing to the right (Desktop only) */}
-            <div className="hidden lg:block absolute top-1/2 -right-16 transform -translate-y-1/2 translate-x-1/2 z-20">
-                 <div className="text-textMuted/30 animate-pulse">
-                    <ArrowRight className="w-20 h-20" />
-                 </div>
-            </div>
-             {/* Arrow pointing down (Mobile only) */}
-             <div className="lg:hidden flex justify-center mt-8 text-textMuted/30 animate-bounce">
-                <ArrowRight className="w-12 h-12 rotate-90" />
-             </div>
           </div>
 
-          {/* Right: Interactive Dropdown Showcase */}
-          <div className="relative">
-             <div className="bg-background border-2 border-fuchsia-500/20 rounded-3xl p-8 shadow-[0_0_50px_rgba(0,0,0,0.1)] relative z-20">
-                <label className="block text-sm font-bold uppercase text-fuchsia-500 tracking-wider mb-4 flex items-center gap-2">
-                    <Paintbrush className="w-4 h-4" />
-                    Sélecteur de Thème
-                </label>
-                
-                {/* Custom Dropdown Trigger */}
-                <div className="relative mb-8">
-                    <button 
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="w-full flex items-center justify-between bg-surface border-2 border-border rounded-xl px-5 py-5 text-left hover:border-fuchsia-500 transition-all duration-300 group shadow-sm hover:shadow-lg"
-                    >
-                        <div className="flex items-center gap-4">
-                            <div className={`p-3 rounded-lg bg-background border border-border ${currentTheme.color} shadow-inner`}>
-                                <currentTheme.icon className="w-6 h-6" />
-                            </div>
-                            <div>
-                                <span className="block text-xs font-bold text-textMuted uppercase tracking-wide">Thème sélectionné</span>
-                                <span className="font-bold text-textMain text-xl">{currentTheme.label}</span>
-                            </div>
-                        </div>
-                        <div className={`p-2 rounded-full bg-surface-highlight group-hover:bg-fuchsia-500 group-hover:text-white transition-colors`}>
-                            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-                        </div>
-                    </button>
-
-                    {/* Dropdown Menu */}
-                    {isOpen && (
-                        <div className="absolute top-full left-0 right-0 mt-3 bg-surface/95 backdrop-blur-xl border border-border rounded-xl shadow-2xl z-50 max-h-[350px] overflow-y-auto custom-scrollbar animate-in fade-in slide-in-from-top-2">
-                            {themes.map((theme) => (
-                                <button
-                                    key={theme.id}
-                                    onClick={() => {
-                                        setSelectedThemeId(theme.id);
-                                        setIsOpen(false);
-                                    }}
-                                    className="w-full flex items-center gap-4 px-6 py-4 hover:bg-surface-highlight transition-colors text-left border-b border-border/50 last:border-0 group"
-                                >
-                                    <theme.icon className={`w-5 h-5 ${theme.color} group-hover:scale-110 transition-transform`} />
-                                    <div>
-                                        <span className={`block text-base font-bold ${selectedThemeId === theme.id ? 'text-textMain' : 'text-textMuted group-hover:text-textMain'}`}>
-                                            {theme.label}
-                                        </span>
-                                        <span className="text-xs text-textMuted/70">{theme.tag}</span>
-                                    </div>
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
-
-                {/* Theme Preview Card */}
-                <div className="bg-surface-highlight rounded-2xl p-8 border border-border animate-in fade-in slide-in-from-bottom-4 duration-500 key={selectedThemeId}">
-                    <div className="flex justify-between items-start mb-6">
-                        <span className="inline-block px-3 py-1 rounded bg-background border border-border text-xs font-bold text-textMuted uppercase shadow-sm">
-                            {currentTheme.tag}
-                        </span>
-                    </div>
+          {/* Right: Content */}
+          <div className="lg:col-span-8 relative z-20">
+             
+             {/* Mobile ONLY: Dropdown List */}
+             <div className="lg:hidden mt-4">
+                <div className="bg-background border border-border p-5 rounded-2xl shadow-lg relative">
+                    <label className="text-xs font-bold text-textMuted uppercase tracking-wider mb-3 block flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-fuchsia-500" />
+                        Choisir un univers
+                    </label>
                     
-                    <h3 className="text-3xl font-bold text-textMain mb-3">{currentTheme.label}</h3>
-                    <p className="text-textMuted mb-8 leading-relaxed text-lg">
-                        {currentTheme.description}
-                    </p>
+                    <div className="flex flex-col gap-3">
+                        {/* Custom Select Wrapper */}
+                        <div className="relative">
+                            <select 
+                                value={selectedMobileTheme}
+                                onChange={(e) => setSelectedMobileTheme(e.target.value)}
+                                className="w-full appearance-none bg-surface border border-border rounded-xl pl-12 pr-10 py-3.5 text-base font-bold text-textMain focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent transition-shadow cursor-pointer"
+                            >
+                                {themes.map((theme) => (
+                                    <option key={theme.id} value={theme.id}>
+                                        {theme.label}
+                                    </option>
+                                ))}
+                            </select>
+                            
+                            {/* Icon Overlay */}
+                            <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                <activeMobileTheme.icon className={`w-5 h-5 ${activeMobileTheme.color}`} />
+                            </div>
+                            
+                            {/* Chevron */}
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-textMuted">
+                                <ChevronDown className="w-5 h-5" />
+                            </div>
+                        </div>
 
-                    <a 
-                        href={`?theme=${currentTheme.id}`}
-                        className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-fuchsia-600 to-orange-500 text-white font-bold text-lg rounded-xl shadow-[0_10px_40px_-10px_rgba(217,70,239,0.5)] hover:shadow-[0_10px_40px_-5px_rgba(249,115,22,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group relative overflow-hidden"
-                    >
-                        <span className="relative z-10 flex items-center gap-3">
-                            <Eye className="w-5 h-5" />
-                            Voir le design en live
-                        </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-fuchsia-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </a>
+                        {/* Action Button */}
+                        <a 
+                            href={`?theme=${activeMobileTheme.id}`}
+                            className="flex items-center justify-center gap-2 w-full py-3.5 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-xl font-bold transition-all shadow-md active:scale-95"
+                        >
+                            <span>Voir le thème</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </a>
+                        
+                        {/* Tag Info */}
+                        <div className="text-center pt-1">
+                             <span className={`text-xs font-medium uppercase tracking-widest ${activeMobileTheme.color}`}>
+                                {activeMobileTheme.tag}
+                             </span>
+                        </div>
+                    </div>
                 </div>
              </div>
-             
-             {/* Decorative Elements behind card */}
-             <div className="absolute top-4 -right-4 w-full h-full bg-gradient-to-br from-fuchsia-500/10 to-orange-500/10 rounded-3xl -z-10 blur-2xl"></div>
+
+             {/* Desktop ONLY: Grid */}
+             <div className="hidden lg:grid md:grid-cols-2 gap-5">
+                {themes.map((theme) => (
+                    <a 
+                        key={theme.id}
+                        href={`?theme=${theme.id}`}
+                        className={`
+                            group relative overflow-hidden rounded-2xl p-6
+                            border-2 transition-all duration-300
+                            hover:-translate-y-1 hover:shadow-xl
+                            flex flex-col sm:flex-row sm:items-center justify-between gap-4
+                            ${theme.bgBase} ${theme.borderBase} ${theme.hoverShadow}
+                            cursor-pointer
+                        `}
+                    >
+                        <div className="flex items-center gap-4">
+                            {/* Icon Container with solid color */}
+                            <div className={`
+                                w-14 h-14 shrink-0 rounded-xl flex items-center justify-center 
+                                bg-white dark:bg-surface border border-border/50 shadow-sm
+                                transition-transform duration-300 group-hover:scale-110
+                            `}>
+                                <theme.icon className={`w-7 h-7 ${theme.color}`} />
+                            </div>
+
+                            {/* Text Content */}
+                            <div>
+                                <h3 className={`text-lg font-bold transition-colors ${theme.color} brightness-75 group-hover:brightness-100`}>
+                                    {theme.label}
+                                </h3>
+                                <p className="text-xs font-medium text-textMuted uppercase tracking-wider mt-0.5">
+                                    {theme.tag}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Explicit Button "Voir le thème" */}
+                        <div className={`
+                            mt-2 sm:mt-0 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wide
+                            bg-white dark:bg-surface border border-border/50 shadow-sm
+                            group-hover:bg-fuchsia-600 group-hover:text-white group-hover:border-fuchsia-600 group-hover:shadow-lg
+                            transition-all duration-300 flex items-center gap-2 self-start sm:self-center text-textMain
+                        `}>
+                            Voir le thème
+                            <ArrowRight className="w-3 h-3" />
+                        </div>
+                    </a>
+                ))}
+             </div>
           </div>
 
         </div>
       </div>
-
-      <style>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(0,0,0,0.1);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(0,0,0,0.2);
-          border-radius: 10px;
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,11 +1,11 @@
-
-import React, { useState } from 'react';
-import { Check, Zap, Rocket, Shield, Globe, Server, Loader2 } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Check, Zap, Rocket, Shield, Globe, Server, Loader2, ArrowRightLeft, Clock } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Card } from './ui/Card';
 
 export const Pricing: React.FC = () => {
   const [loadingKey, setLoadingKey] = useState<string | null>(null);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   const handleCheckout = async (offerKey: string) => {
     try {
@@ -35,10 +35,16 @@ export const Pricing: React.FC = () => {
     }
   };
 
+  const scrollTable = () => {
+    if (tableContainerRef.current) {
+      tableContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+    }
+  };
+
   const plans = [
     {
-      key: "essential", // Clé correspondant à la config Stripe
-      name: "Essentiel",
+      key: "essential", // Clé Stripe conservée
+      name: "Pack Start",
       price: "199",
       description: "La solution de découverte efficace pour son activité",
       icon: Globe,
@@ -46,68 +52,90 @@ export const Pricing: React.FC = () => {
       gradient: "from-cyan-400 to-blue-500",
       features: [
         "Site vitrine 1-3 pages",
-        "1 post-modification offerte",
+        "Accompagnement sur mesure avec un professionnel web",
+        "2 post-modifications majeures offertes",
+        "Site clé en main opérationnel sans besoin d'intervention",
+        "TJM réduit à 169- / jour (-15%), au lieu de 199-/j",
+        "Intégration automatique et sécurisée de moyens de paiement",
         "Formulaire de contact (180 mails /mois)",
-        "Design sur mesure",
-        "Optimisation mobile",
-        "Hébergement + SSL",
+        "Design sur mesure & Optimisation mobile",
+        "Hébergement + SSL inclus",
         "Maintenance web (DNS, domaine)",
-        "Maintenance technique (clés API, intégrations statiques)"
+        "Maintenance technique"
       ]
     },
     {
       key: "business",
-      name: "Business",
+      name: "Pack Pro",
       price: "399",
       description: "La solution technique pour développer son chiffre d'affaires en ligne",
       icon: Rocket,
       color: "orange",
       gradient: "from-orange-500 to-amber-500",
       features: [
-        "Site vitrine 1–6 pages",
-        "2 post-modifications offertes",
-        "−25 % sur toute la main-d’œuvre",
+        "Site vitrine 1-6 pages",
+        "Accompagnement sur mesure avec un professionnel web",
+        "5 post-modifications majeures offertes",
+        "Site clé en main opérationnel sans besoin d'intervention",
+        "TJM réduit à 119- / jour (-40%), au lieu de 199-/j",
+        "Intégration automatique et sécurisée de moyens de paiement",
         "Formulaire de contact (180 mails /mois)",
-        "Design sur mesure",
-        "Optimisation mobile",
-        "Hébergement + SSL",
+        "Design sur mesure & Optimisation mobile",
+        "Hébergement + SSL inclus",
         "Maintenance web (DNS, domaine)",
-        "Maintenance technique (clés API, intégrations statiques)"
+        "Maintenance technique"
       ]
     },
     {
       key: "elite",
-      name: "Elite",
+      name: "Pack Premium",
       price: "499",
       description: "La solution d'architecture complète pour soutenir une croissance avancée",
       icon: Shield,
       color: "fuchsia",
       gradient: "from-fuchsia-600 to-purple-600",
       features: [
-        "Site vitrine 1–9 pages",
-        "3 post-modifications offertes",
-        "−50 % sur toute la main-d’œuvre",
+        "Site vitrine 1-9 pages",
+        "Accompagnement sur mesure avec un professionnel web",
+        "6 post-modifications majeures offertes",
+        "Site clé en main opérationnel sans besoin d'intervention",
+        "TJM réduit à 99- / jour (-50%), au lieu de 199-/j",
+        "Intégration automatique et sécurisée de moyens de paiement",
         "Formulaire de contact (180 mails /mois)",
-        "Design sur mesure",
-        "Optimisation mobile",
-        "Hébergement + SSL",
+        "Design sur mesure & Optimisation mobile",
+        "Hébergement + SSL inclus",
         "Maintenance web (DNS, domaine)",
-        "Maintenance technique (clés API, intégrations statiques)"
+        "Maintenance technique"
       ]
     }
   ];
 
+  // Nouvelle structure de la grille tarifaire basée sur le TJM
   const laborRates = [
-    { label: "Ajout d’animations légères", base: 25, business: 18, elite: 12 },
-    { label: "Animation de section ou de titre", base: 40, business: 30, elite: 20 },
-    { label: "Effet visuel premium", base: 35, business: 26, elite: 17 },
-    { label: "Création d’une carte ou d’un bloc design", base: 30, business: 22, elite: 15 },
-    { label: "Fond graphique / dégradé personnalisé", base: 20, business: 15, elite: 10 },
-    { label: "Fond animé", base: 60, business: 45, elite: 30 },
-    { label: "Mise en forme d’une section complète", base: 50, business: 37, elite: 25 },
-    { label: "Galerie ou bloc images stylisé", base: 45, business: 33, elite: 22 },
-    { label: "Bouton ou CTA premium", base: 20, business: 15, elite: 10 },
-    { label: "Éléments décoratifs (icônes, séparateurs...)", base: 15, business: 11, elite: 7 },
+    { 
+      label: "Taux Journalier Moyen (TJM)", 
+      base: "199 -", 
+      start: "169 -", 
+      pro: "119 -", 
+      premium: "99 -",
+      isPrice: true 
+    },
+    { 
+      label: "Réduction appliquée", 
+      base: "0%", 
+      start: "-15%", 
+      pro: "-40%", 
+      premium: "-50%",
+      isHighlight: true 
+    },
+    { 
+      label: "Mode de facturation", 
+      base: "Au prorata", 
+      start: "Au prorata", 
+      pro: "Au prorata", 
+      premium: "Au prorata",
+      isText: true
+    },
   ];
 
   return (
@@ -157,7 +185,7 @@ export const Pricing: React.FC = () => {
                       <div className={`mt-0.5 p-0.5 rounded-full bg-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-500/20 text-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-400 shrink-0`}>
                         <Check className="w-3 h-3" />
                       </div>
-                      <span>{feature}</span>
+                      <span className={idx < 3 ? "font-bold text-textMain" : ""}>{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -185,30 +213,79 @@ export const Pricing: React.FC = () => {
         {/* Labor Grid Section */}
         <div className="max-w-5xl mx-auto">
           <h3 className="text-2xl lg:text-3xl font-bold text-center mb-6 font-display text-textMain">
-            Grille Tarifaire <span className="text-fuchsia-400">à la carte</span>
+            Grille Tarifaire <span className="text-fuchsia-400">interventions</span>
           </h3>
-          <p className="text-center text-textMuted mb-8 max-w-2xl mx-auto">
-             Tarifs pour les interventions supplémentaires (hors forfait ou modifications incluses). Les réductions Business et Elite sont automatiquement appliquées.
+          <p className="text-center text-textMuted mb-2 max-w-2xl mx-auto">
+             Nous ne facturons pas à l'action, mais au temps passé. Chaque pack vous offre une réduction sur le taux journalier moyen (TJM).
           </p>
+          <div className="flex justify-center items-center gap-2 mb-8 text-sm text-textMain/70 bg-surface/50 w-fit mx-auto px-4 py-2 rounded-full border border-border">
+             <Clock className="w-4 h-4 text-fuchsia-500" />
+             <span>La tarification est calculée au <strong>prorata du temps dédié</strong> à la tâche.</span>
+          </div>
+          
+          {/* Scroll Hint Button for Mobile */}
+          <div className="lg:hidden flex justify-center mb-4">
+             <button 
+                onClick={scrollTable}
+                className="flex items-center gap-2 px-5 py-2.5 bg-surface-highlight border border-fuchsia-500/30 rounded-full text-xs font-bold text-fuchsia-500 uppercase tracking-widest shadow-sm hover:bg-fuchsia-500/10 transition-all active:scale-95 active:bg-fuchsia-500/20"
+             >
+                <ArrowRightLeft className="w-4 h-4" />
+                Glisser pour voir les prix
+             </button>
+          </div>
 
           <Card className="overflow-hidden p-0 border-border bg-surface/50">
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" ref={tableContainerRef}>
               <table className="w-full text-left border-collapse min-w-[600px]">
                 <thead>
                   <tr className="border-b border-border bg-surface-highlight/50">
-                    <th className="p-4 pl-6 font-bold text-textMain text-sm uppercase tracking-wider w-[40%]">Intervention</th>
-                    <th className="p-4 font-bold text-textMuted text-center w-[20%]">Essentiel</th>
-                    <th className="p-4 font-bold text-orange-500 text-center w-[20%]">Business <span className="text-xs opacity-70 block sm:inline">(-25%)</span></th>
-                    <th className="p-4 font-bold text-fuchsia-500 text-center w-[20%]">Elite <span className="text-xs opacity-70 block sm:inline">(-50%)</span></th>
+                    <th className="p-4 pl-6 font-bold text-textMain text-sm uppercase tracking-wider w-[30%]">Tarification</th>
+                    <th className="p-4 font-bold text-textMuted text-center w-[15%]">Standard</th>
+                    <th className="p-4 font-bold text-cyan-500 dark:text-cyan-400 text-center w-[15%]">Pack Start</th>
+                    <th className="p-4 font-bold text-orange-500 dark:text-orange-400 text-center w-[15%]">Pack Pro</th>
+                    <th className="p-4 font-bold text-fuchsia-500 dark:text-fuchsia-400 text-center w-[15%]">Pack Premium</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">
                   {laborRates.map((rate, idx) => (
                     <tr key={idx} className="hover:bg-surface-highlight/50 transition-colors">
                       <td className="p-4 pl-6 text-sm font-medium text-textMain">{rate.label}</td>
-                      <td className="p-4 text-center text-sm font-bold text-textMuted">{rate.base}-</td>
-                      <td className="p-4 text-center text-sm font-bold text-orange-500">{rate.business}-</td>
-                      <td className="p-4 text-center text-sm font-bold text-fuchsia-500">{rate.elite}-</td>
+                      
+                      {/* Standard Column */}
+                      <td className={`p-4 text-center text-sm ${
+                        rate.isPrice || rate.isText 
+                          ? 'font-bold text-black dark:text-white' 
+                          : 'text-textMuted'
+                      }`}>
+                        {rate.base}
+                      </td>
+
+                      {/* Start Column */}
+                      <td className={`p-4 text-center text-sm ${
+                        rate.isHighlight 
+                          ? 'font-bold text-cyan-600 dark:text-cyan-400' 
+                          : (rate.isPrice || rate.isText ? 'font-bold text-black dark:text-white' : 'text-textMuted')
+                      }`}>
+                        {rate.start}
+                      </td>
+
+                      {/* Pro Column */}
+                      <td className={`p-4 text-center text-sm ${
+                        rate.isHighlight 
+                          ? 'font-bold text-orange-600 dark:text-orange-400' 
+                          : (rate.isPrice || rate.isText ? 'font-bold text-black dark:text-white' : 'text-textMuted')
+                      }`}>
+                        {rate.pro}
+                      </td>
+
+                      {/* Premium Column */}
+                      <td className={`p-4 text-center text-sm ${
+                        rate.isHighlight 
+                          ? 'font-bold text-fuchsia-600 dark:text-fuchsia-400' 
+                          : (rate.isPrice || rate.isText ? 'font-bold text-black dark:text-white' : 'text-textMuted')
+                      }`}>
+                        {rate.premium}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
