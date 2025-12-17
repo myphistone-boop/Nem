@@ -72,11 +72,11 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Hero />
         <ConcreteResults />
+        <Pricing />
         <DesignInspiration />
         <Approach />
         <Services />
         <Education />
-        <Pricing />
         <FAQ />
         <Contact />
       </main>
