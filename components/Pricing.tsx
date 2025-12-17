@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Check, Zap, Rocket, Shield, Globe, Server, Loader2, ArrowRightLeft, Clock } from 'lucide-react';
+import { Check, Zap, Rocket, Shield, Globe, Server, Loader2, ArrowRightLeft, Clock, Plus } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Card } from './ui/Card';
 
@@ -50,6 +50,7 @@ export const Pricing: React.FC = () => {
       icon: Globe,
       color: "cyan",
       gradient: "from-cyan-400 to-blue-500",
+      cumulative: false,
       features: [
         "Site Vitrine Optimisé (1-3 pages)",
         "Création fiche Google Maps Pro",
@@ -69,34 +70,34 @@ export const Pricing: React.FC = () => {
       icon: Rocket,
       color: "orange",
       gradient: "from-orange-500 to-amber-500",
+      cumulative: true,
+      previousPlan: "Pack Visibilité",
       features: [
         "Site Complet Haute Conversion (1-6 pages)",
         "Optimisation Google Maps Avancée",
         "Stratégie de mots-clés SEO (Basic)",
         "Copywriting de vente persuasif",
         "TJM intervention réduit (-40%)",
-        "Intégration prise de RDV / Devis",
-        "Design immersif sur mesure",
-        "Maintenance & Sécurité Pro"
+        "Intégration prise de RDV / Devis"
       ]
     },
     {
       key: "elite",
-      name: "Pack Domination",
+      name: "Pack Leader",
       price: "499",
-      description: "Pour devenir le leader incontesté de votre marché.",
+      description: "Pour devenir le choix incontournable de votre marché.",
       icon: Shield,
       color: "fuchsia",
       gradient: "from-fuchsia-600 to-purple-600",
+      cumulative: true,
+      previousPlan: "Pack Croissance",
       features: [
         "Site Autorité (1-9 pages)",
         "Stratégie SEO Complète (Contenu)",
-        "Domination Google Maps (Top 3 visé)",
+        "Visibilité Google Maps Maximale",
         "Expérience utilisateur Premium",
         "TJM intervention réduit (-50%)",
-        "Tracking avancé des conversions",
-        "Support prioritaire",
-        "Maintenance & Sécurité Elite"
+        "Tracking avancé des conversions"
       ]
     }
   ];
@@ -171,12 +172,22 @@ export const Pricing: React.FC = () => {
                 </div>
 
                 <div className="flex-grow space-y-4 mb-8">
+                  {/* Cumulative Header */}
+                  {plan.cumulative && (
+                    <div className="flex items-start gap-3 pb-2 mb-2 border-b border-border/50">
+                       <div className={`mt-0.5 p-0.5 rounded-full bg-${plan.color === 'orange' ? 'orange' : 'fuchsia'}-500/20 text-${plan.color === 'orange' ? 'orange' : 'fuchsia'}-400 shrink-0`}>
+                          <Plus className="w-3 h-3" />
+                       </div>
+                       <span className="text-sm font-bold text-textMain italic">Tout du {plan.previousPlan}, plus :</span>
+                    </div>
+                  )}
+
                   {plan.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-3 text-sm text-textMain/80">
                       <div className={`mt-0.5 p-0.5 rounded-full bg-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-500/20 text-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-400 shrink-0`}>
                         <Check className="w-3 h-3" />
                       </div>
-                      <span className={idx < 3 ? "font-bold text-textMain" : ""}>{feature}</span>
+                      <span className={idx < 2 && !plan.cumulative ? "font-bold text-textMain" : ""}>{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -234,7 +245,7 @@ export const Pricing: React.FC = () => {
                     <th className="p-4 font-bold text-textMuted text-center w-[15%]">Standard</th>
                     <th className="p-4 font-bold text-cyan-500 dark:text-cyan-400 text-center w-[15%]">Pack Visibilité</th>
                     <th className="p-4 font-bold text-orange-500 dark:text-orange-400 text-center w-[15%]">Pack Croissance</th>
-                    <th className="p-4 font-bold text-fuchsia-500 dark:text-fuchsia-400 text-center w-[15%]">Pack Domination</th>
+                    <th className="p-4 font-bold text-fuchsia-500 dark:text-fuchsia-400 text-center w-[15%]">Pack Leader</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">

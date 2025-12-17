@@ -39,7 +39,7 @@ export const Comparison: React.FC = () => {
             Être beau ne suffit pas, il faut être vu. Nous vous positionnons là où sont vos clients : en tête de Google et sur la carte locale.
           </p>
           <ul className="space-y-4">
-            {["Top 3 Google Maps (Pack Local)", "SEO pour mots-clefs rentables", "Gestion de votre E-Réputation"].map((item, i) => (
+            {["Premières positions Google Maps", "SEO pour mots-clefs rentables", "Gestion de votre E-Réputation"].map((item, i) => (
               <li key={i} className="flex items-center gap-3 text-textMuted">
                 <CheckCircle2 className="w-5 h-5 text-orange-500 flex-shrink-0" />
                 {item}

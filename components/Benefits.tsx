@@ -11,8 +11,8 @@ export const Benefits: React.FC = () => {
       badge: "Croissance"
     },
     {
-      title: "Numéro 1 sur votre ville",
-      description: "Nous optimisons votre présence pour que vous passiez devant vos concurrents directs. Devenez la référence incontournable de votre secteur.",
+      title: "Référence sur votre ville",
+      description: "Nous optimisons votre présence pour que vous passiez devant vos concurrents directs. Devenez l'acteur incontournable de votre secteur.",
       badge: "Autorité"
     },
     {

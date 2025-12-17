@@ -25,7 +25,7 @@ export const Approach: React.FC = () => {
               Avoir un site ne suffit plus. Pour gagner des parts de marché, vous devez être visible là où vos clients cherchent et les convaincre instantanément.
             </p>
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
-              Chez Nemphisia, nous déployons un écosystème digital complet (Site, Maps, SEO) conçu pour capturer le trafic local, écraser la concurrence et maximiser vos appels entrants.
+              Chez Nemphisia, nous déployons un écosystème digital complet (Site, Maps, SEO) conçu pour capturer le trafic local, vous démarquer de la concurrence et maximiser vos appels entrants.
             </p>
             <Button variant="secondary" onClick={scrollToContact}>
               Obtenir mon plan d'action
@@ -46,8 +46,8 @@ export const Approach: React.FC = () => {
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-textMain">Domination Locale (Pack Maps)</h4>
-                      <p className="text-sm text-textMuted">Apparaissez en premier quand vos clients cherchent vos services sur Google.</p>
+                      <h4 className="font-semibold text-textMain">Visibilité Locale (Pack Maps)</h4>
+                      <p className="text-sm text-textMuted">Apparaissez dans les premiers résultats quand vos clients cherchent vos services.</p>
                     </div>
                   </div>
 
@@ -60,7 +60,7 @@ export const Approach: React.FC = () => {
                       <Search className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-textMain">SEO & Visibilité</h4>
+                      <h4 className="font-semibold text-textMain">SEO & Performance</h4>
                       <p className="text-sm text-textMuted">Positionnez votre site devant vos concurrents sur les mots-clefs qui rapportent.</p>
                     </div>
                   </div>

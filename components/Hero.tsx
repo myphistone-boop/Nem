@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
           </h1>
           
           <p className="text-base lg:text-lg text-textMuted leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
-            Nous transformons votre présence en ligne en une machine à générer des clients. Site web immersif, domination sur Google Maps et référencement SEO pour écraser la concurrence.
+            Nous transformons votre présence en ligne en une machine à générer des clients. Site web immersif, visibilité optimale sur Google Maps et référencement SEO pour vous démarquer de la concurrence.
           </p>
           
           <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 justify-center lg:justify-start pt-2">
@@ -96,7 +96,7 @@ export const Hero: React.FC = () => {
                  <div className="space-y-2">
                     <div className="flex justify-between text-xs text-textMuted">
                         <span>Appels Entrants (Google Maps)</span>
-                        <span className="text-textMain">Explosion</span>
+                        <span className="text-textMain">En augmentation</span>
                     </div>
                     <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                         <div className="h-full w-[85%] bg-gradient-to-r from-fuchsia-500 to-orange-500 shadow-[0_0_10px_rgba(217,70,239,0.5)]"></div>
@@ -105,7 +105,7 @@ export const Hero: React.FC = () => {
                  <div className="space-y-2">
                     <div className="flex justify-between text-xs text-textMuted">
                         <span>Position Google (SEO)</span>
-                        <span className="text-textMain">Top 3</span>
+                        <span className="text-textMain">1ère Page</span>
                     </div>
                     <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                         <div className="h-full w-full bg-gradient-to-r from-cyan-400 to-blue-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
@@ -137,7 +137,7 @@ export const Hero: React.FC = () => {
               </div>
               <div>
                 <p className="text-xs text-textMuted uppercase tracking-wide">Visibilité Locale</p>
-                <p className="text-xl font-bold text-textMain">N°1</p>
+                <p className="text-xl font-bold text-textMain">Maximale</p>
               </div>
             </div>
           </div>

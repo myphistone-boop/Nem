@@ -16,8 +16,8 @@ export const Services: React.FC = () => {
       icon: MapPin
     },
     {
-      title: "Référencement SEO & Domination",
-      description: "Ne laissez pas vos concurrents prendre vos parts de marché. Nous propulsons votre site en haut des résultats de recherche pour un flux constant de prospects qualifiés.",
+      title: "Référencement SEO & Performance",
+      description: "Positionnez-vous comme le choix évident. Nous propulsons votre site en haut des résultats de recherche pour un flux constant de prospects qualifiés.",
       icon: TrendingUp
     }
   ];
