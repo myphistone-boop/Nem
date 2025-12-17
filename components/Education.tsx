@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Code, ShieldAlert, Server, ChevronRight } from 'lucide-react';
+import { Search, BrainCircuit, Star, ChevronRight } from 'lucide-react';
 import { Card } from './ui/Card';
 
 export const Education: React.FC = () => {
@@ -7,25 +7,25 @@ export const Education: React.FC = () => {
 
   const topics = [
     {
-      title: "Front-end vs Back-end",
-      short: "Architecture Web",
-      icon: Code,
+      title: "SEO vs Google Maps",
+      short: "Architecture d'Acquisition",
+      icon: Search,
       color: "from-fuchsia-500 to-purple-600",
-      content: "Le 'Front-end' est votre vitrine : c'est ce que vos clients voient et ce qui les convainc d'acheter. Le 'Back-end' est le moteur technique qui assure la rapidité et le bon fonctionnement. Chez Nemphisia, nous optimisons les deux pour maximiser votre chiffre d'affaires."
+      content: "Le SEO (référencement naturel) vous place en haut des recherches globales, captant les clients qui cherchent une solution. Google Maps (Pack Local) cible les clients qui cherchent un service *près de chez eux*. La combinaison des deux vous assure de capter 100% du marché disponible."
     },
     {
-      title: "La Cybersécurité",
-      short: "Sécurité",
-      icon: ShieldAlert,
+      title: "Psychologie de Vente",
+      short: "Design de Conversion",
+      icon: BrainCircuit,
       color: "from-orange-500 to-red-600",
-      content: "Chaque site est protégé par un certificat SSL (HTTPS), garantissant un échange sécurisé entre le navigateur et le serveur. Les configurations techniques sont mises en place selon les bonnes pratiques du secteur, incluant une surveillance régulière et des protections adaptées aux besoins d’un site vitrine. L’objectif est de maintenir un environnement fiable, stable et conforme aux standards actuels, sans surcharge technique inutile."
+      content: "Un beau site ne suffit pas. Nous utilisons les principes de la psychologie cognitive (preuve sociale, urgence, autorité) pour structurer votre site. Chaque bouton, chaque image et chaque titre est pensé pour guider le visiteur vers une seule action : vous contacter ou acheter."
     },
     {
-      title: "Maintenance & Hosting",
-      short: "Maintenance",
-      icon: Server,
+      title: "Réputation & Avis",
+      short: "Confiance Client",
+      icon: Star,
       color: "from-cyan-400 to-blue-600",
-      content: "Un site web repose sur plusieurs composants techniques qui doivent rester opérationnels en continu : hébergement, nom de domaine, certificats de sécurité, annuaires DNS et mises à jour de compatibilité. Une veille quotidienne est assurée afin de détecter rapidement tout comportement anormal, garantir la disponibilité du site et maintenir des performances stables. Les certificats SSL (HTTPS) assurent un échange chiffré entre le navigateur et le serveur, tandis que la gestion du domaine et des DNS veille à une résolution rapide et fiable. L’infrastructure d’hébergement optimise la vitesse de chargement et la stabilité, assurant au final une présence en ligne cohérente, professionnelle et durable, sans intervention technique nécessaire de la part du client."
+      content: "Avant de vous appeler, vos prospects lisent vos avis. Une fiche Google optimisée avec des avis gérés et une réponse professionnelle augmente drastiquement votre taux de conversion. Nous vous aidons à bâtir une réputation en béton qui rassure vos futurs clients avant même le premier contact."
     }
   ];
 
@@ -33,9 +33,9 @@ export const Education: React.FC = () => {
     <section className="py-24 bg-background" id="education">
       <div className="container mx-auto px-6">
         <div className="mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">la technique</span></h2>
+          <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">l'acquisition</span></h2>
           <p className="text-textMuted max-w-2xl text-lg">
-            Nous rendons la technologie transparente pour vous permettre de comprendre comment elle sert votre croissance.
+            Nous rendons le marketing transparent pour vous permettre de comprendre comment il sert votre croissance financière.
           </p>
         </div>
 

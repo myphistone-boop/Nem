@@ -15,6 +15,7 @@ import { Pricing } from './components/Pricing';
 import { DemoNav } from './components/ui/DemoNav';
 import { DesignInspiration } from './components/DesignInspiration';
 import { LegalModal } from './components/LegalModal';
+import { WhatsAppButton } from './components/WhatsAppButton';
 import { AdminInit } from './components/AdminInit'; // Import de la page Admin
 
 // Import Themes
@@ -84,6 +85,9 @@ const App: React.FC = () => {
         <Contact />
       </main>
       <Footer onOpenLegal={() => setIsLegalModalOpen(true)} />
+      
+      {/* Bouton WhatsApp flottant (Mobile uniquement) */}
+      <WhatsAppButton />
       
       {/* Modale Mentions Légales */}
       <LegalModal isOpen={isLegalModalOpen} onClose={() => setIsLegalModalOpen(false)} />

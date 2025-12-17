@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from './ui/Button';
-import { ArrowRight, Smartphone, Shield, Zap } from 'lucide-react';
+import { ArrowRight, MapPin, Search, MousePointerClick } from 'lucide-react';
 import { Card } from './ui/Card';
 
 export const Approach: React.FC = () => {
@@ -18,17 +18,17 @@ export const Approach: React.FC = () => {
           {/* Text Content - ID added here for direct scrolling */}
           <div className="order-2 lg:order-1" id="approach">
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">
-              Un accompagnement total au <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">service de votre entreprise</span>
+              Une stratégie d'acquisition <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">complète pour votre entreprise</span>
             </h2>
             <p className="text-textMuted text-lg mb-6 leading-relaxed">
-              Nous vous accompagnons à 100% sur votre projet, en mettant à disposition notre expertise technique. Car un site lent ou mal conçu fait perdre des clients chaque jours, optez pour le professionnalisme. 
+              Avoir un site ne suffit plus. Pour gagner des parts de marché, vous devez être visible là où vos clients cherchent et les convaincre instantanément.
             </p>
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
-              Chez Nemphisia, nous créons des sites sur mesure, pensés pour convertir vos visiteurs en clients. Nous mettons en place les meilleures pratiques techniques pour maximiser votre visibilité et vos résultats.
+              Chez Nemphisia, nous déployons un écosystème digital complet (Site, Maps, SEO) conçu pour capturer le trafic local, écraser la concurrence et maximiser vos appels entrants.
             </p>
             <Button variant="secondary" onClick={scrollToContact}>
-              Discuter de mon projet
+              Obtenir mon plan d'action
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
@@ -43,11 +43,11 @@ export const Approach: React.FC = () => {
                   {/* Step 1 */}
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border hover:bg-surface-highlight transition-colors group">
                     <div className="p-3 rounded-lg bg-fuchsia-500/20 text-fuchsia-500 group-hover:scale-110 transition-transform">
-                      <Zap className="w-6 h-6" />
+                      <MapPin className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-textMain">Performance & Conversion</h4>
-                      <p className="text-sm text-textMuted">Un site rapide retient les visiteurs et favorise les ventes.</p>
+                      <h4 className="font-semibold text-textMain">Domination Locale (Pack Maps)</h4>
+                      <p className="text-sm text-textMuted">Apparaissez en premier quand vos clients cherchent vos services sur Google.</p>
                     </div>
                   </div>
 
@@ -57,11 +57,11 @@ export const Approach: React.FC = () => {
                    {/* Step 2 */}
                    <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border hover:bg-surface-highlight transition-colors group">
                     <div className="p-3 rounded-lg bg-orange-500/20 text-orange-500 group-hover:scale-110 transition-transform">
-                      <Shield className="w-6 h-6" />
+                      <Search className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-textMain">Sérénité Technique</h4>
-                      <p className="text-sm text-textMuted">Maintenance régulière pour prévenir les failles et bugs.</p>
+                      <h4 className="font-semibold text-textMain">SEO & Visibilité</h4>
+                      <p className="text-sm text-textMuted">Positionnez votre site devant vos concurrents sur les mots-clefs qui rapportent.</p>
                     </div>
                   </div>
 
@@ -71,11 +71,11 @@ export const Approach: React.FC = () => {
                    {/* Step 3 */}
                    <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border hover:bg-surface-highlight transition-colors group">
                     <div className="p-3 rounded-lg bg-cyan-500/20 text-cyan-500 group-hover:scale-110 transition-transform">
-                      <Smartphone className="w-6 h-6" />
+                      <MousePointerClick className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-textMain">Expérience Mobile</h4>
-                      <p className="text-sm text-textMuted">Une navigation parfaite pour capturer le trafic mobile.</p>
+                      <h4 className="font-semibold text-textMain">Site à Haute Conversion</h4>
+                      <p className="text-sm text-textMuted">Un design immersif qui transforme les visiteurs en clients fidèles.</p>
                     </div>
                   </div>
                 </div>

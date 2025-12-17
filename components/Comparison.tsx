@@ -1,24 +1,24 @@
 import React from 'react';
-import { Code, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Rocket, Target, CheckCircle2 } from 'lucide-react';
 import { Card } from './ui/Card';
 
 export const Comparison: React.FC = () => {
   return (
     <section className="py-24 container mx-auto px-6 relative bg-background">
       <div className="grid lg:grid-cols-2 gap-8">
-        {/* Dev Column */}
+        {/* Site Immersif */}
         <Card className="bg-gradient-to-br from-surface to-surface-highlight border-fuchsia-500/20 shadow-[0_0_30px_rgba(217,70,239,0.05)]">
           <div className="flex items-center gap-4 mb-8">
             <div className="p-3 bg-fuchsia-500/20 rounded-xl text-fuchsia-500 shadow-[0_0_15px_rgba(217,70,239,0.2)]">
-              <Code className="w-8 h-8" />
+              <Rocket className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-bold font-display text-textMain">Développement Sur Mesure</h3>
+            <h3 className="text-2xl font-bold font-display text-textMain">Site Web Magnétique</h3>
           </div>
           <p className="text-textMuted mb-8 min-h-[60px]">
-            La création de votre outil digital. Un code propre, une architecture pensée pour l'avenir et un design qui vous démarque de la concurrence.
+            Oubliez les sites "brochure" qui ne vendent pas. Nous créons des expériences immersives conçues pour séduire et convertir vos visiteurs en clients.
           </p>
           <ul className="space-y-4">
-            {["Design Unique (Pas de template)", "Code optimisé & rapide", "Fonctionnalités personnalisées"].map((item, i) => (
+            {["Design Unique & Mémorable", "Copywriting de vente persuasif", "Optimisé pour la conversion"].map((item, i) => (
               <li key={i} className="flex items-center gap-3 text-textMuted">
                 <CheckCircle2 className="w-5 h-5 text-fuchsia-500 flex-shrink-0" />
                 {item}
@@ -27,19 +27,19 @@ export const Comparison: React.FC = () => {
           </ul>
         </Card>
 
-        {/* Security Column */}
+        {/* Visibilité Omnicanale */}
         <Card className="bg-gradient-to-br from-surface to-surface-highlight border-orange-500/20 shadow-[0_0_30px_rgba(249,115,22,0.05)]">
           <div className="flex items-center gap-4 mb-8">
             <div className="p-3 bg-orange-500/20 rounded-xl text-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
-              <ShieldCheck className="w-8 h-8" />
+              <Target className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-bold font-display text-textMain">Maintenance & Sécurité</h3>
+            <h3 className="text-2xl font-bold font-display text-textMain">Visibilité Omnicanale</h3>
           </div>
           <p className="text-textMuted mb-8 min-h-[60px]">
-            La protection de votre investissement. Nous surveillons votre site 24/7 pour prévenir les pannes et bloquer les attaques avant qu'elles n'arrivent.
+            Être beau ne suffit pas, il faut être vu. Nous vous positionnons là où sont vos clients : en tête de Google et sur la carte locale.
           </p>
           <ul className="space-y-4">
-            {["Monitoring 24/7", "Sauvegardes journalières", "Protection Anti-Hack"].map((item, i) => (
+            {["Top 3 Google Maps (Pack Local)", "SEO pour mots-clefs rentables", "Gestion de votre E-Réputation"].map((item, i) => (
               <li key={i} className="flex items-center gap-3 text-textMuted">
                 <CheckCircle2 className="w-5 h-5 text-orange-500 flex-shrink-0" />
                 {item}

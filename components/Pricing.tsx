@@ -44,68 +44,59 @@ export const Pricing: React.FC = () => {
   const plans = [
     {
       key: "essential", // Clé Stripe conservée
-      name: "Pack Start",
+      name: "Pack Visibilité",
       price: "199",
-      description: "La solution de découverte efficace pour son activité",
+      description: "Pour être visible localement et rassurer vos prospects.",
       icon: Globe,
       color: "cyan",
       gradient: "from-cyan-400 to-blue-500",
       features: [
-        "Site vitrine 1-3 pages",
-        "Accompagnement sur mesure avec un professionnel web",
-        "2 post-modifications majeures offertes",
-        "Site clé en main opérationnel sans besoin d'intervention",
-        "TJM réduit à 169- / jour (-15%), au lieu de 199-/j",
-        "Intégration automatique et sécurisée de moyens de paiement",
-        "Formulaire de contact (180 mails /mois)",
-        "Design sur mesure & Optimisation mobile",
-        "Hébergement + SSL inclus",
-        "Maintenance web (DNS, domaine)",
-        "Maintenance technique"
+        "Site Vitrine Optimisé (1-3 pages)",
+        "Création fiche Google Maps Pro",
+        "Design rassurant & professionnel",
+        "Appels à l'action stratégiques",
+        "TJM intervention réduit (-15%)",
+        "Hébergement rapide inclus",
+        "Optimisation mobile parfaite",
+        "Maintenance technique de base"
       ]
     },
     {
       key: "business",
-      name: "Pack Pro",
+      name: "Pack Croissance",
       price: "399",
-      description: "La solution technique pour développer son chiffre d'affaires en ligne",
+      description: "Pour dépasser vos concurrents et générer des leads.",
       icon: Rocket,
       color: "orange",
       gradient: "from-orange-500 to-amber-500",
       features: [
-        "Site vitrine 1-6 pages",
-        "Accompagnement sur mesure avec un professionnel web",
-        "5 post-modifications majeures offertes",
-        "Site clé en main opérationnel sans besoin d'intervention",
-        "TJM réduit à 119- / jour (-40%), au lieu de 199-/j",
-        "Intégration automatique et sécurisée de moyens de paiement",
-        "Formulaire de contact (180 mails /mois)",
-        "Design sur mesure & Optimisation mobile",
-        "Hébergement + SSL inclus",
-        "Maintenance web (DNS, domaine)",
-        "Maintenance technique"
+        "Site Complet Haute Conversion (1-6 pages)",
+        "Optimisation Google Maps Avancée",
+        "Stratégie de mots-clés SEO (Basic)",
+        "Copywriting de vente persuasif",
+        "TJM intervention réduit (-40%)",
+        "Intégration prise de RDV / Devis",
+        "Design immersif sur mesure",
+        "Maintenance & Sécurité Pro"
       ]
     },
     {
       key: "elite",
-      name: "Pack Premium",
+      name: "Pack Domination",
       price: "499",
-      description: "La solution d'architecture complète pour soutenir une croissance avancée",
+      description: "Pour devenir le leader incontesté de votre marché.",
       icon: Shield,
       color: "fuchsia",
       gradient: "from-fuchsia-600 to-purple-600",
       features: [
-        "Site vitrine 1-9 pages",
-        "Accompagnement sur mesure avec un professionnel web",
-        "6 post-modifications majeures offertes",
-        "Site clé en main opérationnel sans besoin d'intervention",
-        "TJM réduit à 99- / jour (-50%), au lieu de 199-/j",
-        "Intégration automatique et sécurisée de moyens de paiement",
-        "Formulaire de contact (180 mails /mois)",
-        "Design sur mesure & Optimisation mobile",
-        "Hébergement + SSL inclus",
-        "Maintenance web (DNS, domaine)",
-        "Maintenance technique"
+        "Site Autorité (1-9 pages)",
+        "Stratégie SEO Complète (Contenu)",
+        "Domination Google Maps (Top 3 visé)",
+        "Expérience utilisateur Premium",
+        "TJM intervention réduit (-50%)",
+        "Tracking avancé des conversions",
+        "Support prioritaire",
+        "Maintenance & Sécurité Elite"
       ]
     }
   ];
@@ -121,7 +112,7 @@ export const Pricing: React.FC = () => {
       isPrice: true 
     },
     { 
-      label: "Réduction appliquée", 
+      label: "Réduction sur l'expertise", 
       base: "0%", 
       start: "-15%", 
       pro: "-40%", 
@@ -146,10 +137,10 @@ export const Pricing: React.FC = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16" id="pricing">
           <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-display text-textMain">
-            Des tarifs <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">clairs</span>
+            Investissez dans votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">croissance</span>
           </h2>
           <p className="text-textMuted text-lg">
-            Investissez dans une expertise technique au service de votre chiffre d'affaires.
+            Des forfaits conçus pour générer du retour sur investissement, pas des dépenses.
           </p>
         </div>
 
@@ -171,7 +162,7 @@ export const Pricing: React.FC = () => {
                     <div className="flex items-baseline gap-1">
                       <span className="text-4xl lg:text-4xl xl:text-5xl font-bold font-display text-textMain">{plan.price}-</span>
                     </div>
-                    <span className="text-sm font-medium text-textMuted mt-1">+ 29- / mois de maintenance</span>
+                    <span className="text-sm font-medium text-textMuted mt-1">+ 29- / mois (Hébergement & Suivi)</span>
                   </div>
 
                   <p className="text-sm text-textMuted leading-relaxed">
@@ -213,10 +204,10 @@ export const Pricing: React.FC = () => {
         {/* Labor Grid Section */}
         <div className="max-w-5xl mx-auto">
           <h3 className="text-2xl lg:text-3xl font-bold text-center mb-6 font-display text-textMain">
-            Grille Tarifaire <span className="text-fuchsia-400">interventions</span>
+            Grille Tarifaire <span className="text-fuchsia-400">Évolutions</span>
           </h3>
           <p className="text-center text-textMuted mb-2 max-w-2xl mx-auto">
-             Nous ne facturons pas à l'action, mais au temps passé. Chaque pack vous offre une réduction sur le taux journalier moyen (TJM).
+             Besoin d'ajouter une page, de changer une offre ou de lancer une campagne ? Nos experts interviennent à un tarif préférentiel selon votre pack.
           </p>
           <div className="flex justify-center items-center gap-2 mb-8 text-sm text-textMain/70 bg-surface/50 w-fit mx-auto px-4 py-2 rounded-full border border-border">
              <Clock className="w-4 h-4 text-fuchsia-500" />
@@ -239,11 +230,11 @@ export const Pricing: React.FC = () => {
               <table className="w-full text-left border-collapse min-w-[600px]">
                 <thead>
                   <tr className="border-b border-border bg-surface-highlight/50">
-                    <th className="p-4 pl-6 font-bold text-textMain text-sm uppercase tracking-wider w-[30%]">Tarification</th>
+                    <th className="p-4 pl-6 font-bold text-textMain text-sm uppercase tracking-wider w-[30%]">Tarification Expert</th>
                     <th className="p-4 font-bold text-textMuted text-center w-[15%]">Standard</th>
-                    <th className="p-4 font-bold text-cyan-500 dark:text-cyan-400 text-center w-[15%]">Pack Start</th>
-                    <th className="p-4 font-bold text-orange-500 dark:text-orange-400 text-center w-[15%]">Pack Pro</th>
-                    <th className="p-4 font-bold text-fuchsia-500 dark:text-fuchsia-400 text-center w-[15%]">Pack Premium</th>
+                    <th className="p-4 font-bold text-cyan-500 dark:text-cyan-400 text-center w-[15%]">Pack Visibilité</th>
+                    <th className="p-4 font-bold text-orange-500 dark:text-orange-400 text-center w-[15%]">Pack Croissance</th>
+                    <th className="p-4 font-bold text-fuchsia-500 dark:text-fuchsia-400 text-center w-[15%]">Pack Domination</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">

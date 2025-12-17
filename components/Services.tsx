@@ -1,24 +1,24 @@
 import React from 'react';
 import { Card } from './ui/Card';
-import { Layout, ShieldCheck, Server } from 'lucide-react';
+import { Layout, MapPin, TrendingUp } from 'lucide-react';
 import { Service } from '../types';
 
 export const Services: React.FC = () => {
   const services: Service[] = [
     {
-      title: "Création de Site Sur Mesure",
-      description: "Que vous ayez besoin d'un site vitrine élégant ou d'une boutique en ligne performante, nous concevons des solutions adaptées à votre image et à vos objectifs de croissance.",
+      title: "Site Web Immersif & Convaincant",
+      description: "Nous ne créons pas de simples sites vitrines. Nous construisons des outils de vente au design unique, optimisés pour guider l'utilisateur vers l'achat ou la prise de contact.",
       icon: Layout
     },
     {
-      title: "Sécurité & Maintenance",
-      description: "Nous assurons une veille technique et mettons en place les protections nécessaires pour détecter les failles et sécuriser les données de votre entreprise.",
-      icon: ShieldCheck
+      title: "Optimisation Google Maps",
+      description: "Devenez le choix évident sur votre secteur. Nous optimisons votre fiche Google Business pour capter tous les clients qui cherchent vos services à proximité.",
+      icon: MapPin
     },
     {
-      title: "Optimisation de la Visibilité",
-      description: "Un site technique sain est la base d'un bon référencement. Nous assurons la rapidité et la stabilité nécessaires pour plaire à vos visiteurs et à Google.",
-      icon: Server
+      title: "Référencement SEO & Domination",
+      description: "Ne laissez pas vos concurrents prendre vos parts de marché. Nous propulsons votre site en haut des résultats de recherche pour un flux constant de prospects qualifiés.",
+      icon: TrendingUp
     }
   ];
 
@@ -30,9 +30,9 @@ export const Services: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16" id="services">
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">Des services complets pour <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre réussite en ligne</span></h2>
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 font-display text-textMain">Des services complets pour <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">votre réussite commerciale</span></h2>
           <p className="text-textMuted text-lg">
-            Nous vous accompagnons de la conception à la maintenance, pour que votre site reste un atout commercial performant sur le long terme.
+            De la visibilité locale à la conversion finale, nous gérons toute la chaîne d'acquisition pour que votre entreprise prospère.
           </p>
         </div>
 

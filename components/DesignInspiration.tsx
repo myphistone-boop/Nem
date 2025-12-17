@@ -91,7 +91,7 @@ export const DesignInspiration: React.FC = () => {
   const activeMobileTheme = themes.find(t => t.id === selectedMobileTheme) || themes[0];
 
   return (
-    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden">
+    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden" id="designs">
        {/* Background Element */}
        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-fuchsia-900/5 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -106,14 +106,14 @@ export const DesignInspiration: React.FC = () => {
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-bold font-display mb-6 text-textMain leading-tight">
-              Plongez dans un design <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-orange-500">en un seul clic.</span>
+              Des designs qui <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-orange-500">convertissent.</span>
             </h2>
             
             <p className="text-textMuted text-lg leading-relaxed mb-8">
-              Nous avons créé <strong>plusieurs univers complets</strong> pour vous aider à vous projeter. 
+              Le design n'est pas juste "joli", c'est votre meilleur vendeur. Nous avons créé des univers optimisés pour <strong>maximiser la confiance</strong> et déclencher l'acte d'achat.
               <br/><br/>
-              Chaque carte est une porte d'entrée : cliquez pour explorer instantanément le site de démonstration correspondant, comme si c'était le vôtre.
+              Choisissez votre secteur et testez l'expérience utilisateur qu'auront vos futurs clients.
             </p>
 
             <div className="hidden lg:flex items-center gap-3 text-sm font-medium text-textMuted/60">

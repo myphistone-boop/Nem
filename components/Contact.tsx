@@ -26,7 +26,7 @@ export const Contact: React.FC = () => {
   };
 
   const openMailClient = () => {
-    const subject = `Projet Web Nemphisia: ${formData.firstName} ${formData.lastName}`;
+    const subject = `Projet Croissance Nemphisia: ${formData.firstName} ${formData.lastName}`;
     const body = `Nom: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
     window.location.href = `mailto:contact@nemphisia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
@@ -76,12 +76,12 @@ export const Contact: React.FC = () => {
           {/* Info Side */}
           <div>
             <h2 className="text-4xl lg:text-5xl font-bold font-display mb-6 text-textMain">
-              Boostez votre <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">Visibilité en ligne</span>
+              Recevez votre <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400">Plan d'Action Commercial</span>
             </h2>
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
-              Prêt à décupler votre chiffre d'affaires avec un site sur mesure ? 
-              Bénéficiez de notre expertise technique pour propulser votre entreprise. Devis et réponse sous 24h.
+              Prêt à remplir votre carnet de commandes ? 
+              Contactez-nous pour une analyse gratuite de votre potentiel de croissance sur internet. Réponse stratégique sous 24h.
             </p>
 
             <div className="space-y-6">
@@ -111,7 +111,7 @@ export const Contact: React.FC = () => {
 
               <div className="flex items-center gap-4 pl-2 opacity-60">
                 <MapPin className="w-5 h-5 text-textMuted" />
-                <span className="text-textMuted">Disponible dans toute la France</span>
+                <span className="text-textMuted">Agence Digitale France</span>
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ export const Contact: React.FC = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold uppercase text-textMuted tracking-wider">Votre projet</label>
+                <label className="text-xs font-bold uppercase text-textMuted tracking-wider">Vos objectifs</label>
                 <textarea 
                   name="message"
                   required
@@ -168,7 +168,7 @@ export const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   className="bg-background border border-border rounded-xl px-4 py-3 text-textMain focus:outline-none focus:border-fuchsia-500 focus:bg-surface-highlight transition-all resize-none placeholder-gray-500"
-                  placeholder="Décrivez votre projet, vos objectifs de croissance..."
+                  placeholder="Ex: Je veux plus de clients locaux, je veux refaire mon site pour mieux vendre..."
                 ></textarea>
               </div>
 
@@ -183,9 +183,9 @@ export const Contact: React.FC = () => {
                 {status === 'success' && <CheckCircle className="w-5 h-5" />}
                 {status === 'error' && <AlertTriangle className="w-5 h-5" />}
                 
-                {status === 'idle' && "Demander mon devis"}
+                {status === 'idle' && "Demander mon audit gratuit"}
                 {status === 'loading' && "Envoi en cours..."}
-                {status === 'success' && "Message reçu !"}
+                {status === 'success' && "Demande reçue !"}
                 {status === 'error' && "Erreur (Ouverture mail...)"}
                 
                 {status === 'idle' && <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />}
@@ -198,7 +198,7 @@ export const Contact: React.FC = () => {
               )}
               
               <p className="text-center text-xs text-textMuted mt-2">
-                Vos informations restent strictement confidentielles.
+                Vos informations servent uniquement à préparer votre stratégie.
               </p>
             </form>
           </Card>

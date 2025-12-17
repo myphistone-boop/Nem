@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
         
         <div className="text-center text-xs text-textMuted">
           &copy; {new Date().getFullYear()} Nemphisia. Tous droits réservés. <br />
-          L'excellence du développement web sécurisé.
+          Agence d'Acquisition Client & Stratégie Digitale.
         </div>
       </div>
     </footer>

@@ -7,49 +7,44 @@ export const FAQ: React.FC = () => {
 
   const faqs = [
     {
-      question: "Pourquoi le tarif est-il aussi accessible ?",
+      question: "Combien de temps pour avoir des résultats ?",
       answer:
-        "Le modèle repose sur une expertise éprouvée de ce type d’architecture, l’usage d’outils techniques performants et des processus de production optimisés. L’objectif est de moderniser les pratiques du marché et de rendre l’accès à un site réellement professionnel possible même pour les budgets les plus restreints, sans compromis sur la qualité."
+        "Dès la mise en ligne, l'optimisation de votre fiche Google Maps peut générer des appels en quelques jours. Pour le SEO (référencement naturel), les premiers effets significatifs se font sentir sous 1 à 3 mois, avec une croissance continue sur le long terme."
     },
     {
-      question: "Le site peut-il être modifié directement par l’utilisateur ?",
+      question: "Pourquoi investir dans un site alors que j'ai les réseaux sociaux ?",
       answer:
-        "L’accès aux éléments techniques n’est pas ouvert afin de préserver la stabilité du système, la cohérence visuelle et l’intégrité de la structure. Toutes les interventions sont encadrées afin de garantir un résultat constant et fiable dans le temps."
+        "Les réseaux sociaux sont loués (vous dépendez de l'algorithme), votre site vous appartient. C'est le seul endroit où vous contrôlez 100% du message et où vous pouvez convertir un visiteur en client sans distraction. De plus, 80% des clients cherchent sur Google avant d'acheter, pas sur Instagram."
     },
     {
-      question: "Comment sont gérées les mises à jour après la mise en ligne ?",
+      question: "Comment garantissez-vous que je passerai devant mes concurrents ?",
       answer:
-        "La structure est conçue pour fonctionner durablement sans nécessité de modifications régulières. En cas d’évolution ponctuelle (texte, image ou information essentielle), une intervention peut être réalisée selon la grille tarifaire applicable."
+        "Nous utilisons des techniques avancées d'analyse concurrentielle et de SEO local. Nous identifions les mots-clefs qu'ils utilisent et nous créons un contenu plus pertinent, une structure technique plus rapide et une autorité locale supérieure pour les surclasser."
     },
     {
-      question: "Que couvre l’abonnement mensuel de 29 - ?",
+      question: "À quoi servent les 29- / mois de maintenance ?",
       answer:
-        "L’abonnement inclut l’hébergement sécurisé, la maintenance technique courante, les mises à jour nécessaires et la surveillance générale du bon fonctionnement du site. L’ensemble est conçu pour assurer une présence en ligne stable, performante et sans complexité technique."
+        "Ce n'est pas juste de la maintenance, c'est votre assurance tranquillité. Cela couvre l'hébergement haute vitesse, la sécurisation des données clients, et surtout la garantie que votre 'machine à vendre' reste opérationnelle 24/7 sans que vous ayez à lever le petit doigt."
     },
     {
-      question: "Que se passe-t-il en cas d’arrêt du service ?",
+      question: "Puis-je modifier le site moi-même ?",
       answer:
-        "En cas de résiliation, une copie des composants essentiels du site est fournie. L’hébergement, la maintenance continue et la surveillance technique sont alors interrompus. Un échange préalable est recommandé afin d’identifier les solutions de transition les plus adaptées."
+        "Pour garantir la performance et ne pas casser le référencement (SEO), nous gérons la structure. Cependant, vous pouvez nous demander des modifications de textes ou d'images via votre pack d'heures. Cela assure que chaque changement sert votre objectif de vente."
     },
     {
-      question: "Le site final bénéficie-t-il d’une qualité professionnelle ?",
+      question: "Le site sera-t-il visible sur mobile ?",
       answer:
-        "Le site est conçu sur mesure, sans recours à des blocs préfabriqués. Les idées de design proposées servent uniquement de repères visuels pour orienter les choix esthétiques. La structure finale est réalisée spécifiquement pour l’activité concernée, avec un rendu moderne, cohérent, responsive et conforme aux standards professionnels."
+        "Absolument. Plus de 60% des recherches locales se font sur mobile. Nos sites sont 'Mobile First', conçus spécifiquement pour que le bouton 'Appeler' ou 'Réserver' soit toujours sous le pouce de votre futur client."
     },
     {
-      question: "Le site sera-t-il correctement visible sur Google ?",
+      question: "Je suis une petite entreprise, est-ce adapté ?",
       answer:
-        "La construction respecte les standards techniques attendus par les moteurs de recherche : structure propre, chargement rapide, affichage mobile optimisé et balises essentielles configurées. Il s’agit du niveau de visibilité naturel attendu pour un site vitrine conforme aux bonnes pratiques."
+        "C'est justement conçu pour vous. Les grandes entreprises ont des départements marketing entiers. Nemphisia vous donne accès aux mêmes armes (SEO, Design pro, Stratégie) pour vous permettre de rivaliser et de gagner localement, même avec un petit budget."
     },
     {
-      question: "Quel est le délai de réalisation ?",
+      question: "Que se passe-t-il si j'arrête ?",
       answer:
-        "Le délai dépend principalement des contenus fournis. Une fois les textes et visuels transmis, la mise en ligne intervient en général sous 48 à 72 heures."
-    },
-    {
-      question: "Une gestion technique est-elle nécessaire de la part du client ?",
-      answer:
-        "Aucune manipulation technique n’est requise. L’hébergement, la maintenance, les mises à jour et la sécurité de base sont entièrement pris en charge pour garantir une expérience fluide et sans contrainte."
+        "Vous restez propriétaire de votre nom de domaine. Si vous arrêtez, le site est mis hors ligne, mais vous ne devez rien de plus. Nous croyons en la fidélisation par les résultats, pas par des contrats verrouillés."
     }
   ];
 
@@ -62,11 +57,11 @@ export const FAQ: React.FC = () => {
         <div className="text-center mb-16" id="faq">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-medium mb-4">
             <HelpCircle className="w-4 h-4" />
-            <span>FAQ Technique</span>
+            <span>Questions Business</span>
           </div>
           <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4 text-textMain">Une <span className="text-orange-400">question ?</span></h2>
           <p className="text-textMuted">
-            Tout ce que vous devez savoir sur le fonctionnement.
+            Comprendre comment nous allons booster votre activité.
           </p>
         </div>
 
