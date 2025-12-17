@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Rocket, Sun, Moon, Palette, ChevronDown, Sparkles, Leaf, Zap, ShoppingBag, HeartHandshake, Briefcase, Hammer, Flower2, PenTool, LayoutTemplate } from 'lucide-react';
 import { Button } from './ui/Button';
@@ -45,9 +46,9 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Accueil', href: '#home' },
+    { label: 'Tarifs', href: '#pricing' },
     { label: 'Accompagnement', href: '#approach' },
     { label: 'Services', href: '#services' },
-    { label: 'Tarifs', href: '#pricing' },
     { label: 'Questions', href: '#faq' },
   ];
 
