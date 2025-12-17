@@ -3,10 +3,7 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Approach } from './components/Approach';
-import { Solutions } from './components/Solutions';
 import { Services } from './components/Services';
-import { Benefits } from './components/Benefits';
-import { Comparison } from './components/Comparison';
 import { Education } from './components/Education';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -75,10 +72,7 @@ const App: React.FC = () => {
         <Hero />
         <DesignInspiration />
         <Approach />
-        <Solutions />
         <Services />
-        <Benefits />
-        <Comparison />
         <Education />
         <Pricing />
         <FAQ />

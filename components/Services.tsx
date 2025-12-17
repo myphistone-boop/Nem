@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from './ui/Card';
-import { Layout, MapPin, TrendingUp } from 'lucide-react';
+import { Layout, MapPin, TrendingUp, ChevronDown } from 'lucide-react';
 import { Service } from '../types';
 
 export const Services: React.FC = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
   const services: Service[] = [
     {
       title: "Site Web Immersif & Convaincant",
@@ -22,6 +24,11 @@ export const Services: React.FC = () => {
     }
   ];
 
+  const toggleService = (index: number) => {
+    // Si on clique sur celui déjà ouvert, on le ferme, sinon on l'ouvre
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <section className="py-16 lg:py-20 xl:py-24 relative bg-background">
       {/* Background decoration */}
@@ -36,20 +43,42 @@ export const Services: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="h-full bg-surface/50 border-border group">
-              <div className="mb-6 p-4 rounded-2xl bg-gradient-to-br from-fuchsia-500/10 to-purple-500/10 w-fit group-hover:from-fuchsia-500/20 group-hover:to-orange-500/20 transition-colors border border-border">
-                <service.icon className="w-8 h-8 text-fuchsia-500 group-hover:text-orange-500 transition-colors" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-textMain group-hover:text-fuchsia-400 transition-colors">{service.title}</h3>
-              <p className="text-textMuted leading-relaxed mb-6 group-hover:text-textMain transition-colors">
-                {service.description}
-              </p>
-              <a href="#contact" className="inline-flex items-center text-sm font-semibold text-fuchsia-500 hover:text-orange-500 transition-colors uppercase tracking-wider">
-                En savoir plus <span className="ml-1 text-lg group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-            </Card>
+            <div key={index} onClick={() => toggleService(index)} className="cursor-pointer lg:cursor-default">
+              <Card className={`bg-surface/50 border-border group transition-all duration-300 ${expandedIndex === index ? 'ring-1 ring-fuchsia-500/30' : ''}`}>
+                
+                {/* Header: Always Visible */}
+                <div className="flex items-center justify-between lg:block">
+                  <div className="flex items-center gap-4 lg:block">
+                    <div className="lg:mb-6 p-3 lg:p-4 rounded-2xl bg-gradient-to-br from-fuchsia-500/10 to-purple-500/10 w-fit group-hover:from-fuchsia-500/20 group-hover:to-orange-500/20 transition-colors border border-border">
+                      <service.icon className="w-6 h-6 lg:w-8 lg:h-8 text-fuchsia-500 group-hover:text-orange-500 transition-colors" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-textMain group-hover:text-fuchsia-400 transition-colors">
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  {/* Mobile Chevron */}
+                  <div className="lg:hidden text-textMuted">
+                    <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${expandedIndex === index ? 'rotate-180 text-fuchsia-500' : ''}`} />
+                  </div>
+                </div>
+
+                {/* Content: Hidden on Mobile unless expanded */}
+                <div className={`mt-4 lg:mt-0 ${expandedIndex === index ? 'block animate-in fade-in slide-in-from-top-2' : 'hidden'} lg:block`}>
+                  <div className="lg:mt-3">
+                    <p className="text-textMuted leading-relaxed mb-6 group-hover:text-textMain transition-colors text-sm lg:text-base">
+                      {service.description}
+                    </p>
+                    <a href="#contact" className="inline-flex items-center text-sm font-semibold text-fuchsia-500 hover:text-orange-500 transition-colors uppercase tracking-wider">
+                      En savoir plus <span className="ml-1 text-lg group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                  </div>
+                </div>
+
+              </Card>
+            </div>
           ))}
         </div>
       </div>

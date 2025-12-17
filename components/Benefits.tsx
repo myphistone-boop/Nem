@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from './ui/Card';
-import { Zap, TrendingUp, Award } from 'lucide-react';
+import { Zap, TrendingUp, Award, ChevronDown } from 'lucide-react';
 import { Benefit } from '../types';
 
 export const Benefits: React.FC = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
   const benefits: Benefit[] = [
     {
       title: "Flux de clients constant",
@@ -22,6 +24,10 @@ export const Benefits: React.FC = () => {
     }
   ];
 
+  const toggleBenefit = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <section className="py-24 bg-background relative overflow-hidden" id="why">
       <div className="container mx-auto px-6 relative z-10">
@@ -39,21 +45,44 @@ export const Benefits: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
           {benefits.map((benefit, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group cursor-pointer lg:cursor-default" onClick={() => toggleBenefit(index)}>
               <div className="absolute inset-0 bg-gradient-to-b from-fuchsia-600/20 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl -z-10 blur-xl"></div>
+              
               <Card className="h-full border-t border-t-border bg-surface/80 backdrop-blur-md">
-                <div className="absolute top-6 right-6 px-3 py-1 rounded-full bg-background text-xs font-medium text-textMuted border border-border group-hover:border-fuchsia-500/30 transition-colors">
-                  {benefit.badge}
+                
+                {/* Mobile Header Layout */}
+                <div className="flex items-center justify-between lg:block">
+                   <div className="flex items-center gap-4 lg:block">
+                      <div className="lg:mb-4 lg:mt-8">
+                        {index === 0 && <TrendingUp className="w-8 h-8 lg:w-10 lg:h-10 text-orange-500 drop-shadow-[0_0_10px_rgba(249,115,22,0.4)]" />}
+                        {index === 1 && <Award className="w-8 h-8 lg:w-10 lg:h-10 text-fuchsia-500 drop-shadow-[0_0_10px_rgba(217,70,239,0.4)]" />}
+                        {index === 2 && <Zap className="w-8 h-8 lg:w-10 lg:h-10 text-cyan-500 drop-shadow-[0_0_10px_rgba(34,211,238,0.4)]" />}
+                      </div>
+                      <h3 className="text-lg lg:text-xl font-bold lg:mb-2 text-textMain">{benefit.title}</h3>
+                   </div>
+
+                   {/* Mobile Badge & Chevron */}
+                   <div className="flex items-center gap-3 lg:absolute lg:top-6 lg:right-6">
+                      <div className="hidden sm:block lg:block px-3 py-1 rounded-full bg-background text-xs font-medium text-textMuted border border-border group-hover:border-fuchsia-500/30 transition-colors">
+                        {benefit.badge}
+                      </div>
+                      <div className="lg:hidden">
+                         <ChevronDown className={`w-5 h-5 text-textMuted transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`} />
+                      </div>
+                   </div>
                 </div>
-                <div className="mt-8 mb-4">
-                  {index === 0 && <TrendingUp className="w-10 h-10 text-orange-500 mb-4 drop-shadow-[0_0_10px_rgba(249,115,22,0.4)]" />}
-                  {index === 1 && <Award className="w-10 h-10 text-fuchsia-500 mb-4 drop-shadow-[0_0_10px_rgba(217,70,239,0.4)]" />}
-                  {index === 2 && <Zap className="w-10 h-10 text-cyan-500 mb-4 drop-shadow-[0_0_10px_rgba(34,211,238,0.4)]" />}
-                  <h3 className="text-xl font-bold mb-2 text-textMain">{benefit.title}</h3>
-                  <p className="text-textMuted text-sm">{benefit.description}</p>
+
+                {/* Collapsible Content */}
+                <div className={`mt-4 lg:mt-0 ${expandedIndex === index ? 'block animate-in fade-in slide-in-from-top-1' : 'hidden'} lg:block`}>
+                   {/* Mobile badge shown inside content for very small screens */}
+                   <div className="sm:hidden mb-3 inline-block px-3 py-1 rounded-full bg-background text-xs font-medium text-textMuted border border-border">
+                        {benefit.badge}
+                   </div>
+                   <p className="text-textMuted text-sm leading-relaxed">{benefit.description}</p>
                 </div>
+
               </Card>
             </div>
           ))}

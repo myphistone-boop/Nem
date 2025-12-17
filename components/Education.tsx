@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Search, BrainCircuit, Star, ChevronRight } from 'lucide-react';
+import { Search, BrainCircuit, Star, ChevronRight, CheckCircle2, Target, Rocket } from 'lucide-react';
 import { Card } from './ui/Card';
 
 export const Education: React.FC = () => {
@@ -7,25 +8,40 @@ export const Education: React.FC = () => {
 
   const topics = [
     {
-      title: "SEO vs Google Maps",
+      title: "Visibilité Omnicanale",
       short: "Architecture d'Acquisition",
-      icon: Search,
-      color: "from-fuchsia-500 to-purple-600",
-      content: "Le SEO (référencement naturel) vous place en haut des recherches globales, captant les clients qui cherchent une solution. Google Maps (Pack Local) cible les clients qui cherchent un service *près de chez eux*. La combinaison des deux vous assure de capter 100% du marché disponible."
-    },
-    {
-      title: "Psychologie de Vente",
-      short: "Design de Conversion",
-      icon: BrainCircuit,
+      icon: Target,
       color: "from-orange-500 to-red-600",
-      content: "Un beau site ne suffit pas. Nous utilisons les principes de la psychologie cognitive (preuve sociale, urgence, autorité) pour structurer votre site. Chaque bouton, chaque image et chaque titre est pensé pour guider le visiteur vers une seule action : vous contacter ou acheter."
+      content: "Être beau ne suffit pas, il faut être vu. Nous vous positionnons là où sont vos clients : en tête de Google (SEO) et sur la carte locale (Maps).",
+      details: [
+        "Premières positions Google Maps",
+        "SEO pour mots-clefs rentables",
+        "Flux d'appels réguliers et qualifiés"
+      ]
     },
     {
-      title: "Réputation & Avis",
+      title: "Site Web Magnétique",
+      short: "Design de Conversion",
+      icon: Rocket,
+      color: "from-fuchsia-500 to-purple-600",
+      content: "Oubliez les sites 'brochure' qui ne vendent pas. Nous créons des expériences immersives avec un copywriting persuasif pour transformer vos visiteurs en clients fidèles.",
+      details: [
+        "Design Unique & Mémorable",
+        "Copywriting de vente persuasif",
+        "Optimisé pour la conversion maximale"
+      ]
+    },
+    {
+      title: "Réputation & Autorité",
       short: "Confiance Client",
       icon: Star,
       color: "from-cyan-400 to-blue-600",
-      content: "Avant de vous appeler, vos prospects lisent vos avis. Une fiche Google optimisée avec des avis gérés et une réponse professionnelle augmente drastiquement votre taux de conversion. Nous vous aidons à bâtir une réputation en béton qui rassure vos futurs clients avant même le premier contact."
+      content: "Avant de vous appeler, vos prospects lisent vos avis. Nous vous aidons à bâtir une réputation en béton qui rassure vos futurs clients avant même le premier contact.",
+      details: [
+        "Gestion de votre E-Réputation",
+        "Preuve sociale automatisée",
+        "Réponses stratégiques aux avis"
+      ]
     }
   ];
 
@@ -35,7 +51,7 @@ export const Education: React.FC = () => {
         <div className="mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">l'acquisition</span></h2>
           <p className="text-textMuted max-w-2xl text-lg">
-            Nous rendons le marketing transparent pour vous permettre de comprendre comment il sert votre croissance financière.
+            Nous rendons le marketing transparent. Voici les trois piliers essentiels que nous activons pour garantir votre croissance.
           </p>
         </div>
 
@@ -78,9 +94,20 @@ export const Education: React.FC = () => {
                 {topics[activeTab].title}
               </h3>
               
-              <p className="text-textMuted text-lg leading-relaxed animate-in slide-in-from-bottom-4 duration-500 key={activeTab}-p">
+              <p className="text-textMuted text-lg leading-relaxed mb-8 animate-in slide-in-from-bottom-4 duration-500 key={activeTab}-p">
                 {topics[activeTab].content}
               </p>
+
+              {/* Added Features List */}
+              <ul className="space-y-4 animate-in slide-in-from-bottom-6 duration-500 delay-100">
+                {topics[activeTab].details.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-textMain font-medium">
+                    <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${topics[activeTab].color.includes('orange') ? 'text-orange-500' : topics[activeTab].color.includes('fuchsia') ? 'text-fuchsia-500' : 'text-cyan-500'}`} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
             </Card>
           </div>
         </div>

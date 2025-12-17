@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { Check, Zap, Rocket, Shield, Globe, Server, Loader2, ArrowRightLeft, Clock, Plus } from 'lucide-react';
+import { Check, Zap, Rocket, Shield, Globe, Server, Loader2, ArrowRightLeft, Clock, Plus, ChevronDown } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Card } from './ui/Card';
 
 export const Pricing: React.FC = () => {
   const [loadingKey, setLoadingKey] = useState<string | null>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(1); // Le pack du milieu ouvert par défaut
 
   const handleCheckout = async (offerKey: string) => {
     try {
@@ -39,6 +40,10 @@ export const Pricing: React.FC = () => {
     if (tableContainerRef.current) {
       tableContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
     }
+  };
+
+  const togglePlan = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   const plans = [
@@ -146,67 +151,96 @@ export const Pricing: React.FC = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-24">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 max-w-6xl mx-auto mb-24">
           {plans.map((plan, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group cursor-pointer lg:cursor-default" onClick={() => togglePlan(index)}>
               
-              <Card className={`h-full relative flex flex-col p-6 xl:p-8 bg-surface/50 border-border hover:border-opacity-50 transition-all duration-300`}>
+              <Card className={`h-full relative flex flex-col p-5 lg:p-6 xl:p-8 bg-surface/50 border-border hover:border-opacity-50 transition-all duration-300 ${expandedIndex === index ? 'ring-1 ring-fuchsia-500/30 bg-surface' : ''}`}>
                 
-                <div className="mb-6 xl:mb-8">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${plan.gradient} flex items-center justify-center text-white shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <plan.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-bold text-textMain mb-2">{plan.name}</h3>
+                {/* Header Section (Contains basic info + Price on Mobile) */}
+                <div className="flex items-center justify-between lg:block mb-0 lg:mb-6 xl:mb-8">
                   
-                  {/* Prix et Maintenance */}
-                  <div className="flex flex-col mb-4">
+                  <div className="flex items-center gap-4 lg:block">
+                      {/* Icon */}
+                      <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br ${plan.gradient} flex items-center justify-center text-white shadow-lg lg:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                        <plan.icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                      </div>
+                      
+                      {/* Title & Price (Mobile Row) */}
+                      <div className="flex flex-col lg:block">
+                          <h3 className="text-lg lg:text-xl font-bold text-textMain">{plan.name}</h3>
+                          {/* Mobile Price Display in Header */}
+                          <div className="lg:hidden font-display font-bold text-textMain text-lg">
+                             {plan.price}- <span className="text-xs text-textMuted font-sans font-normal">/ installation</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  {/* Mobile Chevron */}
+                  <div className="lg:hidden">
+                     <ChevronDown className={`w-6 h-6 text-textMuted transition-transform duration-300 ${expandedIndex === index ? 'rotate-180 text-fuchsia-500' : ''}`} />
+                  </div>
+
+                  {/* Desktop Price Display (Hidden on Mobile Header to avoid duplication) */}
+                  <div className="hidden lg:flex flex-col mt-2 lg:mb-4">
                     <div className="flex items-baseline gap-1">
                       <span className="text-4xl lg:text-4xl xl:text-5xl font-bold font-display text-textMain">{plan.price}-</span>
                     </div>
                     <span className="text-sm font-medium text-textMuted mt-1">+ 29- / mois (Hébergement & Suivi)</span>
                   </div>
-
-                  <p className="text-sm text-textMuted leading-relaxed">
-                    {plan.description}
-                  </p>
                 </div>
 
-                <div className="flex-grow space-y-4 mb-8">
-                  {/* Cumulative Header */}
-                  {plan.cumulative && (
-                    <div className="flex items-start gap-3 pb-2 mb-2 border-b border-border/50">
-                       <div className={`mt-0.5 p-0.5 rounded-full bg-${plan.color === 'orange' ? 'orange' : 'fuchsia'}-500/20 text-${plan.color === 'orange' ? 'orange' : 'fuchsia'}-400 shrink-0`}>
-                          <Plus className="w-3 h-3" />
-                       </div>
-                       <span className="text-sm font-bold text-textMain italic">Tout du {plan.previousPlan}, plus :</span>
+                {/* Collapsible Content */}
+                <div className={`${expandedIndex === index ? 'block animate-in fade-in slide-in-from-top-2' : 'hidden'} lg:flex flex-col flex-grow`}>
+                    
+                    {/* Description */}
+                    <p className="text-sm text-textMuted leading-relaxed mb-6 mt-4 lg:mt-0">
+                        {plan.description}
+                    </p>
+                    
+                    {/* Mobile Only: Recurring price info since it wasn't in header */}
+                    <div className="lg:hidden text-sm font-medium text-fuchsia-500 mb-6 bg-fuchsia-500/10 p-2 rounded-lg text-center">
+                        + 29- / mois (Hébergement & Suivi)
                     </div>
-                  )}
 
-                  {plan.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3 text-sm text-textMain/80">
-                      <div className={`mt-0.5 p-0.5 rounded-full bg-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-500/20 text-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-400 shrink-0`}>
-                        <Check className="w-3 h-3" />
-                      </div>
-                      <span className={idx < 2 && !plan.cumulative ? "font-bold text-textMain" : ""}>{feature}</span>
+                    <div className="flex-grow space-y-4 mb-8">
+                    {/* Cumulative Header */}
+                    {plan.cumulative && (
+                        <div className="flex items-start gap-3 pb-2 mb-2 border-b border-border/50">
+                        <div className={`mt-0.5 p-0.5 rounded-full bg-${plan.color === 'orange' ? 'orange' : 'fuchsia'}-500/20 text-${plan.color === 'orange' ? 'orange' : 'fuchsia'}-400 shrink-0`}>
+                            <Plus className="w-3 h-3" />
+                        </div>
+                        <span className="text-sm font-bold text-textMain italic">Tout du {plan.previousPlan}, plus :</span>
+                        </div>
+                    )}
+
+                    {plan.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-3 text-sm text-textMain/80">
+                        <div className={`mt-0.5 p-0.5 rounded-full bg-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-500/20 text-${plan.color === 'orange' ? 'orange' : plan.color === 'fuchsia' ? 'fuchsia' : 'cyan'}-400 shrink-0`}>
+                            <Check className="w-3 h-3" />
+                        </div>
+                        <span className={idx < 2 && !plan.cumulative ? "font-bold text-textMain" : ""}>{feature}</span>
+                        </div>
+                    ))}
                     </div>
-                  ))}
+
+                    <Button 
+                    variant={plan.price === "399" ? 'secondary' : 'outline'} 
+                    className="w-full"
+                    onClick={(e) => { e.stopPropagation(); handleCheckout(plan.key); }}
+                    disabled={loadingKey === plan.key}
+                    >
+                    {loadingKey === plan.key ? (
+                        <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Redirection...
+                        </>
+                    ) : (
+                        "Choisir ce forfait"
+                    )}
+                    </Button>
                 </div>
 
-                <Button 
-                  variant={plan.price === "399" ? 'secondary' : 'outline'} 
-                  className="w-full"
-                  onClick={() => handleCheckout(plan.key)}
-                  disabled={loadingKey === plan.key}
-                >
-                  {loadingKey === plan.key ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Redirection...
-                    </>
-                  ) : (
-                    "Choisir ce forfait"
-                  )}
-                </Button>
               </Card>
             </div>
           ))}
