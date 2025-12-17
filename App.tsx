@@ -10,6 +10,7 @@ import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Pricing } from './components/Pricing';
+import { PricingLabor } from './components/PricingLabor';
 import { DemoNav } from './components/ui/DemoNav';
 import { DesignInspiration } from './components/DesignInspiration';
 import { LegalModal } from './components/LegalModal';
@@ -77,6 +78,7 @@ const App: React.FC = () => {
         <Approach />
         <Services />
         <Education />
+        <PricingLabor />
         <FAQ />
         <Contact />
       </main>
