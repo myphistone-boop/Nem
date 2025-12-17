@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
-import { Search, BrainCircuit, Star, ChevronRight, CheckCircle2, Target, Rocket } from 'lucide-react';
+import { Search, BrainCircuit, Star, ChevronRight, CheckCircle2, Target, Rocket, ChevronDown } from 'lucide-react';
 import { Card } from './ui/Card';
 
 export const Education: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [mobileExpanded, setMobileExpanded] = useState<number | null>(0);
 
   const topics = [
     {
@@ -45,19 +45,63 @@ export const Education: React.FC = () => {
     }
   ];
 
+  const toggleMobile = (index: number) => {
+    setMobileExpanded(mobileExpanded === index ? null : index);
+  };
+
   return (
-    <section className="py-24 bg-background" id="education">
+    <section className="py-16 lg:py-24 bg-background" id="education">
       <div className="container mx-auto px-6">
-        <div className="mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">l'acquisition</span></h2>
-          <p className="text-textMuted max-w-2xl text-lg">
+        <div className="mb-10 lg:mb-16">
+          <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4 lg:mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">l'acquisition</span></h2>
+          <p className="text-textMuted max-w-2xl text-lg hidden lg:block">
             Nous rendons le marketing transparent. Voici les trois piliers essentiels que nous activons pour garantir votre croissance.
+          </p>
+          <p className="text-textMuted text-base lg:hidden">
+             Les 3 piliers essentiels pour garantir votre croissance.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8">
+        {/* MOBILE VIEW: Accordion */}
+        <div className="lg:hidden flex flex-col gap-3">
+            {topics.map((topic, index) => (
+                <div key={index} className="border border-border rounded-xl overflow-hidden bg-surface/30">
+                    <button 
+                        onClick={() => toggleMobile(index)}
+                        className="w-full flex items-center justify-between p-4 text-left"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className={`p-2 rounded-lg bg-gradient-to-br ${topic.color} text-white shadow-sm`}>
+                                <topic.icon className="w-4 h-4" />
+                            </div>
+                            <span className="font-bold text-textMain">{topic.short}</span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-textMuted transition-transform duration-300 ${mobileExpanded === index ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    <div className={`overflow-hidden transition-all duration-300 ${mobileExpanded === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        <div className="p-4 pt-0 border-t border-border/50">
+                            <p className="text-sm text-textMuted mt-4 mb-4 leading-relaxed">
+                                {topic.content}
+                            </p>
+                            <ul className="space-y-3">
+                                {topic.details.map((item, i) => (
+                                <li key={i} className="flex items-center gap-3 text-textMain text-sm font-medium">
+                                    <CheckCircle2 className={`w-4 h-4 flex-shrink-0 ${topic.color.includes('orange') ? 'text-orange-500' : topic.color.includes('fuchsia') ? 'text-fuchsia-500' : 'text-cyan-500'}`} />
+                                    {item}
+                                </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        {/* DESKTOP VIEW: Tabs Side-by-Side */}
+        <div className="hidden lg:grid grid-cols-12 gap-8">
           {/* Tabs Navigation */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+          <div className="col-span-4 flex flex-col gap-4">
             {topics.map((topic, index) => (
               <button
                 key={index}
@@ -84,8 +128,8 @@ export const Education: React.FC = () => {
           </div>
 
           {/* Content Area */}
-          <div className="lg:col-span-8">
-            <Card className="h-full bg-surface/60 border-border flex flex-col justify-center p-8 lg:p-12 min-h-[400px]">
+          <div className="col-span-8">
+            <Card className="h-full bg-surface/60 border-border flex flex-col justify-center p-12 min-h-[400px]">
               <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${topics[activeTab].color} flex items-center justify-center mb-6 shadow-xl animate-in fade-in zoom-in duration-500`}>
                 {React.createElement(topics[activeTab].icon, { className: "w-8 h-8 text-white" })}
               </div>
@@ -98,7 +142,6 @@ export const Education: React.FC = () => {
                 {topics[activeTab].content}
               </p>
 
-              {/* Added Features List */}
               <ul className="space-y-4 animate-in slide-in-from-bottom-6 duration-500 delay-100">
                 {topics[activeTab].details.map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-textMain font-medium">

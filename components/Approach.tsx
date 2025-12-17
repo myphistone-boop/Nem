@@ -33,8 +33,8 @@ export const Approach: React.FC = () => {
             </Button>
           </div>
 
-          {/* Visual Content */}
-          <div className="order-1 lg:order-2 relative">
+          {/* Visual Content - HIDDEN ON MOBILE (lg:block) */}
+          <div className="order-1 lg:order-2 relative hidden lg:block">
              {/* Abstract background shape */}
              <div className="absolute -inset-4 bg-gradient-to-tr from-fuchsia-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse-glow"></div>
              

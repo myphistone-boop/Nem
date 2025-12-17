@@ -91,29 +91,34 @@ export const DesignInspiration: React.FC = () => {
   const activeMobileTheme = themes.find(t => t.id === selectedMobileTheme) || themes[0];
 
   return (
-    <section className="py-24 bg-surface-highlight border-y border-border relative overflow-hidden" id="designs">
+    <section className="py-12 lg:py-24 bg-surface-highlight border-y border-border relative overflow-hidden" id="designs">
        {/* Background Element */}
        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-fuchsia-900/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           
-          {/* Left: Text Content (4 cols) */}
+          {/* Left: Text Content */}
           <div className="lg:col-span-4 lg:sticky lg:top-32 relative z-10" id="designs">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-bold mb-8 shadow-[0_0_20px_rgba(217,70,239,0.4)] animate-pulse">
-                <MousePointerClick className="w-5 h-5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-xs font-bold mb-6 shadow-[0_0_20px_rgba(217,70,239,0.4)] animate-pulse">
+                <MousePointerClick className="w-4 h-4" />
                 <span>DÉMO INTERACTIVE</span>
             </div>
             
-            <h2 className="text-4xl lg:text-5xl font-bold font-display mb-6 text-textMain leading-tight">
+            <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4 text-textMain leading-tight">
               Des designs qui <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-orange-500">convertissent.</span>
             </h2>
             
-            <p className="text-textMuted text-lg leading-relaxed mb-8">
+            {/* Short text for mobile, Long for Desktop */}
+            <p className="text-textMuted text-lg leading-relaxed mb-6 hidden lg:block">
               Le design n'est pas juste "joli", c'est votre meilleur vendeur. Nous avons créé des univers optimisés pour <strong>maximiser la confiance</strong> et déclencher l'acte d'achat.
               <br/><br/>
               Choisissez votre secteur et testez l'expérience utilisateur qu'auront vos futurs clients.
+            </p>
+            
+            <p className="text-textMuted text-sm leading-relaxed mb-4 lg:hidden">
+              Sélectionnez un univers ci-dessous et testez instantanément l'expérience de vos futurs clients.
             </p>
 
             <div className="hidden lg:flex items-center gap-3 text-sm font-medium text-textMuted/60">
@@ -125,21 +130,16 @@ export const DesignInspiration: React.FC = () => {
           {/* Right: Content */}
           <div className="lg:col-span-8 relative z-20">
              
-             {/* Mobile ONLY: Dropdown List */}
-             <div className="lg:hidden mt-4">
-                <div className="bg-background border border-border p-5 rounded-2xl shadow-lg relative">
-                    <label className="text-xs font-bold text-textMuted uppercase tracking-wider mb-3 block flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-fuchsia-500" />
-                        Choisir un univers
-                    </label>
-                    
+             {/* Mobile ONLY: Compact Dropdown */}
+             <div className="lg:hidden">
+                <div className="bg-background border border-border p-4 rounded-xl shadow-lg relative">
                     <div className="flex flex-col gap-3">
                         {/* Custom Select Wrapper */}
                         <div className="relative">
                             <select 
                                 value={selectedMobileTheme}
                                 onChange={(e) => setSelectedMobileTheme(e.target.value)}
-                                className="w-full appearance-none bg-surface border border-border rounded-xl pl-12 pr-10 py-3.5 text-base font-bold text-textMain focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent transition-shadow cursor-pointer"
+                                className="w-full appearance-none bg-surface border border-border rounded-lg pl-12 pr-10 py-3 text-sm font-bold text-textMain focus:outline-none focus:ring-1 focus:ring-fuchsia-500 transition-shadow cursor-pointer"
                             >
                                 {themes.map((theme) => (
                                     <option key={theme.id} value={theme.id}>
@@ -150,30 +150,23 @@ export const DesignInspiration: React.FC = () => {
                             
                             {/* Icon Overlay */}
                             <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                                <activeMobileTheme.icon className={`w-5 h-5 ${activeMobileTheme.color}`} />
+                                <activeMobileTheme.icon className={`w-4 h-4 ${activeMobileTheme.color}`} />
                             </div>
                             
                             {/* Chevron */}
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-textMuted">
-                                <ChevronDown className="w-5 h-5" />
+                                <ChevronDown className="w-4 h-4" />
                             </div>
                         </div>
 
                         {/* Action Button */}
                         <a 
                             href={`?theme=${activeMobileTheme.id}`}
-                            className="flex items-center justify-center gap-2 w-full py-3.5 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-xl font-bold transition-all shadow-md active:scale-95"
+                            className="flex items-center justify-center gap-2 w-full py-3 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-lg font-bold transition-all shadow-md active:scale-95 text-sm"
                         >
-                            <span>Voir le thème</span>
+                            <span>Lancer la démo</span>
                             <ArrowRight className="w-4 h-4" />
                         </a>
-                        
-                        {/* Tag Info */}
-                        <div className="text-center pt-1">
-                             <span className={`text-xs font-medium uppercase tracking-widest ${activeMobileTheme.color}`}>
-                                {activeMobileTheme.tag}
-                             </span>
-                        </div>
                     </div>
                 </div>
              </div>
@@ -207,7 +200,6 @@ export const DesignInspiration: React.FC = () => {
                             <h3 className={`text-lg font-bold leading-tight transition-colors ${theme.color} dark:text-white group-hover:brightness-110`}>
                                 {theme.label}
                             </h3>
-                            {/* Sous-titre supprimé */}
                         </div>
 
                         {/* Button "Voir" - Position Absolue Top Right */}

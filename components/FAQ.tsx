@@ -50,11 +50,11 @@ export const FAQ: React.FC = () => {
 
 
   return (
-    <section className="py-24 bg-background relative">
+    <section className="py-12 lg:py-24 bg-background relative">
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-fuchsia-900/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-        <div className="text-center mb-16" id="faq">
+        <div className="text-center mb-8 lg:mb-16" id="faq">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-medium mb-4">
             <HelpCircle className="w-4 h-4" />
             <span>Questions Business</span>
@@ -65,7 +65,7 @@ export const FAQ: React.FC = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 lg:space-y-4">
           {faqs.map((faq, index) => (
             <Card 
               key={index} 
@@ -73,18 +73,18 @@ export const FAQ: React.FC = () => {
               hoverEffect={false}
             >
               <div 
-                className="flex items-center justify-between p-2"
+                className="flex items-center justify-between p-1 lg:p-2"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <h3 className={`text-lg font-medium transition-colors pr-8 ${openIndex === index ? 'text-textMain' : 'text-textMuted'}`}>
+                <h3 className={`text-base lg:text-lg font-medium transition-colors pr-4 lg:pr-8 ${openIndex === index ? 'text-textMain' : 'text-textMuted'}`}>
                   {faq.question}
                 </h3>
                 <ChevronDown className={`w-5 h-5 text-fuchsia-500 transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-180' : ''}`} />
               </div>
               
-              <div className={`grid transition-all duration-300 ease-in-out ${openIndex === index ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}>
+              <div className={`grid transition-all duration-300 ease-in-out ${openIndex === index ? 'grid-rows-[1fr] opacity-100 mt-2 lg:mt-4' : 'grid-rows-[0fr] opacity-0'}`}>
                 <div className="overflow-hidden">
-                  <p className="text-textMuted leading-relaxed pb-2 border-t border-border pt-4 whitespace-pre-line">
+                  <p className="text-textMuted leading-relaxed pb-2 border-t border-border pt-4 whitespace-pre-line text-sm lg:text-base">
                     {faq.answer}
                   </p>
                 </div>

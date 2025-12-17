@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { Approach } from './components/Approach';
 import { Services } from './components/Services';
 import { Education } from './components/Education';
+import { ConcreteResults } from './components/ConcreteResults';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -70,6 +71,7 @@ const App: React.FC = () => {
       
       <main className="flex-grow">
         <Hero />
+        <ConcreteResults />
         <DesignInspiration />
         <Approach />
         <Services />
