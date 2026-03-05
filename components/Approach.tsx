@@ -25,7 +25,7 @@ export const Approach: React.FC = () => {
               Avoir un site ne suffit plus. Pour gagner des parts de marché, vous devez être visible là où vos clients cherchent et les convaincre instantanément.
             </p>
             <p className="text-textMuted text-lg mb-8 leading-relaxed">
-              Chez Nemphisia, nous déployons un écosystème digital complet (Site, Maps, SEO) conçu pour capturer le trafic local, vous démarquer de la concurrence et maximiser vos appels entrants.
+              Chez Nemphisia-web, nous déployons un écosystème digital complet (Site, Maps, SEO) conçu pour capturer le trafic local, vous démarquer de la concurrence et maximiser vos appels entrants.
             </p>
             <Button variant="secondary" onClick={scrollToContact}>
               Obtenir mon plan d'action

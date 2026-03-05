@@ -26,7 +26,7 @@ export const Contact: React.FC = () => {
   };
 
   const openMailClient = () => {
-    const subject = `Projet Croissance Nemphisia: ${formData.firstName} ${formData.lastName}`;
+    const subject = `Projet Croissance Nemphisia-web: ${formData.firstName} ${formData.lastName}`;
     const body = `Nom: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
     window.location.href = `mailto:contact@nemphisia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };

@@ -39,7 +39,7 @@ export const FAQ: React.FC = () => {
     {
       question: "Je suis une petite entreprise, est-ce adapté ?",
       answer:
-        "C'est justement conçu pour vous. Les grandes entreprises ont des départements marketing entiers. Nemphisia vous donne accès aux mêmes armes (SEO, Design pro, Stratégie) pour vous permettre de rivaliser et de gagner localement, même avec un petit budget."
+        "C'est justement conçu pour vous. Les grandes entreprises ont des départements marketing entiers. Nemphisia-web vous donne accès aux mêmes armes (SEO, Design pro, Stratégie) pour vous permettre de rivaliser et de gagner localement, même avec un petit budget."
     },
     {
       question: "Que se passe-t-il si j'arrête ?",

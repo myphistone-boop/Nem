@@ -95,7 +95,7 @@ export const ImpactTheme: React.FC = () => {
                 {/* Internal UI of the card */}
                 <div className="flex justify-between items-center">
                     <div className="w-12 h-1 bg-black/10 rounded-full"></div>
-                    <div className="text-xs font-bold text-black/40">NEMPHISIA OS</div>
+                    <div className="text-xs font-bold text-black/40">NEMPHISIA-WEB OS</div>
                 </div>
 
                 {/* Center Content of Card */}

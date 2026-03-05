@@ -42,7 +42,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
               Édition du site
             </h3>
             <p>
-              Le site Nemphisia est édité par l'agence Nemphisia, spécialisée dans la création de solutions digitales sur mesure.
+              Le site Nemphisia-web est édité par l'agence Nemphisia-web, spécialisée dans la création de solutions digitales sur mesure.
               <br />
               <strong>Contact :</strong> contact@nemphisia.com
             </p>
@@ -74,7 +74,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
               Responsabilité & Données
             </h3>
             <p>
-              Les informations fournies sur le site le sont à titre indicatif. Nemphisia ne saurait être tenu responsable des erreurs ou omissions.
+              Les informations fournies sur le site le sont à titre indicatif. Nemphisia-web ne saurait être tenu responsable des erreurs ou omissions.
               <br /><br />
               <strong>Données personnelles :</strong> Les informations recueillies via le formulaire de contact sont uniquement utilisées pour répondre à votre demande. Elles ne sont ni vendues ni cédées à des tiers.
             </p>

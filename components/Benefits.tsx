@@ -40,7 +40,7 @@ export const Benefits: React.FC = () => {
           </div>
           <div className="lg:w-1/2">
             <p className="text-lg text-textMuted border-l-2 border-fuchsia-500/30 pl-6">
-              Ne laissez pas le marché à vos concurrents. Nemphisia vous apporte les outils d'acquisition clients les plus performants pour développer sereinement votre activité.
+              Ne laissez pas le marché à vos concurrents. Nemphisia-web vous apporte les outils d'acquisition clients les plus performants pour développer sereinement votre activité.
             </p>
           </div>
         </div>

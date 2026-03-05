@@ -332,7 +332,7 @@ export const ArtisanTheme: React.FC = () => {
             </div>
         </div>
         <div className="container mx-auto px-6 mt-12 pt-8 border-t border-slate-800 text-center text-xs">
-            © {new Date().getFullYear()} BatirPro. Site web réalisé par Nemphisia.
+            © {new Date().getFullYear()} BatirPro. Site web réalisé par Nemphisia-web.
         </div>
       </footer>
     </div>

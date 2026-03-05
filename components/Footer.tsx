@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
             <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
               <Rocket className="w-4 h-4 text-white transform -rotate-45" />
             </div>
-            <span className="text-lg font-bold text-textMain">Nemphisia</span>
+            <span className="text-lg font-bold text-textMain">Nemphisia-web</span>
           </div>
           
           <div className="flex flex-wrap gap-8 justify-center">
@@ -41,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
         </div>
         
         <div className="text-center text-xs text-textMuted">
-          &copy; {new Date().getFullYear()} Nemphisia. Tous droits réservés. <br />
+          &copy; {new Date().getFullYear()} Nemphisia-web. Tous droits réservés. <br />
           Agence d'Acquisition Client & Stratégie Digitale.
         </div>
       </div>

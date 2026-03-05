@@ -76,7 +76,7 @@ export const Solutions: React.FC = () => {
           </div>
           <div className="mt-8 pt-8 border-t border-border px-4">
             <p className="text-textMuted max-w-2xl mx-auto">
-              Nemphisia utilise les technologies les plus modernes pour garantir pérennité et évolutivité à vos projets web. Nous ne faisons aucun compromis sur la qualité du code.
+              Nemphisia-web utilise les technologies les plus modernes pour garantir pérennité et évolutivité à vos projets web. Nous ne faisons aucun compromis sur la qualité du code.
             </p>
           </div>
         </Card>

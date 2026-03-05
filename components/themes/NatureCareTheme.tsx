@@ -279,7 +279,7 @@ export const NatureCareTheme: React.FC = () => {
                 <a href="#" className="hover:text-white transition-colors">CGV</a>
             </div>
             <div className="text-xs">
-                © 2024 Design par Nemphisia
+                © 2024 Design par Nemphisia-web
             </div>
         </div>
       </footer>

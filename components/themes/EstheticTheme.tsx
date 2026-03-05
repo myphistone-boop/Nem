@@ -345,7 +345,7 @@ export const EstheticTheme: React.FC = () => {
             </div>
 
             <div className="border-t border-[#44403c] pt-8 text-center text-xs text-[#78716c] uppercase tracking-widest">
-                © {new Date().getFullYear()} L'Éclat Institut. Design par Nemphisia.
+                © {new Date().getFullYear()} L'Éclat Institut. Design par Nemphisia-web.
             </div>
         </div>
       </section>
