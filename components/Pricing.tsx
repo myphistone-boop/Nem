@@ -52,8 +52,8 @@ export const Pricing: React.FC = () => {
             {/* Price Range */}
             <div className="text-center mb-8 py-6 border-y border-border">
               <div className="flex items-baseline justify-center gap-2">
-                <span className="text-5xl lg:text-6xl font-bold font-display text-textMain">300€</span>
-                <span className="text-2xl lg:text-3xl font-bold text-textMuted">—</span>
+                <span className="text-5xl lg:text-6xl font-bold font-display text-textMain">300</span>
+                <span className="text-2xl lg:text-3xl font-bold text-textMuted">-</span>
                 <span className="text-5xl lg:text-6xl font-bold font-display text-textMain">600€</span>
               </div>
               <span className="text-sm font-medium text-textMuted mt-2 block">+ 29€ / mois (Hébergement & Suivi)</span>
