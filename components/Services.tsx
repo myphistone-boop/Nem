@@ -9,7 +9,7 @@ export const Services: React.FC = () => {
   const services: Service[] = [
     {
       title: "Site Web Immersif & Convaincant",
-      description: "Nous ne créons pas de simples sites vitrines. Nous construisons des outils de vente au design unique, optimisés pour guider l'utilisateur vers l'achat ou la prise de contact.",
+      description: "Nous construisons des sites sur mesure, de véritables outils de vente au design unique, optimisés pour guider l'utilisateur vers l'achat ou la prise de contact.",
       icon: Layout
     },
     {

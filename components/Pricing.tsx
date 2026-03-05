@@ -11,7 +11,7 @@ export const Pricing: React.FC = () => {
   };
 
   const includes = [
-    "Site vitrine sur-mesure (1 à 9 pages)",
+    "Site sur mesure (1 à 9 pages)",
     "Design professionnel & responsive mobile",
     "Optimisation SEO & Google Maps",
     "Copywriting de vente persuasif",
