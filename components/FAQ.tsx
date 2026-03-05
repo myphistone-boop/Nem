@@ -50,7 +50,7 @@ export const FAQ: React.FC = () => {
 
 
   return (
-    <section className="py-12 lg:py-24 bg-background relative">
+    <section className="py-10 lg:py-14 bg-background relative">
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-fuchsia-900/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">

@@ -17,7 +17,7 @@ export const Booking: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-[#05010a] relative border-t border-white/5" id="booking">
+    <section className="py-10 lg:py-14 bg-[#05010a] relative border-t border-white/5" id="booking">
         {/* Background Effects */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-fuchsia-900/5 rounded-full blur-[120px] pointer-events-none"></div>
 

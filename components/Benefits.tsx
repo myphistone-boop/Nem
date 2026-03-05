@@ -29,7 +29,7 @@ export const Benefits: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden" id="why">
+    <section className="py-10 lg:py-14 bg-background relative overflow-hidden" id="why">
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 items-center mb-16">
           <div className="lg:w-1/2">

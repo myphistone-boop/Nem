@@ -22,7 +22,7 @@ export const Pricing: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-20 xl:py-24 relative bg-background overflow-hidden">
+    <section className="py-10 lg:py-14 relative bg-background overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-fuchsia-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 

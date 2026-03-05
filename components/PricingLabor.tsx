@@ -41,7 +41,7 @@ export const PricingLabor: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-surface-highlight border-t border-border">
+    <section className="py-10 lg:py-14 bg-surface-highlight border-t border-border">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-5xl mx-auto">
           <h3 className="text-2xl lg:text-3xl font-bold text-center mb-6 font-display text-textMain">

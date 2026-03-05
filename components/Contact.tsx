@@ -64,7 +64,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden" id="contact">
+    <section className="py-10 lg:py-14 relative overflow-hidden" id="contact">
       {/* Background Decor */}
       <div className="absolute inset-0 bg-background"></div>
       <div className="absolute bottom-0 left-0 right-0 h-[300px] bg-gradient-to-t from-fuchsia-900/10 to-transparent"></div>

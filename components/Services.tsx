@@ -30,7 +30,7 @@ export const Services: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-20 xl:py-24 relative bg-background">
+    <section className="py-10 lg:py-14 relative bg-background">
       {/* Background decoration */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-fuchsia-900/10 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-900/10 rounded-full blur-[100px] pointer-events-none"></div>
