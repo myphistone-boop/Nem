@@ -56,7 +56,7 @@ export const Solutions: React.FC = () => {
   ];
   
   return (
-    <section className="py-20 relative bg-surface-highlight">
+    <section className="py-10 lg:py-14 relative bg-surface-highlight">
       <div className="absolute inset-0 grid-bg opacity-20"></div>
       <div className="container mx-auto px-6 text-center relative z-10">
         <h2 className="text-3xl lg:text-4xl font-bold mb-12 font-display text-textMain">
@@ -76,7 +76,7 @@ export const Solutions: React.FC = () => {
           </div>
           <div className="mt-8 pt-8 border-t border-border px-4">
             <p className="text-textMuted max-w-2xl mx-auto">
-              Nemphisia utilise les technologies les plus modernes pour garantir pérennité et évolutivité à vos projets web. Nous ne faisons aucun compromis sur la qualité du code.
+              Nemphisia-web utilise les technologies les plus modernes pour garantir pérennité et évolutivité à vos projets web. Nous ne faisons aucun compromis sur la qualité du code.
             </p>
           </div>
         </Card>

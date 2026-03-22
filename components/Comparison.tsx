@@ -4,7 +4,7 @@ import { Card } from './ui/Card';
 
 export const Comparison: React.FC = () => {
   return (
-    <section className="py-24 container mx-auto px-6 relative bg-background">
+    <section className="py-10 lg:py-14 container mx-auto px-6 relative bg-background">
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Site Immersif */}
         <Card className="bg-gradient-to-br from-surface to-surface-highlight border-fuchsia-500/20 shadow-[0_0_30px_rgba(217,70,239,0.05)]">

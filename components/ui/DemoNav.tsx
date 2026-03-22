@@ -27,12 +27,12 @@ export const DemoNav: React.FC = () => {
         <a 
             href="/"
             className="flex items-center gap-2 px-4 py-2.5 bg-[#0f172a] text-white rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.3)] border border-white/10 hover:bg-black hover:scale-105 transition-all duration-300 group"
-            title="Revenir à l'accueil Nemphisia"
+            title="Revenir à l'accueil Nemphisia-web"
         >
             <div className="bg-white/10 p-1 rounded-full group-hover:bg-white/20 transition-colors">
                 <ArrowLeft className="w-3 h-3" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-wider pr-1 hidden sm:inline">Nemphisia</span>
+            <span className="text-xs font-bold uppercase tracking-wider pr-1 hidden sm:inline">Nemphisia-web</span>
             <span className="text-xs font-bold uppercase tracking-wider pr-1 sm:hidden">Retour</span>
         </a>
 

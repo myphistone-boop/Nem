@@ -39,7 +39,7 @@ export const FAQ: React.FC = () => {
     {
       question: "Je suis une petite entreprise, est-ce adapté ?",
       answer:
-        "C'est justement conçu pour vous. Les grandes entreprises ont des départements marketing entiers. Nemphisia vous donne accès aux mêmes armes (SEO, Design pro, Stratégie) pour vous permettre de rivaliser et de gagner localement, même avec un petit budget."
+        "C'est justement conçu pour vous. Les grandes entreprises ont des départements marketing entiers. Nemphisia-web vous donne accès aux mêmes armes (SEO, Design pro, Stratégie) pour vous permettre de rivaliser et de gagner localement, même avec un petit budget."
     },
     {
       question: "Que se passe-t-il si j'arrête ?",
@@ -50,7 +50,7 @@ export const FAQ: React.FC = () => {
 
 
   return (
-    <section className="py-12 lg:py-24 bg-background relative">
+    <section className="py-10 lg:py-14 bg-background relative">
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-fuchsia-900/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">

@@ -98,7 +98,7 @@ export const Navbar: React.FC = () => {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-600 to-orange-500 flex items-center justify-center shadow-[0_0_15px_rgba(217,70,239,0.4)] group-hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all">
               <Rocket className="w-5 h-5 text-white transform -rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-textMain font-display">Nemphisia</span>
+            <span className="text-xl font-bold tracking-tight text-textMain font-display">Nemphisia-web</span>
           </a>
 
           {/* Vertical Divider and Theme Toggle - Separated for better visual balance */}

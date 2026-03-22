@@ -50,7 +50,7 @@ export const Education: React.FC = () => {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-background" id="education">
+    <section className="py-10 lg:py-14 bg-background" id="education">
       <div className="container mx-auto px-6">
         <div className="mb-10 lg:mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4 lg:mb-6 text-textMain">Comprendre <br/><span className="text-fuchsia-400">l'acquisition</span></h2>

@@ -37,7 +37,7 @@ export const ConcreteResults: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 lg:py-20 bg-background border-y border-border/50">
+    <section className="py-10 lg:py-14 bg-background border-y border-border/50">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-end justify-between gap-6 mb-12">
             <div className="max-w-2xl">
