@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
@@ -70,16 +70,21 @@ export const Navbar: React.FC = () => {
         top: offsetPosition,
         behavior: "smooth"
       });
+    } else {
+      // Not on homepage — navigate to homepage with the anchor
+      window.location.href = '/' + href;
     }
-    
+
     setIsMobileMenuOpen(false);
   };
 
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
-    if(contactSection) {
-        contactSection.scrollIntoView({behavior: 'smooth'});
-        setIsMobileMenuOpen(false);
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    } else {
+      window.location.href = '/#contact';
     }
   };
 
