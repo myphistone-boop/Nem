@@ -50,6 +50,7 @@ export const Navbar: React.FC = () => {
     { label: 'Accompagnement', href: '#approach' },
     { label: 'Services', href: '#services' },
     { label: 'Questions', href: '#faq' },
+    { label: 'Blog', href: '?page=blog' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

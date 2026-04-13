@@ -14,7 +14,9 @@ import { DemoNav } from './components/ui/DemoNav';
 import { DesignInspiration } from './components/DesignInspiration';
 import { LegalModal } from './components/LegalModal';
 import { WhatsAppButton } from './components/WhatsAppButton';
-import { AdminInit } from './components/AdminInit'; // Import de la page Admin
+import { AdminInit } from './components/AdminInit';
+import { BlogList } from './components/blog/BlogList';
+import { BlogArticle } from './components/blog/BlogArticle';
 
 // Import Themes
 import { ImpactTheme } from './components/themes/ImpactTheme';
@@ -36,8 +38,11 @@ const App: React.FC = () => {
     return null;
   });
 
-  // Check for admin mode
-  const isAdmin = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('admin') === 'true';
+  // Check for pages and article routes
+  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
+  const isAdmin = params.get('admin') === 'true';
+  const page = params.get('page');
+  const articleSlug = params.get('article');
 
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
 
@@ -53,6 +58,22 @@ const App: React.FC = () => {
   if (isAdmin) {
     return <AdminInit />;
   }
+
+  // Render Blog Pages
+  if (articleSlug) return (
+    <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
+      <Navbar />
+      <main className="flex-grow"><BlogArticle slug={articleSlug} /></main>
+      <Footer onOpenLegal={() => setIsLegalModalOpen(true)} />
+    </div>
+  );
+  if (page === 'blog') return (
+    <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
+      <Navbar />
+      <main className="flex-grow"><BlogList /></main>
+      <Footer onOpenLegal={() => setIsLegalModalOpen(true)} />
+    </div>
+  );
 
   // Render Theme Pages
   if (theme === 'care') return renderTheme(NatureCareTheme);
