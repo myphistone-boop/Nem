@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowRight, BookOpen, Clock } from 'lucide-react';
 import { articles } from './blogData';
 import { Card } from '../ui/Card';
 
 export const BlogList: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Blog | Nemphisia-web - Guides création site internet & SEO';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', 'Guides et conseils pour créer votre site internet, améliorer votre SEO et apparaître sur Google Maps. Articles par Nemphisia-web.');
+  }, []);
+
   return (
     <section className="pt-32 pb-14 bg-background min-h-screen">
       <div className="container mx-auto px-6 max-w-4xl">

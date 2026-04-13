@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/((?!api|sitemap\\.xml|robots\\.txt).*)", "destination": "/index.html" }
+    { "source": "/((?!api|blog|sitemap\\.xml|robots\\.txt).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -23,6 +23,12 @@
       "headers": [
         { "key": "Content-Type", "value": "text/plain" },
         { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/blog/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" }
       ]
     }
   ]
