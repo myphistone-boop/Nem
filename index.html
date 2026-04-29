@@ -3,8 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nemphisia-web | Acquisition Clients & Visibilité Google</title>
-    
+    <title>Nemphisia-web | Agence Acquisition Clients, Sites Web Sur Mesure & SEO</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Nemphisia-web, agence digitale spécialisée en acquisition clients. Création de sites web sur mesure, référencement SEO et optimisation Google Maps pour booster votre chiffre d'affaires." />
+    <meta name="keywords" content="agence web, création site internet, SEO, Google Maps, acquisition clients, site sur mesure, référencement local, visibilité Google, agence digitale France" />
+    <meta name="author" content="Nemphisia-web" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://nemphisia.com/" />
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nemphisia-web | Agence Acquisition Clients & Sites Web Sur Mesure" />
+    <meta property="og:description" content="Nous transformons votre présence en ligne en une machine à générer des clients. Site web immersif, SEO et Google Maps." />
+    <meta property="og:url" content="https://nemphisia.com/" />
+    <meta property="og:site_name" content="Nemphisia-web" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nemphisia-web | Agence Acquisition Clients & Sites Web Sur Mesure" />
+    <meta name="twitter:description" content="Nous transformons votre présence en ligne en une machine à générer des clients. Site web immersif, SEO et Google Maps." />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Nemphisia-web",
+      "description": "Agence digitale spécialisée en acquisition clients : création de sites web sur mesure, référencement SEO et optimisation Google Maps.",
+      "url": "https://nemphisia.com",
+      "email": "contact@nemphisia.com",
+      "telephone": "+33787819871",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      },
+      "priceRange": "300€ - 600€",
+      "serviceType": ["Création de sites web", "Référencement SEO", "Optimisation Google Maps", "Acquisition clients"],
+      "areaServed": {
+        "@type": "Country",
+        "name": "France"
+      },
+      "sameAs": []
+    }
+    </script>
+
     <!-- Favicon Rocket (SVG Data URI) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z'/%3E%3Cpath d='m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z'/%3E%3Cpath d='M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0'/%3E%3Cpath d='M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5'/%3E%3C/svg%3E" />
 
@@ -30,21 +74,17 @@
               serif: ['Playfair Display', 'serif'],
             },
             colors: {
-              // Using rgb(var(...) / <alpha-value>) syntax allows Tailwind opacity modifiers like bg-background/80 to work
               background: 'rgb(var(--background) / <alpha-value>)',
               surface: 'rgb(var(--surface) / <alpha-value>)',
               'surface-highlight': 'rgb(var(--surface-highlight) / <alpha-value>)',
               textMain: 'rgb(var(--text-main) / <alpha-value>)',
               textMuted: 'rgb(var(--text-muted) / <alpha-value>)',
-              
-              // Borders kept as simple vars as they usually contain their own opacity in this theme
               border: 'var(--border)',
-              
-              primary: '#d946ef', // Fuchsia 500
+              primary: '#d946ef',
               primaryDark: '#a21caf',
-              secondary: '#f97316', // Orange 500
-              secondaryLight: '#fbbf24', // Amber
-              accent: '#22d3ee', // Cyan
+              secondary: '#f97316',
+              secondaryLight: '#fbbf24',
+              accent: '#22d3ee',
             },
             animation: {
               'float-slow': 'float 6s ease-in-out infinite',
@@ -83,54 +123,39 @@
     </script>
     <style>
       :root {
-        /* Light Mode Defaults - RGB Triplets */
         --background: 255 255 255;
-        --surface: 248 250 252; /* Slate 50 */
-        --surface-highlight: 241 245 249; /* Slate 100 */
-        --text-main: 15 23 42; /* Slate 900 */
-        --text-muted: 71 85 105; /* Slate 600 */
-        
+        --surface: 248 250 252;
+        --surface-highlight: 241 245 249;
+        --text-main: 15 23 42;
+        --text-muted: 71 85 105;
         --border: rgba(0, 0, 0, 0.08);
         --glass-bg: rgba(255, 255, 255, 0.8);
         --glass-border: rgba(0, 0, 0, 0.05);
       }
 
       .dark {
-        /* Dark Mode (Synthwave) Defaults - RGB Triplets */
-        --background: 9 0 20;   /* #090014 */
-        --surface: 21 5 40;     /* #150528 */
-        --surface-highlight: 30 11 54; /* #1e0b36 */
-        --text-main: 243 244 246; /* #f3f4f6 */
-        --text-muted: 156 163 175; /* #9ca3af */
-        
+        --background: 9 0 20;
+        --surface: 21 5 40;
+        --surface-highlight: 30 11 54;
+        --text-main: 243 244 246;
+        --text-muted: 156 163 175;
         --border: rgba(255, 255, 255, 0.1);
         --glass-bg: rgba(26, 12, 45, 0.4);
         --glass-border: rgba(217, 70, 239, 0.15);
       }
 
       body {
-        /* Using rgb() wrapper because vars are now triplets */
         background-color: rgb(var(--background));
         color: rgb(var(--text-main));
         overflow-x: hidden;
         transition: background-color 0.3s ease, color 0.3s ease;
       }
-      
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: rgb(var(--background)); 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #d946ef; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #f97316; 
-      }
-      
+
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: rgb(var(--background)); }
+      ::-webkit-scrollbar-thumb { background: #d946ef; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+
       .glass-panel {
         background: var(--glass-bg);
         backdrop-filter: blur(12px);
@@ -139,21 +164,20 @@
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       }
 
-      /* In light mode, reduce grid visibility */
       .grid-bg {
         background-size: 60px 60px;
-        background-image: 
+        background-image:
           linear-gradient(to right, rgba(217, 70, 239, 0.1) 1px, transparent 1px),
           linear-gradient(to bottom, rgba(217, 70, 239, 0.1) 1px, transparent 1px);
         mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
       }
-      
+
       html:not(.dark) .grid-bg {
-        background-image: 
+        background-image:
           linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
           linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
       }
-      
+
       .synthwave-gradient-text {
         background: linear-gradient(to right, #f97316, #d946ef, #8b5cf6);
         -webkit-background-clip: text;
@@ -164,7 +188,7 @@
       .synthwave-sun-glow {
         background: radial-gradient(circle at center, rgba(249, 115, 22, 0.15) 0%, rgba(217, 70, 239, 0.05) 40%, transparent 70%);
       }
-      
+
       html:not(.dark) .synthwave-sun-glow {
         opacity: 0.5;
       }
@@ -189,6 +213,62 @@
 </head>
   <body>
     <div id="root"></div>
+
+    <!-- SEO: contenu visible par les moteurs de recherche quand JS n'est pas executé -->
+    <noscript>
+      <header>
+        <h1>Nemphisia-web | Agence d'Acquisition Clients & Croissance Digitale</h1>
+        <p>Plus de Clients. Plus de Chiffre d'Affaires.</p>
+      </header>
+      <main>
+        <section>
+          <h2>Agence d'Acquisition & Croissance</h2>
+          <p>Nous transformons votre présence en ligne en une machine à générer des clients. Site web immersif, visibilité optimale sur Google Maps et référencement SEO pour vous démarquer de la concurrence.</p>
+        </section>
+        <section>
+          <h2>Nos Services</h2>
+          <ul>
+            <li>Création de sites web sur mesure - Des outils de vente au design unique, optimisés pour guider l'utilisateur vers l'achat ou la prise de contact.</li>
+            <li>Optimisation Google Maps - Visibilité locale maximale pour que vos clients vous trouvent en premier.</li>
+            <li>Référencement SEO - Positionnement en première page Google sur les mots-clefs qui rapportent.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Tarifs</h2>
+          <p>Sites web sur mesure : 300 - 600€ selon la complexité et le nombre de pages, plus 29€ par mois pour l'hébergement et le suivi.</p>
+        </section>
+        <section>
+          <h2>Notre Approche</h2>
+          <p>Chez Nemphisia-web, nous déployons un écosystème digital complet (Site, Maps, SEO) conçu pour capturer le trafic local, vous démarquer de la concurrence et maximiser vos appels entrants.</p>
+        </section>
+        <section>
+          <h2>FAQ</h2>
+          <h3>Combien de temps pour avoir des résultats ?</h3>
+          <p>Dès la mise en ligne, l'optimisation de votre fiche Google Maps peut générer des appels en quelques jours. Pour le SEO, les premiers effets significatifs se font sentir sous 1 à 3 mois.</p>
+          <h3>Pourquoi investir dans un site alors que j'ai les réseaux sociaux ?</h3>
+          <p>Les réseaux sociaux sont loués, votre site vous appartient. C'est le seul endroit où vous contrôlez 100% du message et où vous pouvez convertir un visiteur en client sans distraction.</p>
+        </section>
+        <section>
+          <h2>Contact</h2>
+          <p>Email : contact@nemphisia.com</p>
+          <p>Téléphone : +33 7 87 81 98 71</p>
+          <p>Agence Digitale France</p>
+        </section>
+        <section>
+          <h2>Blog - Comment choisir un développeur de site internet en 2026</h2>
+          <p>Guide complet pour choisir le bon prestataire pour créer votre site web professionnel. Critères, pièges à éviter et questions à poser.</p>
+          <h3>Pourquoi le choix du développeur est crucial</h3>
+          <p>Votre site internet est souvent le premier contact entre votre entreprise et vos futurs clients. Un site mal conçu, lent ou non optimisé pour le référencement peut vous faire perdre des dizaines de clients chaque mois.</p>
+          <h3>Les critères essentiels</h3>
+          <p>Vérifiez le portfolio, la maîtrise du SEO et l'accompagnement après mise en ligne. Un bon développeur comprend votre activité, pas seulement le code.</p>
+          <p>Pour un site sur mesure de qualité, comptez entre 300 et 600 euros selon la complexité.</p>
+        </section>
+      </main>
+      <footer>
+        <p>&copy; 2025 Nemphisia-web. Tous droits réservés. Agence d'Acquisition Client & Stratégie Digitale.</p>
+      </footer>
+    </noscript>
+
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
