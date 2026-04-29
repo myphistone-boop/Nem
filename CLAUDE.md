@@ -1,6 +1,71 @@
 # Nemphisia-web
 
 Agence de création de sites web sur mesure et d'agents IA pour artisans.
+Site principal : https://nemphisia.com
+
+---
+
+## Le site vitrine — nemphisia.com
+
+### Ce que c'est
+
+Site one-page de l'agence Nemphisia-web. Présente les services (création de sites sur mesure), les tarifs (300-600€), l'approche, les résultats concrets, une FAQ et un formulaire de contact. Le site inclut aussi des thèmes démo accessibles via `?theme=xxx` pour montrer aux clients les styles disponibles (startup, nature, esthétique, coaching, artisan, commerce, etc.).
+
+### Pages existantes
+
+- **Homepage** (`/`) — Hero, résultats concrets, tarifs, galerie de designs, approche, services, éducation, FAQ, contact
+- **Blog** (`?page=blog`) — Liste des articles SEO
+- **Articles** (`?article=slug`) — Article individuel avec JSON-LD (Article + FAQPage)
+- **Thèmes démo** (`?theme=impact|care|esthetic|coaching|consultant|artisan|classic|commerce`) — Sites démo pour les clients
+- **Booking** (`?booking=slug`) — Page de RDV par artisan (à créer)
+
+### Design
+
+- Dark mode / light mode (toggle dans la navbar)
+- Gradient fuchsia → orange comme identité visuelle
+- Font : Inter (body) + Outfit (titres)
+- Composants UI custom : Card, Button
+- Responsive (mobile first)
+
+---
+
+## SEO — Stratégie et état actuel
+
+### Ce qui est en place
+
+- Meta tags complets (title, description, OG, Twitter Cards) sur toutes les pages
+- JSON-LD ProfessionalService sur la homepage
+- JSON-LD Article + FAQPage sur chaque article de blog
+- `<noscript>` avec contenu complet pour les crawlers qui n'exécutent pas JS
+- sitemap.xml avec toutes les URLs
+- robots.txt
+- Génération HTML statique des articles blog (crawlable sans JS)
+
+### Articles de blog existants (5)
+
+1. **combien-coute-site-internet-2026** — Cible : recherches prix/tarifs
+2. **comment-apparaitre-premier-google-maps** — Cible : SEO local
+3. **pourquoi-site-internet-entreprise-2026** — Cible : indécis/convaincre
+4. **seo-local-guide-complet-petites-entreprises** — Cible : TPE/PME
+5. **comment-choisir-developpeur-site-internet** — Cible : décision d'achat
+
+### SEO à étendre — Sujets à couvrir
+
+Nouveaux articles à créer pour couvrir plus de recherches :
+
+- **Par métier** : "site internet pour plombier", "site internet pour restaurant", "site internet pour coiffeur", "site internet auto-entrepreneur"
+- **Comparatifs** : "site internet gratuit vs payant", "Wix vs développeur web", "WordPress vs site sur mesure"
+- **Questions fréquentes** : "combien de temps pour créer un site internet", "refonte site internet prix", "différence site vitrine et e-commerce"
+- **Tendances** : "tendances web design 2026", "IA et création de sites web"
+
+### Actions SEO restantes (hors code)
+
+- **Google Search Console** : enregistrer nemphisia.com, soumettre le sitemap
+- **Google Business Profile** : créer la fiche entreprise
+- **Forcer l'indexation** : inspecter chaque URL dans Search Console et demander l'indexation
+- **Backlinks** : inscription annuaires (Pages Jaunes, Malt, LinkedIn entreprise)
+
+---
 
 ## Stack technique
 
