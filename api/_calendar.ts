@@ -18,14 +18,17 @@ export async function createCalendarEvent(
   date: string,
   time: string,
   durationMinutes: number,
-  attendeeEmail: string
+  _attendeeEmail: string
 ): Promise<string | null> {
   const calendar = getCalendarClient();
   if (!calendar) return null;
 
   const startDateTime = `${date}T${time}:00`;
-  const endDate = new Date(`${startDateTime}+02:00`);
-  endDate.setMinutes(endDate.getMinutes() + durationMinutes);
+  const [h, m] = time.split(':').map(Number);
+  const endTotalMin = h * 60 + m + durationMinutes;
+  const endH = Math.floor(endTotalMin / 60).toString().padStart(2, '0');
+  const endM = (endTotalMin % 60).toString().padStart(2, '0');
+  const endDateTime = `${date}T${endH}:${endM}:00`;
 
   const event = await calendar.events.insert({
     calendarId: process.env.GOOGLE_CALENDAR_ID || 'primary',
@@ -33,10 +36,8 @@ export async function createCalendarEvent(
       summary,
       description,
       start: { dateTime: startDateTime, timeZone: 'Europe/Paris' },
-      end: { dateTime: endDate.toISOString(), timeZone: 'Europe/Paris' },
-      attendees: [{ email: attendeeEmail }],
+      end: { dateTime: endDateTime, timeZone: 'Europe/Paris' },
     },
-    sendUpdates: 'all',
   });
 
   return event.data.id || null;
