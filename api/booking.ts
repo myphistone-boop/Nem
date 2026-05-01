@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getDb } from './_db';
-import { createCalendarEvent } from './_calendar';
-import { sendSms } from './_sms';
+import { getDb } from './_db.js';
+import { createCalendarEvent } from './_calendar.js';
+import { sendSms } from './_sms.js';
 import crypto from 'crypto';
 
 function generateReference(): string {

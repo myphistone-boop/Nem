@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getDb } from './_db';
-import { createCalendarEvent, deleteCalendarEvent } from './_calendar';
-import { sendSms } from './_sms';
+import { getDb } from './_db.js';
+import { createCalendarEvent, deleteCalendarEvent } from './_calendar.js';
+import { sendSms } from './_sms.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
