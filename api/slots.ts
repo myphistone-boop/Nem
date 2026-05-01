@@ -9,7 +9,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const sql = getDb();
 
-  const businesses = await sql('SELECT * FROM businesses WHERE slug = $1', [slug]);
+  const businesses = await sql`SELECT * FROM businesses WHERE slug = ${slug}`;
   if (businesses.length === 0) return res.status(404).json({ error: 'Business not found' });
 
   const business = businesses[0];
@@ -39,10 +39,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     current += duration;
   }
 
-  const bookings = await sql(
-    'SELECT time FROM bookings WHERE business_id = $1 AND date = $2 AND status = $3',
-    [business.id, date, 'confirmed']
-  );
+  const confirmedStatus = 'confirmed';
+  const bookings = await sql`SELECT time FROM bookings WHERE business_id = ${business.id} AND date = ${date} AND status = ${confirmedStatus}`;
   const bookedTimes = new Set(bookings.map((b: any) => b.time));
 
   const available = slots.filter(s => !bookedTimes.has(s));

@@ -12,20 +12,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const sql = getDb();
+  const confirmedStatus = 'confirmed';
 
-  const bookings = await sql(
-    'SELECT b.*, bus.name as business_name, bus.email as business_email, bus.twilio_phone, bus.phone as business_phone, bus.hours FROM bookings b JOIN businesses bus ON b.business_id = bus.id WHERE b.reference = $1 AND b.status = $2',
-    [reference, 'confirmed']
-  );
+  const bookings = await sql`SELECT b.*, bus.name as business_name, bus.email as business_email, bus.twilio_phone, bus.phone as business_phone, bus.hours FROM bookings b JOIN businesses bus ON b.business_id = bus.id WHERE b.reference = ${reference} AND b.status = ${confirmedStatus}`;
   if (bookings.length === 0) return res.status(404).json({ error: 'Booking not found' });
 
   const booking = bookings[0];
   const hours = booking.hours as { slot_duration: number };
 
-  const conflict = await sql(
-    'SELECT id FROM bookings WHERE business_id = $1 AND date = $2 AND time = $3 AND status = $4 AND id != $5',
-    [booking.business_id, new_date, new_time, 'confirmed', booking.id]
-  );
+  const conflict = await sql`SELECT id FROM bookings WHERE business_id = ${booking.business_id} AND date = ${new_date} AND time = ${new_time} AND status = ${confirmedStatus} AND id != ${booking.id}`;
   if (conflict.length > 0) return res.status(409).json({ error: 'Slot already booked' });
 
   if (booking.calendar_event_id) {
@@ -41,12 +36,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     booking.business_email
   );
 
-  await sql(
-    'UPDATE bookings SET date = $1, time = $2, calendar_event_id = $3, reminder_sent = false WHERE id = $4',
-    [new_date, new_time, newEventId, booking.id]
-  );
+  await sql`UPDATE bookings SET date = ${new_date}, time = ${new_time}, calendar_event_id = ${newEventId}, reminder_sent = false WHERE id = ${booking.id}`;
 
-  // Notify the artisan
   if (booking.twilio_phone && booking.business_phone) {
     const dateFormatted = new Date(new_date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
     await sendSms(

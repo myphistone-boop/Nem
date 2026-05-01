@@ -19,15 +19,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const sql = getDb();
 
-  const businesses = await sql('SELECT * FROM businesses WHERE slug = $1', [business_slug]);
+  const businesses = await sql`SELECT * FROM businesses WHERE slug = ${business_slug}`;
   if (businesses.length === 0) return res.status(404).json({ error: 'Business not found' });
 
   const business = businesses[0];
 
-  const existing = await sql(
-    'SELECT id FROM bookings WHERE business_id = $1 AND date = $2 AND time = $3 AND status = $4',
-    [business.id, date, time, 'confirmed']
-  );
+  const confirmedStatus = 'confirmed';
+  const existing = await sql`SELECT id FROM bookings WHERE business_id = ${business.id} AND date = ${date} AND time = ${time} AND status = ${confirmedStatus}`;
   if (existing.length > 0) return res.status(409).json({ error: 'Slot already booked' });
 
   const reference = generateReference();
@@ -42,11 +40,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     business.email
   );
 
-  await sql(
-    `INSERT INTO bookings (business_id, reference, client_first_name, client_last_name, client_phone, service, date, time, calendar_event_id)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-    [business.id, reference, first_name, last_name, phone, service, date, time, calendarEventId]
-  );
+  await sql`INSERT INTO bookings (business_id, reference, client_first_name, client_last_name, client_phone, service, date, time, calendar_event_id)
+     VALUES (${business.id}, ${reference}, ${first_name}, ${last_name}, ${phone}, ${service}, ${date}, ${time}, ${calendarEventId})`;
 
   if (business.twilio_phone) {
     const dateFormatted = new Date(date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });

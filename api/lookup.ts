@@ -10,22 +10,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const sql = getDb();
 
-  const businesses = await sql('SELECT * FROM businesses WHERE slug = $1', [slug]);
+  const businesses = await sql`SELECT * FROM businesses WHERE slug = ${slug}`;
   if (businesses.length === 0) return res.status(404).json({ error: 'Business not found' });
 
   const business = businesses[0];
+  const confirmedStatus = 'confirmed';
 
   let bookings;
   if (ref) {
-    bookings = await sql(
-      'SELECT * FROM bookings WHERE business_id = $1 AND reference = $2 AND status = $3',
-      [business.id, ref, 'confirmed']
-    );
+    bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND reference = ${ref} AND status = ${confirmedStatus}`;
   } else {
-    bookings = await sql(
-      'SELECT * FROM bookings WHERE business_id = $1 AND client_phone = $2 AND status = $3 ORDER BY date, time',
-      [business.id, phone, 'confirmed']
-    );
+    bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND client_phone = ${phone} AND status = ${confirmedStatus} ORDER BY date, time`;
   }
 
   return res.json({

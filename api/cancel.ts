@@ -9,11 +9,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!reference) return res.status(400).json({ error: 'reference required' });
 
   const sql = getDb();
+  const confirmedStatus = 'confirmed';
+  const cancelledStatus = 'cancelled';
 
-  const bookings = await sql(
-    'SELECT * FROM bookings WHERE reference = $1 AND status = $2',
-    [reference, 'confirmed']
-  );
+  const bookings = await sql`SELECT * FROM bookings WHERE reference = ${reference} AND status = ${confirmedStatus}`;
   if (bookings.length === 0) return res.status(404).json({ error: 'Booking not found' });
 
   const booking = bookings[0];
@@ -22,7 +21,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     await deleteCalendarEvent(booking.calendar_event_id);
   }
 
-  await sql('UPDATE bookings SET status = $1 WHERE id = $2', ['cancelled', booking.id]);
+  await sql`UPDATE bookings SET status = ${cancelledStatus} WHERE id = ${booking.id}`;
 
   return res.json({ success: true });
 }

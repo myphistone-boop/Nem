@@ -3,6 +3,6 @@ import { getDb } from './_db';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const sql = getDb();
-  await sql('SELECT 1');
+  await sql`SELECT 1`;
   return res.json({ ok: true });
 }

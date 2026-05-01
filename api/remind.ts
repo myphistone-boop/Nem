@@ -15,14 +15,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowStr = tomorrow.toISOString().split('T')[0];
+  const confirmedStatus = 'confirmed';
 
-  const bookings = await sql(
-    `SELECT b.*, bus.name as business_name, bus.twilio_phone, bus.slug
+  const bookings = await sql`SELECT b.*, bus.name as business_name, bus.twilio_phone, bus.slug
      FROM bookings b
      JOIN businesses bus ON b.business_id = bus.id
-     WHERE b.date = $1 AND b.status = $2 AND b.reminder_sent = false`,
-    [tomorrowStr, 'confirmed']
-  );
+     WHERE b.date = ${tomorrowStr} AND b.status = ${confirmedStatus} AND b.reminder_sent = false`;
 
   let sent = 0;
   for (const booking of bookings) {
@@ -33,7 +31,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         `Rappel : votre RDV avec ${booking.business_name} est demain à ${booking.time}.\n🔧 ${booking.service}\n📋 Réf : ${booking.reference}\n\nGérer votre RDV : nemphisia.com/?booking=${booking.slug}`
       );
       if (success) {
-        await sql('UPDATE bookings SET reminder_sent = true WHERE id = $1', [booking.id]);
+        await sql`UPDATE bookings SET reminder_sent = true WHERE id = ${booking.id}`;
         sent++;
       }
     }
