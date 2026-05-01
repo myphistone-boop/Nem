@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Phone, Hash, Loader2, Calendar, Clock, Wrench, X, ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
 import { RescheduleForm } from './RescheduleForm';
 
@@ -12,9 +12,9 @@ interface BookingData {
   time: string;
 }
 
-export const ManageBooking: React.FC<{ slug: string }> = ({ slug }) => {
+export const ManageBooking: React.FC<{ slug: string; initialRef?: string }> = ({ slug, initialRef }) => {
   const [searchType, setSearchType] = useState<'ref' | 'phone'>('ref');
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(initialRef || '');
   const [loading, setLoading] = useState(false);
   const [bookings, setBookings] = useState<BookingData[]>([]);
   const [selected, setSelected] = useState<BookingData | null>(null);
@@ -25,14 +25,13 @@ export const ManageBooking: React.FC<{ slug: string }> = ({ slug }) => {
   const [rescheduling, setRescheduling] = useState(false);
   const [rescheduled, setRescheduled] = useState(false);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const doSearch = async (ref?: string, phone?: string) => {
     setError('');
     setLoading(true);
     setBookings([]);
     setSelected(null);
 
-    const param = searchType === 'ref' ? `ref=${searchValue}` : `phone=${encodeURIComponent(searchValue)}`;
+    const param = ref ? `ref=${ref}` : `phone=${encodeURIComponent(phone || '')}`;
 
     try {
       const res = await fetch(`/api/lookup?slug=${slug}&${param}`);
@@ -54,6 +53,16 @@ export const ManageBooking: React.FC<{ slug: string }> = ({ slug }) => {
       setError('Erreur réseau');
       setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    if (initialRef) doSearch(initialRef);
+  }, []);
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchType === 'ref') doSearch(searchValue);
+    else doSearch(undefined, searchValue);
   };
 
   const handleCancel = async () => {

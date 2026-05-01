@@ -12,10 +12,13 @@ interface Business {
 }
 
 export const BookingPage: React.FC<{ slug: string }> = ({ slug }) => {
+  const params = new URLSearchParams(window.location.search);
+  const refFromUrl = params.get('ref') || '';
+
   const [business, setBusiness] = useState<Business | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [mode, setMode] = useState<'choose' | 'book' | 'manage' | 'confirmed'>('choose');
+  const [mode, setMode] = useState<'choose' | 'book' | 'manage' | 'confirmed'>(refFromUrl ? 'manage' : 'choose');
   const [confirmation, setConfirmation] = useState<any>(null);
 
   useEffect(() => {
@@ -145,7 +148,7 @@ export const BookingPage: React.FC<{ slug: string }> = ({ slug }) => {
 
           {mode === 'manage' && (
             <div className="p-6">
-              <ManageBooking slug={slug} />
+              <ManageBooking slug={slug} initialRef={refFromUrl} />
             </div>
           )}
         </div>

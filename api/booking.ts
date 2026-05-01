@@ -48,7 +48,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     await sendSms(
       phone,
       business.twilio_phone,
-      `Votre RDV avec ${business.name} est confirmé !\n📅 ${dateFormatted} à ${time}\n🔧 ${service}\n📋 Réf : ${reference}\n\nPour gérer votre RDV : nemphisia.com/?booking=${business.slug}`
+      `Votre RDV avec ${business.name} est confirmé !\n📅 ${dateFormatted} à ${time}\n🔧 ${service}\n📋 Réf : ${reference}\n\nGérer votre RDV : nemphisia.com/?booking=${business.slug}&ref=${reference}`
     );
   }
 
