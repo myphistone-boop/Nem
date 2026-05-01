@@ -21,6 +21,7 @@ function getFirstDayOfMonth(year: number, month: number) {
 
 export const BookingForm: React.FC<Props> = ({ slug, services, onConfirmed }) => {
   const now = new Date();
+  const [step, setStep] = useState<'info' | 'date'>('info');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -89,6 +90,8 @@ export const BookingForm: React.FC<Props> = ({ slug, services, onConfirmed }) =>
   const selectedMonth = selectedDate ? parseInt(selectedDate.split('-')[1]) - 1 : -1;
   const selectedYear = selectedDate ? parseInt(selectedDate.split('-')[0]) : -1;
 
+  const canGoToDate = firstName && lastName && phone && service;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -123,63 +126,83 @@ export const BookingForm: React.FC<Props> = ({ slug, services, onConfirmed }) =>
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl border border-border bg-surface/50 text-textMain placeholder:text-textMuted/50 focus:outline-none focus:border-fuchsia-500/50 transition-colors";
+  const inputClass = "w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm";
+
+  if (step === 'info') {
+    return (
+      <div className="space-y-5">
+        <h2 className="text-lg font-semibold text-slate-900">Vos informations</h2>
+
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">Prénom</label>
+            <input type="text" required value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Jean" className={inputClass} />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">Nom</label>
+            <input type="text" required value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Dupont" className={inputClass} />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">Téléphone</label>
+          <input type="tel" required value={phone} onChange={e => setPhone(e.target.value)} placeholder="06 12 34 56 78" className={inputClass} />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">Type d'intervention</label>
+          <select required value={service} onChange={e => setService(e.target.value)} className={inputClass}>
+            <option value="">Sélectionner</option>
+            {services.map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+
+        <button
+          type="button"
+          disabled={!canGoToDate}
+          onClick={() => setStep('date')}
+          className="w-full py-3 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Choisir une date
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-textMuted mb-1">
-            <User className="w-3 h-3 inline mr-1" />Prénom
-          </label>
-          <input type="text" required value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Jean" className={inputClass} />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-textMuted mb-1">Nom</label>
-          <input type="text" required value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Dupont" className={inputClass} />
-        </div>
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-slate-900">Sélectionner un créneau</h2>
+        <button type="button" onClick={() => setStep('info')} className="text-sm text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-1">
+          <ChevronLeft className="w-3.5 h-3.5" /> Modifier mes infos
+        </button>
       </div>
 
+      {/* Calendar */}
       <div>
-        <label className="block text-sm font-medium text-textMuted mb-1">
-          <Phone className="w-3 h-3 inline mr-1" />Téléphone
-        </label>
-        <input type="tel" required value={phone} onChange={e => setPhone(e.target.value)} placeholder="06 12 34 56 78" className={inputClass} />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-textMuted mb-1">
-          <Wrench className="w-3 h-3 inline mr-1" />Type d'intervention
-        </label>
-        <select required value={service} onChange={e => setService(e.target.value)} className={inputClass}>
-          <option value="">Choisir une intervention</option>
-          {services.map(s => <option key={s} value={s}>{s}</option>)}
-        </select>
-      </div>
-
-      {/* Calendrier style Calendly */}
-      <div className="rounded-2xl border border-border bg-surface/50 p-4">
         <div className="flex items-center justify-between mb-4">
-          <button type="button" onClick={prevMonth} disabled={!canGoPrev} className="p-2 rounded-lg hover:bg-surface-highlight text-textMuted disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <h3 className="text-base font-bold text-textMain">
+          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
             {MONTHS_FR[calMonth]} {calYear}
           </h3>
-          <button type="button" onClick={nextMonth} className="p-2 rounded-lg hover:bg-surface-highlight text-textMuted transition-colors">
-            <ChevronRight className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-1">
+            <button type="button" onClick={prevMonth} disabled={!canGoPrev} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 disabled:opacity-20 disabled:cursor-not-allowed transition-colors">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button type="button" onClick={nextMonth} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 transition-colors">
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-7 gap-1 mb-2">
+        <div className="grid grid-cols-7 gap-0 mb-1">
           {DAYS_FR.map(d => (
-            <div key={d} className="text-center text-xs font-medium text-textMuted py-1">{d}</div>
+            <div key={d} className="text-center text-xs font-medium text-slate-400 py-2">{d}</div>
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-0">
           {Array.from({ length: firstDay }).map((_, i) => (
-            <div key={`empty-${i}`} />
+            <div key={`empty-${i}`} className="aspect-square" />
           ))}
           {Array.from({ length: daysInMonth }).map((_, i) => {
             const day = i + 1;
@@ -194,14 +217,14 @@ export const BookingForm: React.FC<Props> = ({ slug, services, onConfirmed }) =>
                 disabled={!selectable}
                 onClick={() => handleDayClick(day)}
                 className={`
-                  aspect-square flex items-center justify-center rounded-full text-sm font-medium transition-all
+                  aspect-square flex items-center justify-center rounded-full text-sm transition-all m-0.5
                   ${isSelected
-                    ? 'bg-fuchsia-500 text-white shadow-lg shadow-fuchsia-500/30'
+                    ? 'bg-blue-600 text-white font-semibold'
                     : selectable
-                      ? 'text-textMain hover:bg-fuchsia-500/10 hover:text-fuchsia-500 cursor-pointer'
-                      : 'text-textMuted/30 cursor-not-allowed'
+                      ? 'text-slate-900 font-medium hover:bg-blue-50 hover:text-blue-600 cursor-pointer'
+                      : 'text-slate-300 cursor-not-allowed'
                   }
-                  ${isToday && !isSelected ? 'ring-2 ring-fuchsia-500/30' : ''}
+                  ${isToday && !isSelected ? 'ring-1 ring-blue-300' : ''}
                 `}
               >
                 {day}
@@ -211,30 +234,29 @@ export const BookingForm: React.FC<Props> = ({ slug, services, onConfirmed }) =>
         </div>
       </div>
 
-      {/* Créneaux horaires */}
+      {/* Time slots */}
       {selectedDate && (
         <div>
-          <label className="block text-sm font-medium text-textMuted mb-2">
-            <Clock className="w-3 h-3 inline mr-1" />
-            Créneaux disponibles — {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-          </label>
+          <p className="text-sm font-medium text-slate-700 mb-3">
+            {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+          </p>
           {loadingSlots ? (
-            <div className="flex items-center gap-2 text-textMuted text-sm py-3">
-              <Loader2 className="w-4 h-4 animate-spin" /> Chargement des créneaux...
+            <div className="flex items-center gap-2 text-slate-400 text-sm py-4 justify-center">
+              <Loader2 className="w-4 h-4 animate-spin" /> Chargement...
             </div>
           ) : slots.length === 0 ? (
-            <p className="text-sm text-orange-500 py-2">Aucun créneau disponible pour cette date</p>
+            <p className="text-sm text-slate-500 py-3 text-center">Aucun créneau disponible</p>
           ) : (
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {slots.map(s => (
                 <button
                   key={s}
                   type="button"
                   onClick={() => setTime(s)}
-                  className={`px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                  className={`py-2.5 rounded-lg text-sm font-medium transition-all ${
                     time === s
-                      ? 'bg-fuchsia-500 text-white shadow-lg shadow-fuchsia-500/30'
-                      : 'border border-border bg-surface/50 text-textMain hover:border-fuchsia-500/30 hover:text-fuchsia-500'
+                      ? 'bg-blue-600 text-white'
+                      : 'border border-slate-200 text-slate-700 hover:border-blue-300 hover:text-blue-600'
                   }`}
                 >
                   {s}
@@ -245,17 +267,17 @@ export const BookingForm: React.FC<Props> = ({ slug, services, onConfirmed }) =>
         </div>
       )}
 
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {error && <p className="text-red-600 text-sm">{error}</p>}
 
       <button
         type="submit"
-        disabled={submitting || !firstName || !lastName || !phone || !service || !selectedDate || !time}
-        className="w-full py-3 rounded-full bg-gradient-to-r from-fuchsia-600 to-orange-500 text-white font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        disabled={submitting || !selectedDate || !time}
+        className="w-full py-3 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {submitting ? (
           <><Loader2 className="w-4 h-4 animate-spin" /> Réservation en cours...</>
         ) : (
-          'Confirmer mon rendez-vous'
+          'Confirmer le rendez-vous'
         )}
       </button>
     </form>

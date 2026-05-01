@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Clock, Loader2, ArrowLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, ArrowLeft, X } from 'lucide-react';
 
 interface Props {
   slug: string;
   reference: string;
   onRescheduled: () => void;
   onBack: () => void;
+  onCancel: () => void;
 }
 
 const DAYS_FR = ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'];
@@ -20,7 +21,7 @@ function getFirstDayOfMonth(year: number, month: number) {
   return day === 0 ? 6 : day - 1;
 }
 
-export const RescheduleForm: React.FC<Props> = ({ slug, reference, onRescheduled, onBack }) => {
+export const RescheduleForm: React.FC<Props> = ({ slug, reference, onRescheduled, onBack, onCancel }) => {
   const now = new Date();
   const [selectedDate, setSelectedDate] = useState('');
   const [time, setTime] = useState('');
@@ -102,7 +103,7 @@ export const RescheduleForm: React.FC<Props> = ({ slug, reference, onRescheduled
         onRescheduled();
       } else {
         const data = await res.json();
-        setError(data.error || 'Erreur lors du décalage');
+        setError(data.error || 'Erreur lors de la modification');
       }
       setSubmitting(false);
     } catch {
@@ -113,36 +114,44 @@ export const RescheduleForm: React.FC<Props> = ({ slug, reference, onRescheduled
 
   return (
     <div>
-      <button onClick={onBack} className="inline-flex items-center gap-2 text-sm text-textMuted hover:text-fuchsia-500 transition-colors mb-4">
-        <ArrowLeft className="w-4 h-4" /> Retour
-      </button>
+      {/* Navigation bar */}
+      <div className="flex items-center justify-between mb-5">
+        <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition-colors">
+          <ArrowLeft className="w-4 h-4" /> Retour
+        </button>
+        <button onClick={onCancel} className="inline-flex items-center gap-1.5 text-sm text-red-500 hover:text-red-700 transition-colors">
+          <X className="w-3.5 h-3.5" /> Annuler le rendez-vous
+        </button>
+      </div>
 
-      <h2 className="text-lg font-bold text-textMain mb-4">Choisir un nouveau créneau</h2>
+      <h2 className="text-lg font-semibold text-slate-900 mb-5">Choisir un nouveau créneau</h2>
 
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Calendrier */}
-        <div className="rounded-2xl border border-border bg-surface/50 p-4">
+        {/* Calendar */}
+        <div>
           <div className="flex items-center justify-between mb-4">
-            <button type="button" onClick={prevMonth} disabled={!canGoPrev} className="p-2 rounded-lg hover:bg-surface-highlight text-textMuted disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <h3 className="text-base font-bold text-textMain">
+            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
               {MONTHS_FR[calMonth]} {calYear}
             </h3>
-            <button type="button" onClick={nextMonth} className="p-2 rounded-lg hover:bg-surface-highlight text-textMuted transition-colors">
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              <button type="button" onClick={prevMonth} disabled={!canGoPrev} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 disabled:opacity-20 disabled:cursor-not-allowed transition-colors">
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button type="button" onClick={nextMonth} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 transition-colors">
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-1 mb-2">
+          <div className="grid grid-cols-7 gap-0 mb-1">
             {DAYS_FR.map(d => (
-              <div key={d} className="text-center text-xs font-medium text-textMuted py-1">{d}</div>
+              <div key={d} className="text-center text-xs font-medium text-slate-400 py-2">{d}</div>
             ))}
           </div>
 
-          <div className="grid grid-cols-7 gap-1">
+          <div className="grid grid-cols-7 gap-0">
             {Array.from({ length: firstDay }).map((_, i) => (
-              <div key={`empty-${i}`} />
+              <div key={`empty-${i}`} className="aspect-square" />
             ))}
             {Array.from({ length: daysInMonth }).map((_, i) => {
               const day = i + 1;
@@ -157,14 +166,14 @@ export const RescheduleForm: React.FC<Props> = ({ slug, reference, onRescheduled
                   disabled={!selectable}
                   onClick={() => handleDayClick(day)}
                   className={`
-                    aspect-square flex items-center justify-center rounded-full text-sm font-medium transition-all
+                    aspect-square flex items-center justify-center rounded-full text-sm transition-all m-0.5
                     ${isSelected
-                      ? 'bg-fuchsia-500 text-white shadow-lg shadow-fuchsia-500/30'
+                      ? 'bg-blue-600 text-white font-semibold'
                       : selectable
-                        ? 'text-textMain hover:bg-fuchsia-500/10 hover:text-fuchsia-500 cursor-pointer'
-                        : 'text-textMuted/30 cursor-not-allowed'
+                        ? 'text-slate-900 font-medium hover:bg-blue-50 hover:text-blue-600 cursor-pointer'
+                        : 'text-slate-300 cursor-not-allowed'
                     }
-                    ${isToday && !isSelected ? 'ring-2 ring-fuchsia-500/30' : ''}
+                    ${isToday && !isSelected ? 'ring-1 ring-blue-300' : ''}
                   `}
                 >
                   {day}
@@ -174,30 +183,29 @@ export const RescheduleForm: React.FC<Props> = ({ slug, reference, onRescheduled
           </div>
         </div>
 
-        {/* Créneaux */}
+        {/* Time slots */}
         {selectedDate && (
           <div>
-            <label className="block text-sm font-medium text-textMuted mb-2">
-              <Clock className="w-3 h-3 inline mr-1" />
-              Créneaux disponibles — {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-            </label>
+            <p className="text-sm font-medium text-slate-700 mb-3">
+              {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+            </p>
             {loadingSlots ? (
-              <div className="flex items-center gap-2 text-textMuted text-sm py-3">
-                <Loader2 className="w-4 h-4 animate-spin" /> Chargement des créneaux...
+              <div className="flex items-center gap-2 text-slate-400 text-sm py-4 justify-center">
+                <Loader2 className="w-4 h-4 animate-spin" /> Chargement...
               </div>
             ) : slots.length === 0 ? (
-              <p className="text-sm text-orange-500 py-2">Aucun créneau disponible pour cette date</p>
+              <p className="text-sm text-slate-500 py-3 text-center">Aucun créneau disponible</p>
             ) : (
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {slots.map(s => (
                   <button
                     key={s}
                     type="button"
                     onClick={() => setTime(s)}
-                    className={`px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    className={`py-2.5 rounded-lg text-sm font-medium transition-all ${
                       time === s
-                        ? 'bg-fuchsia-500 text-white shadow-lg shadow-fuchsia-500/30'
-                        : 'border border-border bg-surface/50 text-textMain hover:border-fuchsia-500/30 hover:text-fuchsia-500'
+                        ? 'bg-blue-600 text-white'
+                        : 'border border-slate-200 text-slate-700 hover:border-blue-300 hover:text-blue-600'
                     }`}
                   >
                     {s}
@@ -208,12 +216,12 @@ export const RescheduleForm: React.FC<Props> = ({ slug, reference, onRescheduled
           </div>
         )}
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-red-600 text-sm">{error}</p>}
 
         <button
           type="submit"
           disabled={submitting || !selectedDate || !time}
-          className="w-full py-3 rounded-full bg-gradient-to-r from-fuchsia-600 to-orange-500 text-white font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full py-3 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {submitting ? (
             <><Loader2 className="w-4 h-4 animate-spin" /> Modification en cours...</>
