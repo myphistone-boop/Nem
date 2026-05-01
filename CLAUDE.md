@@ -17,7 +17,7 @@ Site one-page de l'agence Nemphisia-web. Présente les services (création de si
 - **Blog** (`?page=blog`) — Liste des articles SEO
 - **Articles** (`?article=slug`) — Article individuel avec JSON-LD (Article + FAQPage)
 - **Thèmes démo** (`?theme=impact|care|esthetic|coaching|consultant|artisan|classic|commerce`) — Sites démo pour les clients
-- **Booking** (`?booking=slug`) — Page de RDV par artisan (à créer)
+- **Booking** (`?booking=slug`) — Page de RDV par artisan
 
 ### Design
 
@@ -74,7 +74,7 @@ Nouveaux articles à créer pour couvrir plus de recherches :
 - **Routing** : query params (`?theme=X`, `?page=blog`, `?article=slug`, `?booking=slug`)
 - **Blog** : articles en JSON (`data/articles.json`) + génération HTML statique (`scripts/generate-blog.mjs`)
 - **Backend** : Vercel serverless functions (`/api/`)
-- **BDD** : Supabase (tables `businesses`, `bookings`)
+- **BDD** : Neon Postgres via Vercel (tables `businesses`, `bookings`)
 - **Calendar** : Google Calendar API (service account, compte `nemphisia@gmail.com`)
 - **SMS** : Twilio (un numéro par artisan)
 - **Agents IA** : ElevenLabs (un agent par artisan)
@@ -85,7 +85,7 @@ Nouveaux articles à créer pour couvrir plus de recherches :
 Nem/
 ├── components/          # Composants React
 │   ├── blog/            # BlogList, BlogArticle, blogData
-│   ├── booking/         # BookingPage, ManageBooking (à créer)
+│   ├── booking/         # BookingPage, BookingForm, ManageBooking, RescheduleForm
 │   ├── themes/          # Thèmes démo (impact, care, esthetic, etc.)
 │   └── ui/              # Composants UI réutilisables
 ├── data/
@@ -97,7 +97,7 @@ Nem/
 │   ├── lookup.ts        # GET : chercher un RDV par référence ou téléphone
 │   ├── slots.ts         # GET : créneaux disponibles
 │   ├── remind.ts        # GET (cron) : rappels SMS J-1
-│   └── ping.ts          # GET (cron) : keepalive Supabase
+│   └── ping.ts          # GET (cron) : keepalive BDD
 ├── scripts/
 │   └── generate-blog.mjs  # Génération HTML statique blog (postbuild)
 ├── public/
@@ -172,14 +172,14 @@ Chaque artisan est un client de Nemphisia. Chaque artisan a ses propres clients 
 - Envoie un SMS rappel au client depuis le numéro Twilio de l'artisan
 - Marque reminder_sent = true
 
-### Ping Supabase
+### Ping BDD
 
 - Cron Vercel tous les jours à 3h
-- Simple query `SELECT 1` pour éviter le freeze du free tier Supabase
+- Simple query `SELECT 1` pour keepalive
 
 ---
 
-## Base de données — Supabase
+## Base de données — Neon Postgres
 
 ### Table `businesses`
 
@@ -257,9 +257,9 @@ Keepalive Supabase.
 
 ## Variables d'environnement (Vercel)
 
-- `SUPABASE_URL` — URL du projet Supabase
-- `SUPABASE_ANON_KEY` — Clé anon Supabase
+- `DATABASE_URL` — Connection string Neon Postgres (ajoutée auto par Vercel)
 - `GOOGLE_CALENDAR_CREDENTIALS` — JSON du service account Google
 - `GOOGLE_CALENDAR_ID` — ID du calendrier (nemphisia@gmail.com)
 - `TWILIO_ACCOUNT_SID` — SID du compte Twilio
 - `TWILIO_AUTH_TOKEN` — Token Twilio
+- `CRON_SECRET` — Secret pour sécuriser les crons

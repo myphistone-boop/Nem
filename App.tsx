@@ -17,6 +17,7 @@ import { WhatsAppButton } from './components/WhatsAppButton';
 import { AdminInit } from './components/AdminInit';
 import { BlogList } from './components/blog/BlogList';
 import { BlogArticle } from './components/blog/BlogArticle';
+import { BookingPage } from './components/booking/BookingPage';
 
 // Import Themes
 import { ImpactTheme } from './components/themes/ImpactTheme';
@@ -43,6 +44,7 @@ const App: React.FC = () => {
   const isAdmin = params.get('admin') === 'true';
   const page = params.get('page');
   const articleSlug = params.get('article');
+  const bookingSlug = params.get('booking');
 
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
 
@@ -58,6 +60,13 @@ const App: React.FC = () => {
   if (isAdmin) {
     return <AdminInit />;
   }
+
+  // Render Booking Page
+  if (bookingSlug) return (
+    <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
+      <main className="flex-grow"><BookingPage slug={bookingSlug} /></main>
+    </div>
+  );
 
   // Render Blog Pages
   if (articleSlug) return (

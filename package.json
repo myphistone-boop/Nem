@@ -9,12 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "3.11.0",
+    "@neondatabase/serverless": "^1.1.0",
+    "@vercel/node": "^5.5.15",
+    "googleapis": "^171.4.0",
+    "lucide-react": "^0.556.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "lucide-react": "^0.556.0",
-    "@emailjs/browser": "3.11.0",
     "stripe": "^20.0.0",
-    "@vercel/node": "^5.5.15"
+    "twilio": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
