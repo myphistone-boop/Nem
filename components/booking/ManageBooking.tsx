@@ -169,7 +169,7 @@ export const ManageBooking: React.FC<{ slug: string }> = ({ slug }) => {
             className="flex-1 py-3 rounded-full border border-red-500/30 text-red-500 font-bold text-sm hover:bg-red-500/5 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {cancelling ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-            Annuler
+            Annuler le rendez-vous
           </button>
         </div>
 
