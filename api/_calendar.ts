@@ -2,12 +2,17 @@ import { google } from 'googleapis';
 
 function getCalendarClient() {
   const credentials = process.env.GOOGLE_CALENDAR_CREDENTIALS;
-  if (!credentials) return null;
+  const subject = process.env.GOOGLE_CALENDAR_ID;
+  if (!credentials || !subject) return null;
 
-  const auth = new google.auth.GoogleAuth({
-    credentials: JSON.parse(credentials),
-    scopes: ['https://www.googleapis.com/auth/calendar'],
-  });
+  const creds = JSON.parse(credentials);
+  const auth = new google.auth.JWT(
+    creds.client_email,
+    undefined,
+    creds.private_key,
+    ['https://www.googleapis.com/auth/calendar'],
+    subject
+  );
 
   return google.calendar({ version: 'v3', auth });
 }
@@ -18,7 +23,7 @@ export async function createCalendarEvent(
   date: string,
   time: string,
   durationMinutes: number,
-  _attendeeEmail: string
+  attendeeEmail: string
 ): Promise<string | null> {
   const calendar = getCalendarClient();
   if (!calendar) return null;
@@ -37,7 +42,9 @@ export async function createCalendarEvent(
       description,
       start: { dateTime: startDateTime, timeZone: 'Europe/Paris' },
       end: { dateTime: endDateTime, timeZone: 'Europe/Paris' },
+      attendees: [{ email: attendeeEmail }],
     },
+    sendUpdates: 'all',
   });
 
   return event.data.id || null;
