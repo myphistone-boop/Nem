@@ -3,17 +3,9 @@ import { ChevronLeft, ChevronRight, Clock, Phone, User, Wrench, Loader2 } from '
 
 interface Props {
   slug: string;
+  services: string[];
   onConfirmed: (data: any) => void;
 }
-
-const SERVICES = [
-  "Fuite d'eau",
-  "Eau chaude / Ballon",
-  "Débouchage",
-  "Installation sanitaire",
-  "Réparation robinetterie",
-  "Détection de fuite",
-];
 
 const DAYS_FR = ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'];
 const MONTHS_FR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
@@ -27,7 +19,7 @@ function getFirstDayOfMonth(year: number, month: number) {
   return day === 0 ? 6 : day - 1;
 }
 
-export const BookingForm: React.FC<Props> = ({ slug, onConfirmed }) => {
+export const BookingForm: React.FC<Props> = ({ slug, services, onConfirmed }) => {
   const now = new Date();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -161,7 +153,7 @@ export const BookingForm: React.FC<Props> = ({ slug, onConfirmed }) => {
         </label>
         <select required value={service} onChange={e => setService(e.target.value)} className={inputClass}>
           <option value="">Choisir une intervention</option>
-          {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
+          {services.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 

@@ -25,16 +25,12 @@ export const BookingPage: React.FC<{ slug: string }> = ({ slug }) => {
         if (data.error) {
           setError('Établissement introuvable');
         } else {
-          fetch(`/api/lookup?slug=${slug}&ref=__PING__`)
-            .then(r => r.json())
-            .then(lookupData => {
-              setBusiness({
-                slug,
-                name: lookupData.business_name || slug,
-                services: [],
-                hours: { days: [], start: '', end: '', slot_duration: 60 },
-              });
-            });
+          setBusiness({
+            slug,
+            name: data.business_name || slug,
+            services: data.services || [],
+            hours: { days: [], start: '', end: '', slot_duration: 60 },
+          });
         }
         setLoading(false);
       })
@@ -130,6 +126,7 @@ export const BookingPage: React.FC<{ slug: string }> = ({ slug }) => {
         {mode === 'book' && (
           <BookingForm
             slug={slug}
+            services={business?.services || []}
             onConfirmed={(data) => {
               setConfirmation(data);
               setMode('confirmed');
