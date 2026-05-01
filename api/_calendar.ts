@@ -6,15 +6,13 @@ async function getCalendarClient() {
   if (!credentials || !subject) return null;
 
   const creds = JSON.parse(credentials);
-  const key = creds.private_key.replace(/\\n/g, '\n');
 
-  const auth = new google.auth.JWT(
-    creds.client_email,
-    undefined,
-    key,
-    ['https://www.googleapis.com/auth/calendar'],
-    subject
-  );
+  const auth = new google.auth.JWT({
+    email: creds.client_email,
+    key: creds.private_key,
+    scopes: ['https://www.googleapis.com/auth/calendar'],
+    subject,
+  });
 
   await auth.authorize();
 
