@@ -69,6 +69,12 @@ export const BookingConfirmation: React.FC<Props> = ({ data, slug, onBack }) => 
           </p>
         </div>
 
+        <div className="mt-6 p-4 rounded-xl bg-green-500/5 border border-green-500/10 text-center">
+          <p className="text-sm text-green-600 font-medium">
+            Votre rendez-vous est bien enregistré. Vous pouvez fermer cette page en toute tranquillité.
+          </p>
+        </div>
+
         <button
           onClick={onBack}
           className="w-full mt-6 py-3 rounded-full border border-border text-textMain font-medium text-sm hover:border-fuchsia-500/30 transition-colors"
