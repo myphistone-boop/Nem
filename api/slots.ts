@@ -19,7 +19,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const dayOfWeek = dateObj.getDay() === 0 ? 7 : dateObj.getDay();
 
   if (!hours.days.includes(dayOfWeek)) {
-    return res.json({ slots: [] });
+    return res.json({ slots: [], business_name: business.name, services: business.services || [] });
   }
 
   const start = hours.start;
