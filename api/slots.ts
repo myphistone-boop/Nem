@@ -45,5 +45,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const available = slots.filter(s => !bookedTimes.has(s));
 
-  return res.json({ slots: available, business_name: business.name, services: business.services || [] });
+  const booked = slots.filter(s => bookedTimes.has(s));
+
+  return res.json({ slots: available, booked, business_name: business.name, services: business.services || [] });
 }
