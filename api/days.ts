@@ -9,16 +9,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const now = new Date();
   const today = `${DAYS_FR[now.getDay()]} ${now.getDate()} ${MONTHS_FR[now.getMonth()]} ${now.getFullYear()}`;
 
-  const calendar: { day: string; date: string }[] = [];
+  const lines: string[] = [];
 
   for (let i = 1; i <= 30; i++) {
     const d = new Date(now);
     d.setDate(now.getDate() + i);
-    calendar.push({
-      day: `${DAYS_FR[d.getDay()]} ${d.getDate()} ${MONTHS_FR[d.getMonth()]}`,
-      date: d.toISOString().split('T')[0],
-    });
+    const label = `${DAYS_FR[d.getDay()]} ${d.getDate()} ${MONTHS_FR[d.getMonth()]}`;
+    const iso = d.toISOString().split('T')[0];
+    lines.push(`${label} = ${iso}`);
   }
 
-  return res.json({ today, calendar });
+  const summary = `Aujourd'hui : ${today}. Prochains jours : ${lines.join(' | ')}`;
+
+  return res.json({ summary });
 }

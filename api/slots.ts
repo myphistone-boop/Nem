@@ -44,8 +44,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const bookedTimes = new Set(bookings.map((b: any) => b.time));
 
   const available = slots.filter(s => !bookedTimes.has(s));
-
   const booked = slots.filter(s => bookedTimes.has(s));
 
-  return res.json({ slots: available, booked, business_name: business.name, services: business.services || [] });
+  const fmt = (t: string) => t.replace(/^0/, '').replace(':00', 'h').replace(':', 'h');
+  const availableText = available.length > 0 ? available.map(fmt).join(', ') : 'aucun';
+  const bookedText = booked.length > 0 ? booked.map(fmt).join(', ') : 'aucun';
+  const summary = `Créneaux disponibles : ${availableText}. Créneaux déjà pris : ${bookedText}.`;
+
+  return res.json({ summary, slots: available, booked, business_name: business.name, services: business.services || [] });
 }
