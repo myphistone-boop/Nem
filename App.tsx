@@ -14,7 +14,6 @@ import { DemoNav } from './components/ui/DemoNav';
 import { DesignInspiration } from './components/DesignInspiration';
 import { LegalModal } from './components/LegalModal';
 import { WhatsAppButton } from './components/WhatsAppButton';
-import { AdminInit } from './components/AdminInit';
 import { BlogList } from './components/blog/BlogList';
 import { BlogArticle } from './components/blog/BlogArticle';
 import { BookingPage } from './components/booking/BookingPage';
@@ -41,7 +40,6 @@ const App: React.FC = () => {
 
   // Check for pages and article routes
   const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
-  const isAdmin = params.get('admin') === 'true';
   const page = params.get('page');
   const articleSlug = params.get('article');
   const bookingSlug = params.get('booking');
@@ -55,11 +53,6 @@ const App: React.FC = () => {
       <Component />
     </>
   );
-
-  // Render Admin Page
-  if (isAdmin) {
-    return <AdminInit />;
-  }
 
   // Render Booking Page
   if (bookingSlug) return (
