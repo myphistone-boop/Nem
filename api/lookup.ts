@@ -24,19 +24,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } else if (phone) {
     bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND client_phone = ${phone} AND status = ${confirmedStatus} ORDER BY date, time`;
   } else {
-    const firstNamePattern = first_name ? `${first_name}%` : null;
-    const lastNamePattern = last_name ? `${last_name}%` : null;
+    const conditions: string[] = ['business_id = $1', 'status = $2'];
+    const params: any[] = [business.id, confirmedStatus];
 
-    bookings = await sql`
-      SELECT * FROM bookings
-      WHERE business_id = ${business.id}
-        AND status = ${confirmedStatus}
-        AND (${firstNamePattern}::text IS NULL OR client_first_name ILIKE ${firstNamePattern})
-        AND (${lastNamePattern}::text IS NULL OR client_last_name ILIKE ${lastNamePattern})
-        AND (${date ?? null}::text IS NULL OR date = ${date ?? null}::date)
-        AND (${time ?? null}::text IS NULL OR time = ${time ?? null})
-      ORDER BY date, time
-    `;
+    if (first_name) {
+      params.push(`${first_name}%`);
+      conditions.push(`client_first_name ILIKE $${params.length}`);
+    }
+    if (last_name) {
+      params.push(`${last_name}%`);
+      conditions.push(`client_last_name ILIKE $${params.length}`);
+    }
+    if (date) {
+      params.push(date);
+      conditions.push(`date = $${params.length}::date`);
+    }
+    if (time) {
+      params.push(time);
+      conditions.push(`time = $${params.length}`);
+    }
+
+    const query = `SELECT * FROM bookings WHERE ${conditions.join(' AND ')} ORDER BY date, time`;
+    bookings = await sql.query(query, params);
   }
 
   const formatted = bookings.map((b: any) => ({
