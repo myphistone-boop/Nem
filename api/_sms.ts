@@ -16,6 +16,11 @@ function normalizePhone(phone: string): string {
 }
 
 export async function sendSms(to: string, from: string, body: string): Promise<boolean> {
+  if (process.env.SMS_DISABLED === 'true') {
+    console.log(`[SMS disabled] would send to ${to}: ${body}`);
+    return false;
+  }
+
   const client = getTwilioClient();
   if (!client) return false;
 
