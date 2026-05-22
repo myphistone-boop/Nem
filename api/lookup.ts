@@ -22,7 +22,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (ref) {
     bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND reference = ${ref} AND status = ${confirmedStatus}`;
   } else if (phone) {
-    bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND client_phone = ${phone} AND status = ${confirmedStatus} ORDER BY date, time`;
+    const digits = phone.replace(/\D/g, '').slice(-9);
+    bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND regexp_replace(client_phone, '\D', '', 'g') LIKE ${'%' + digits} AND status = ${confirmedStatus} ORDER BY date, time`;
   } else {
     const conditions: string[] = ['business_id = $1', 'status = $2'];
     const params: any[] = [business.id, confirmedStatus];
