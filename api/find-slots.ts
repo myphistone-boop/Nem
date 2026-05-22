@@ -1,16 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { getDb } from './_db.js';
 
-const TIME_WINDOWS: Record<string, [number, number]> = {
-  any: [0, 24 * 60],
-  morning: [0, 12 * 60],
-  late_morning: [10 * 60, 12 * 60],
-  early_afternoon: [12 * 60, 15 * 60],
-  afternoon: [12 * 60, 18 * 60],
-  late_afternoon: [15 * 60, 18 * 60],
-  evening: [17 * 60, 24 * 60],
-};
-
 const DAY_NAMES = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
 const MONTH_NAMES = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
@@ -42,10 +32,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { slug } = req.query;
   if (!slug) return res.status(400).json({ error: 'slug required' });
-
-  const timeOfDay = (req.query.time_of_day as string) || 'any';
-  const window = TIME_WINDOWS[timeOfDay];
-  if (!window) return res.status(400).json({ error: `invalid time_of_day. Allowed: ${Object.keys(TIME_WINDOWS).join(', ')}` });
 
   const limit = Math.min(parseInt((req.query.limit as string) || '5', 10), 50);
 
@@ -88,7 +74,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const booked = bookedByDate.get(dateStr) || new Set<string>();
 
       for (let m = startM; m + duration <= endM && matches.length < limit; m += duration) {
-        if (m < window[0] || m >= window[1]) continue;
         if (dateStr === todayYMD && m <= nowMinutes) continue;
         const t = toHHMM(m);
         if (booked.has(t)) continue;
