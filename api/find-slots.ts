@@ -59,7 +59,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (businesses.length === 0) return res.status(404).json({ error: 'Business not found' });
 
   const business = businesses[0];
-  const hours = business.hours as { days: number[]; start: string; end: string; saturday_end?: string; slot_duration: number };
+  const hours = business.hours as { days: number[]; start: string; end: string; saturday_end?: string; slot_duration: number; lunch_start?: string; lunch_end?: string };
 
   const fromYMD = toYMD(fromDate);
   const toYMD_str = toYMD(toDate);
@@ -85,11 +85,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const startM = toMinutes(hours.start);
       const endM = toMinutes(dayOfWeek === 6 && hours.saturday_end ? hours.saturday_end : hours.end);
       const duration = hours.slot_duration;
+      const lunchStartM = hours.lunch_start ? toMinutes(hours.lunch_start) : null;
+      const lunchEndM = hours.lunch_end ? toMinutes(hours.lunch_end) : null;
       const booked = bookedByDate.get(dateStr) || new Set<string>();
 
       for (let m = startM; m + duration <= endM && matches.length < limit; m += duration) {
         if (m < window[0] || m >= window[1]) continue;
         if (dateStr === todayYMD && m <= nowMinutes) continue;
+        if (lunchStartM !== null && lunchEndM !== null && m + duration > lunchStartM && m < lunchEndM) continue;
         const t = toHHMM(m);
         if (booked.has(t)) continue;
         matches.push({ date: dateStr, day: formatDateFR(cursor), time: t });

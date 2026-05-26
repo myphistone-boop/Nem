@@ -13,7 +13,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (businesses.length === 0) return res.status(404).json({ error: 'Business not found' });
 
   const business = businesses[0];
-  const hours = business.hours as { days: number[]; start: string; end: string; saturday_end?: string; slot_duration: number };
+  const hours = business.hours as { days: number[]; start: string; end: string; saturday_end?: string; slot_duration: number; lunch_start?: string; lunch_end?: string };
 
   const dateObj = new Date(date as string);
   const dayOfWeek = dateObj.getDay() === 0 ? 7 : dateObj.getDay();
@@ -31,11 +31,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const [endH, endM] = end.split(':').map(Number);
   let current = startH * 60 + startM;
   const endMinutes = endH * 60 + endM;
+  const lunchStartM = hours.lunch_start ? hours.lunch_start.split(':').map(Number).reduce((h, m) => h * 60 + m) : null;
+  const lunchEndM = hours.lunch_end ? hours.lunch_end.split(':').map(Number).reduce((h, m) => h * 60 + m) : null;
 
   while (current + duration <= endMinutes) {
-    const h = Math.floor(current / 60).toString().padStart(2, '0');
-    const m = (current % 60).toString().padStart(2, '0');
-    slots.push(`${h}:${m}`);
+    const overlapsLunch = lunchStartM !== null && lunchEndM !== null && current + duration > lunchStartM && current < lunchEndM;
+    if (!overlapsLunch) {
+      const h = Math.floor(current / 60).toString().padStart(2, '0');
+      const m = (current % 60).toString().padStart(2, '0');
+      slots.push(`${h}:${m}`);
+    }
     current += duration;
   }
 
