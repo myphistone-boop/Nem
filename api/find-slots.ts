@@ -141,11 +141,18 @@ function buildAdaptiveSummary(
   toDate: Date,
   timeOfDay: string,
   hadDateRange: boolean,
+  rangeHasOpenDays: boolean,
 ): { summary: string; level: string } {
   if (matches.length === 0) {
+    if (!rangeHasOpenDays) {
+      return {
+        summary: "On est fermé ce jour-là. Vous voulez essayer un autre jour ?",
+        level: 'closed',
+      };
+    }
     return {
-      summary: "Désolé, je n'ai aucun créneau sur cette plage. On peut essayer une autre date ?",
-      level: 'none',
+      summary: "Désolé, c'est complet sur cette plage. On peut essayer une autre date ?",
+      level: 'full',
     };
   }
 
@@ -307,10 +314,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const cursor = new Date(fromDate);
   const nowMinutes = new Date().getHours() * 60 + new Date().getMinutes();
   const todayYMD = toYMD(new Date());
+  let rangeHasOpenDays = false;
 
   while (cursor <= toDate) {
     const dayOfWeek = cursor.getDay() === 0 ? 7 : cursor.getDay();
     if (hours.days.includes(dayOfWeek)) {
+      rangeHasOpenDays = true;
       const dateStr = toYMD(cursor);
       const startM = toMinutes(hours.start);
       const endM = toMinutes(dayOfWeek === 6 && hours.saturday_end ? hours.saturday_end : hours.end);
@@ -331,7 +340,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     cursor.setDate(cursor.getDate() + 1);
   }
 
-  const { summary, level } = buildAdaptiveSummary(allMatches, fromDate, toDate, timeOfDay, hadDateRange);
+  const { summary, level } = buildAdaptiveSummary(allMatches, fromDate, toDate, timeOfDay, hadDateRange, rangeHasOpenDays);
   const limitedMatches = allMatches.slice(0, limit);
 
   return res.json({
