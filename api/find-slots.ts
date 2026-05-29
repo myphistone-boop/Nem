@@ -146,12 +146,12 @@ function buildAdaptiveSummary(
   if (matches.length === 0) {
     if (!rangeHasOpenDays) {
       return {
-        summary: "On est fermé ce jour-là. Vous voulez essayer un autre jour ?",
+        summary: "On est fermé ce jour-là. On peut planifier pour un autre jour [breath]?",
         level: 'closed',
       };
     }
     return {
-      summary: "Désolé, c'est complet sur cette plage. On peut essayer une autre date ?",
+      summary: "Désolé, c'est complet sur cette plage. On peut essayer une autre date [breath]?",
       level: 'full',
     };
   }
@@ -164,10 +164,10 @@ function buildAdaptiveSummary(
   if (!hadDateRange && daySpan > 7) {
     const next3 = matches.slice(0, 3).map(m => `${m.day} à ${formatTimeFR(m.time)}`);
     if (next3.length === 1) {
-      return { summary: `Le prochain créneau c'est ${next3[0]}. Ça vous va ?`, level: 'next_slots' };
+      return { summary: `Le prochain créneau c'est ${next3[0]}. C'est ok [breath]?`, level: 'next_slots' };
     }
     return {
-      summary: `Le prochain créneau c'est ${next3.join(', puis ')}. Lequel vous arrange ?`,
+      summary: `Le prochain créneau c'est ${next3.join(', puis ')} [breath]`,
       level: 'next_slots',
     };
   }
@@ -178,7 +178,7 @@ function buildAdaptiveSummary(
 
     if (matches.length === 1) {
       return {
-        summary: `${capitalize(dayName)} j'ai uniquement ${formatTimeFR(matches[0].time)}, ça vous va ?`,
+        summary: `${capitalize(dayName)} j'ai uniquement ${formatTimeFR(matches[0].time)}, c'est ok [breath]?`,
         level: 'single_slot',
       };
     }
@@ -187,7 +187,7 @@ function buildAdaptiveSummary(
       const heures = matches.map(m => formatTimeFR(m.time)).join(', ');
       const prefix = hasTimeFilter ? `${capitalize(dayName)} ${periodLabel(timeOfDay)}` : capitalize(dayName);
       return {
-        summary: `${prefix} j'ai ${heures}. Lequel vous arrange ?`,
+        summary: `${prefix} j'ai ${heures} [breath].`,
         level: 'hour_list',
       };
     }
@@ -195,7 +195,7 @@ function buildAdaptiveSummary(
     if (hasTimeFilter) {
       const top3 = matches.slice(0, 3).map(m => formatTimeFR(m.time)).join(', ');
       return {
-        summary: `${capitalize(dayName)} ${periodLabel(timeOfDay)} j'ai ${top3}. Lequel ?`,
+        summary: `${capitalize(dayName)} ${periodLabel(timeOfDay)} j'ai ${top3} [breath].`,
         level: 'hour_list_period',
       };
     }
@@ -204,12 +204,12 @@ function buildAdaptiveSummary(
     if (periods.length === 1) {
       const top3 = matches.slice(0, 3).map(m => formatTimeFR(m.time)).join(', ');
       return {
-        summary: `${capitalize(dayName)} j'ai ${matches.length} créneaux ${periods[0]} : ${top3}. Lequel ?`,
+        summary: `${capitalize(dayName)} j'ai ${matches.length} créneaux ${periods[0]} : ${top3} [breath].`,
         level: 'hour_list_period',
       };
     }
     return {
-      summary: `${capitalize(dayName)} j'ai de la dispo ${periods.join(' et ')}. Vous préférez quand ?`,
+      summary: `${capitalize(dayName)} j'ai de la dispo ${periods.join(' et ')} [breath].`,
       level: 'period_choice',
     };
   }
@@ -220,7 +220,7 @@ function buildAdaptiveSummary(
       const day1 = matches.find(m => m.date === distinctDays[0])!.day;
       const day2 = matches.find(m => m.date === distinctDays[1])!.day;
       return {
-        summary: `J'ai de la dispo ${day1} et ${day2}. Lequel vous arrange ?`,
+        summary: `J'ai de la dispo ${day1} et ${day2} [breath].`,
         level: 'day_choice',
       };
     }
@@ -229,13 +229,13 @@ function buildAdaptiveSummary(
       if (dayMatches.length <= 3) {
         const heures = dayMatches.map(m => formatTimeFR(m.time)).join(', ');
         return {
-          summary: `${capitalize(dayMatches[0].day)} j'ai ${heures}. Lequel ?`,
+          summary: `${capitalize(dayMatches[0].day)} j'ai ${heures} [breath].`,
           level: 'hour_list',
         };
       }
       const periods = getDayPeriods(dayMatches.map(m => m.time));
       return {
-        summary: `${capitalize(dayMatches[0].day)} j'ai de la dispo ${periods.join(' et ')}. Vous préférez quand ?`,
+        summary: `${capitalize(dayMatches[0].day)} j'ai de la dispo ${periods.join(' et ')} [breath].`,
         level: 'period_choice',
       };
     }
@@ -244,7 +244,7 @@ function buildAdaptiveSummary(
   // 3-7 days span → week zone choice
   if (daySpan >= 3 && daySpan <= 7) {
     return {
-      summary: 'Vous préférez début, milieu ou fin de semaine ?',
+      summary: 'Vous préférez début, milieu ou fin de semaine [breath] ?',
       level: 'week_zone_choice',
     };
   }
@@ -253,13 +253,13 @@ function buildAdaptiveSummary(
   if (distinctDays.length <= 3) {
     const dayNames = distinctDays.map(d => matches.find(m => m.date === d)!.day);
     return {
-      summary: `J'ai de la dispo ${dayNames.join(', ')}. Lequel ?`,
+      summary: `J'ai de la dispo ${dayNames.join(', ')} [breath].`,
       level: 'day_choice',
     };
   }
 
   return {
-    summary: 'Vous préférez début, milieu ou fin de semaine ?',
+    summary: 'Vous préférez début, milieu ou fin de semaine [breath] ?',
     level: 'week_zone_choice',
   };
 }
