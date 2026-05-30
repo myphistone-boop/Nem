@@ -241,20 +241,24 @@ function buildAdaptiveSummary(
     }
   }
 
-  // 3-7 days span → week zone choice
-  if (daySpan >= 3 && daySpan <= 7) {
+  // 3+ days span
+  if (daySpan >= 3) {
+    if (distinctDays.length <= 3) {
+      const dayNames = distinctDays.map(d => matches.find(m => m.date === d)!.day);
+      if (dayNames.length === 2) {
+        return {
+          summary: `J'ai de la dispo ${dayNames[0]} et ${dayNames[1]} [breath].`,
+          level: 'day_choice',
+        };
+      }
+      return {
+        summary: `J'ai de la dispo ${dayNames.join(', ')} [breath].`,
+        level: 'day_choice',
+      };
+    }
     return {
       summary: 'Vous préférez début, milieu ou fin de semaine [breath] ?',
       level: 'week_zone_choice',
-    };
-  }
-
-  // Fallback: list distinct days
-  if (distinctDays.length <= 3) {
-    const dayNames = distinctDays.map(d => matches.find(m => m.date === d)!.day);
-    return {
-      summary: `J'ai de la dispo ${dayNames.join(', ')} [breath].`,
-      level: 'day_choice',
     };
   }
 
