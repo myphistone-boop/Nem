@@ -113,7 +113,7 @@ function periodLabel(en: string): string {
     case 'early_afternoon': return "en début d'après-midi";
     case 'afternoon': return "l'après-midi";
     case 'late_afternoon': return "en fin de journée";
-    case 'evening': return 'en soirée';
+    case 'evening': return "en fin d'après-midi";
     default: return '';
   }
 }
@@ -131,7 +131,7 @@ function getDayPeriods(slotTimes: string[]): string[] {
   const periods: string[] = [];
   if (hasMorning) periods.push('le matin');
   if (hasAfternoon) periods.push("l'après-midi");
-  if (hasEvening) periods.push('en soirée');
+  if (hasEvening) periods.push("en fin d'après-midi");
   return periods;
 }
 
