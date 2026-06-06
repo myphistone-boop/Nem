@@ -167,12 +167,12 @@ function buildAdaptiveSummary(
   if (matches.length === 0) {
     if (!rangeHasOpenDays) {
       return {
-        summary: "On est fermé ce jour-là. On peut planifier pour un autre jour [breath]?",
+        summary: 'Malheureusement on est fermé ce jour-là.',
         level: 'closed',
       };
     }
     return {
-      summary: "Désolé, c'est complet sur cette plage. On peut essayer une autre date [breath]?",
+      summary: "Malheureusement c'est complet sur cette plage.",
       level: 'full',
     };
   }
@@ -332,7 +332,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const dow = dowOf(fromDate);
     if (!hours.days.includes(dow)) {
       return res.json({
-        summary: `Ah, on est fermé ${formatDateFR(fromDate)}. On peut trouver un autre jour [breath] ?`,
+        summary: `Malheureusement on est fermé ${formatDateFR(fromDate)}.`,
         level: 'closed', matches: [], total: 0, hours_label: hoursLabel,
         business_name: business.name, services: business.services || [],
       });
@@ -345,14 +345,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (lunchS !== null && lunchE !== null && reqMin >= lunchS && reqMin < lunchE) {
       return res.json({
-        summary: `Ah, on est fermé entre ${fmtHour(hours.lunch_start!)} et ${fmtHour(hours.lunch_end!)} pour la pause déjeuner. On trouve un autre horaire [breath] ?`,
+        summary: `Malheureusement on est pas ouvert sur ce créneau, c'est ${hoursLabel}.`,
         level: 'lunch_break', matches: [], total: 0, hours_label: hoursLabel,
         business_name: business.name, services: business.services || [],
       });
     }
     if (reqMin < startM || reqMin >= endM) {
       return res.json({
-        summary: `Ah, on ne travaille pas à cette heure-là. On est ouvert ${hoursLabel}. On trouve un créneau dans ces horaires [breath] ?`,
+        summary: `Malheureusement on est pas ouvert sur ce créneau, c'est ${hoursLabel}.`,
         level: 'outside_hours', matches: [], total: 0, hours_label: hoursLabel,
         business_name: business.name, services: business.services || [],
       });
