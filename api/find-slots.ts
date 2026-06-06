@@ -38,6 +38,19 @@ const TIME_OF_DAY_FR: Record<string, string> = {
 const DAY_NAMES = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
 const MONTH_NAMES = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
+// Current wall-clock time in Europe/Paris, independent of the server timezone.
+function parisNow(): { ymd: string; minutes: number } {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Paris',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(new Date());
+  const get = (t: string) => parts.find(p => p.type === t)?.value || '0';
+  const ymd = `${get('year')}-${get('month')}-${get('day')}`;
+  const minutes = parseInt(get('hour'), 10) * 60 + parseInt(get('minute'), 10);
+  return { ymd, minutes };
+}
+
 function toMinutes(t: string): number {
   const [h, m] = t.split(':').map(Number);
   return h * 60 + m;
@@ -49,16 +62,22 @@ function toHHMM(min: number): string {
   return `${h}:${m}`;
 }
 
+// Dates are anchored at UTC noon so day math is immune to the server timezone.
+function ymdToDate(ymd: string): Date {
+  const [y, m, d] = ymd.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d, 12, 0, 0));
+}
+
+function toYMD(d: Date): string {
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+}
+
 function formatDateFR(d: Date): string {
-  return `${DAY_NAMES[d.getDay()]} ${d.getDate()} ${MONTH_NAMES[d.getMonth()]}`;
+  return `${DAY_NAMES[d.getUTCDay()]} ${d.getUTCDate()} ${MONTH_NAMES[d.getUTCMonth()]}`;
 }
 
 function formatTimeFR(t: string): string {
   return t.replace(/^0/, '').replace(':00', 'h').replace(':', 'h');
-}
-
-function toYMD(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
 function capitalize(s: string): string {
@@ -67,12 +86,16 @@ function capitalize(s: string): string {
 
 function addDays(d: Date, n: number): Date {
   const result = new Date(d);
-  result.setDate(result.getDate() + n);
+  result.setUTCDate(result.getUTCDate() + n);
   return result;
 }
 
 function daysBetween(a: Date, b: Date): number {
   return Math.round((b.getTime() - a.getTime()) / (24 * 60 * 60 * 1000));
+}
+
+function dowOf(d: Date): number {
+  return d.getUTCDay() === 0 ? 7 : d.getUTCDay();
 }
 
 function normalizeTimeOfDay(raw: string): string {
@@ -85,11 +108,9 @@ function normalizeTimeOfDay(raw: string): string {
   return 'any';
 }
 
-function applyWeekZone(fromDate: Date, toDate: Date, zone: string): { from: Date; to: Date } | null {
-  const start = new Date(fromDate);
-  const dayOfWeek = start.getDay() === 0 ? 7 : start.getDay();
-  const monday = addDays(start, 1 - dayOfWeek);
-
+function applyWeekZone(fromDate: Date, zone: string): { from: Date; to: Date } | null {
+  const dayOfWeek = dowOf(fromDate);
+  const monday = addDays(fromDate, 1 - dayOfWeek);
   switch (zone.toLowerCase()) {
     case 'start':
     case 'debut':
@@ -160,7 +181,6 @@ function buildAdaptiveSummary(
   const distinctDays = [...new Set(matches.map(m => m.date))];
   const hasTimeFilter = timeOfDay !== 'any';
 
-  // No specific date range → propose next 3 slots
   if (!hadDateRange && daySpan > 7) {
     const next3 = matches.slice(0, 3).map(m => `${m.day} à ${formatTimeFR(m.time)}`);
     if (next3.length === 1) {
@@ -172,7 +192,6 @@ function buildAdaptiveSummary(
     };
   }
 
-  // Single day
   if (daySpan === 1) {
     const dayName = matches[0].day;
 
@@ -214,7 +233,6 @@ function buildAdaptiveSummary(
     };
   }
 
-  // 2 days span
   if (daySpan === 2) {
     if (distinctDays.length === 2) {
       const day1 = matches.find(m => m.date === distinctDays[0])!.day;
@@ -241,7 +259,6 @@ function buildAdaptiveSummary(
     }
   }
 
-  // 3+ days span
   if (daySpan >= 3) {
     if (distinctDays.length <= 3) {
       const dayNames = distinctDays.map(d => matches.find(m => m.date === d)!.day);
@@ -280,15 +297,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const limit = Math.min(parseInt((req.query.limit as string) || '5', 10), 50);
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const now = parisNow();
+  const todayYMD = now.ymd;
+  const nowMinutes = now.minutes;
+
   const hadDateRange = !!(req.query.from || req.query.to);
-  let fromDate = req.query.from ? new Date(req.query.from as string) : today;
-  let toDate = req.query.to ? new Date(req.query.to as string) : new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
+  let fromDate = req.query.from ? ymdToDate(req.query.from as string) : ymdToDate(todayYMD);
+  let toDate = req.query.to ? ymdToDate(req.query.to as string) : addDays(ymdToDate(todayYMD), 14);
 
   const weekZoneRaw = req.query.week_zone as string | undefined;
   if (weekZoneRaw) {
-    const narrowed = applyWeekZone(fromDate, toDate, weekZoneRaw);
+    const narrowed = applyWeekZone(fromDate, weekZoneRaw);
     if (narrowed) {
       fromDate = narrowed.from;
       toDate = narrowed.to;
@@ -302,6 +321,44 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const business = businesses[0];
   const hours = business.hours as { days: number[]; start: string; end: string; saturday_end?: string; slot_duration: number; lunch_start?: string; lunch_end?: string };
 
+  const fmtHour = (t: string) => t.replace(/^0/, '').replace(':00', 'h').replace(':', 'h');
+  const hoursLabel = hours.lunch_start && hours.lunch_end
+    ? `de ${fmtHour(hours.start)} à ${fmtHour(hours.lunch_start)} et de ${fmtHour(hours.lunch_end)} à ${fmtHour(hours.end)}`
+    : `de ${fmtHour(hours.start)} à ${fmtHour(hours.end)}`;
+
+  // Specific requested time → detect closed day / lunch / outside hours up front.
+  const reqTime = (req.query.requested_time as string) || '';
+  if (/^\d{1,2}:\d{2}$/.test(reqTime)) {
+    const dow = dowOf(fromDate);
+    if (!hours.days.includes(dow)) {
+      return res.json({
+        summary: `Ah, on est fermé ${formatDateFR(fromDate)}. On peut trouver un autre jour [breath] ?`,
+        level: 'closed', matches: [], total: 0, hours_label: hoursLabel,
+        business_name: business.name, services: business.services || [],
+      });
+    }
+    const reqMin = toMinutes(reqTime);
+    const startM = toMinutes(hours.start);
+    const endM = toMinutes(dow === 6 && hours.saturday_end ? hours.saturday_end : hours.end);
+    const lunchS = hours.lunch_start ? toMinutes(hours.lunch_start) : null;
+    const lunchE = hours.lunch_end ? toMinutes(hours.lunch_end) : null;
+
+    if (lunchS !== null && lunchE !== null && reqMin >= lunchS && reqMin < lunchE) {
+      return res.json({
+        summary: `Ah, on est fermé entre ${fmtHour(hours.lunch_start!)} et ${fmtHour(hours.lunch_end!)} pour la pause déjeuner. On trouve un autre horaire [breath] ?`,
+        level: 'lunch_break', matches: [], total: 0, hours_label: hoursLabel,
+        business_name: business.name, services: business.services || [],
+      });
+    }
+    if (reqMin < startM || reqMin >= endM) {
+      return res.json({
+        summary: `Ah, on ne travaille pas à cette heure-là. On est ouvert ${hoursLabel}. On trouve un créneau dans ces horaires [breath] ?`,
+        level: 'outside_hours', matches: [], total: 0, hours_label: hoursLabel,
+        business_name: business.name, services: business.services || [],
+      });
+    }
+  }
+
   const fromYMD = toYMD(fromDate);
   const toYMD_str = toYMD(toDate);
   const confirmedStatus = 'confirmed';
@@ -309,19 +366,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const bookedByDate = new Map<string, Set<string>>();
   for (const b of bookings as any[]) {
-    const dateKey = typeof b.date === 'string' ? b.date : toYMD(new Date(b.date));
+    const dateKey = (typeof b.date === 'string' ? b.date : toYMD(new Date(b.date))).slice(0, 10);
     if (!bookedByDate.has(dateKey)) bookedByDate.set(dateKey, new Set());
     bookedByDate.get(dateKey)!.add(b.time);
   }
 
   const allMatches: { date: string; day: string; time: string }[] = [];
   const cursor = new Date(fromDate);
-  const nowMinutes = new Date().getHours() * 60 + new Date().getMinutes();
-  const todayYMD = toYMD(new Date());
   let rangeHasOpenDays = false;
 
   while (cursor <= toDate) {
-    const dayOfWeek = cursor.getDay() === 0 ? 7 : cursor.getDay();
+    const dayOfWeek = dowOf(cursor);
     if (hours.days.includes(dayOfWeek)) {
       rangeHasOpenDays = true;
       const dateStr = toYMD(cursor);
@@ -341,7 +396,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         allMatches.push({ date: dateStr, day: formatDateFR(cursor), time: t });
       }
     }
-    cursor.setDate(cursor.getDate() + 1);
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
   }
 
   const { summary, level } = buildAdaptiveSummary(allMatches, fromDate, toDate, timeOfDay, hadDateRange, rangeHasOpenDays);
@@ -352,6 +407,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     level,
     matches: limitedMatches,
     total: allMatches.length,
+    hours_label: hoursLabel,
     business_name: business.name,
     services: business.services || [],
   });
