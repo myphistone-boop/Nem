@@ -84,6 +84,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const isSingleDay = fromDate === toDate;
   const maxLimit = isSingleDay ? Infinity : Math.min(parseInt(limit as string, 10) || 20, 100);
 
+  const todayParis = new Date().toLocaleDateString('fr-CA', { timeZone: 'Europe/Paris' });
+  const currentTimeParis = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
+  const currentMinutes = toMinutes(currentTimeParis);
+
   const dates = getDatesInRange(fromDate, toDate);
 
   type DayResult = { date: string; day: string; periods_summary: string; slots: string[] };
@@ -121,6 +125,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const available = allSlots
       .filter(s => !bookedTimes.has(s))
+      .filter(s => !(dateStr === todayParis && toMinutes(s) <= currentMinutes))
       .filter(s => {
         const mins = toMinutes(s);
         return mins >= timeRange[0] && mins < timeRange[1];
