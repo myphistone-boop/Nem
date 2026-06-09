@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { getDb } from './_db.js';
+import { normalizePhone } from './_sms.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
@@ -20,7 +21,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (ref) {
     bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND reference = ${ref} AND status = ${confirmedStatus}`;
   } else {
-    bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND client_phone = ${phone} AND status = ${confirmedStatus} ORDER BY date, time`;
+    const normalizedPhone = normalizePhone(phone as string);
+    bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND (client_phone = ${normalizedPhone} OR client_phone = ${phone}) AND status = ${confirmedStatus} ORDER BY date, time`;
   }
 
   return res.json({

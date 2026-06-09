@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { getDb } from './_db.js';
 import { createCalendarEvent } from './_calendar.js';
-import { sendSms } from './_sms.js';
+import { sendSms, normalizePhone } from './_sms.js';
 import crypto from 'crypto';
 
 function generateReference(): string {
@@ -11,11 +11,13 @@ function generateReference(): string {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { business_slug, first_name, last_name, phone, service, date, time } = req.body;
+  const { business_slug, first_name, last_name, phone: rawPhone, service, date, time } = req.body;
 
-  if (!business_slug || !first_name || !last_name || !phone || !service || !date || !time) {
+  if (!business_slug || !first_name || !last_name || !rawPhone || !service || !date || !time) {
     return res.status(400).json({ error: 'All fields are required' });
   }
+
+  const phone = normalizePhone(rawPhone);
 
   const sql = getDb();
 

@@ -7,7 +7,7 @@ function getTwilioClient() {
   return twilio(sid, token);
 }
 
-function normalizePhone(phone: string): string {
+export function normalizePhone(phone: string): string {
   const digits = phone.replace(/[\s\-().]/g, '');
   if (digits.startsWith('+')) return digits;
   if (digits.startsWith('00')) return '+' + digits.slice(2);

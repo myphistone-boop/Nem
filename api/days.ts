@@ -8,6 +8,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const now = new Date();
   const today = `${DAYS_FR[now.getDay()]} ${now.getDate()} ${MONTHS_FR[now.getMonth()]} ${now.getFullYear()}`;
+  const today_date = now.toLocaleDateString('fr-CA', { timeZone: 'Europe/Paris' });
+  const current_time = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
 
   const calendar: { day: string; date: string }[] = [];
 
@@ -20,5 +22,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   }
 
-  return res.json({ today, calendar });
+  return res.json({ today, today_date, current_time, calendar });
 }
