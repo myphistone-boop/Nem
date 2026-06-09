@@ -50,5 +50,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const availableText = available.length > 0 ? available.map(fmt).join(', ') : 'aucun';
   const bookedText = booked.length > 0 ? booked.map(fmt).join(', ') : 'aucun';
 
-  return res.json({ summary: `Créneaux disponibles : ${availableText}. Créneaux déjà pris : ${bookedText}.` });
+  function toMinutes(t: string): number {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+  }
+
+  function getPeriod(t: string): string {
+    const mins = toMinutes(t);
+    if (mins < 12 * 60) return 'le matin';
+    if (mins < 17 * 60) return "l'après-midi";
+    return "en fin d'après-midi";
+  }
+
+  function frenchList(items: string[]): string {
+    if (items.length === 0) return '';
+    if (items.length === 1) return items[0];
+    return items.slice(0, -1).join(', ') + ' et ' + items[items.length - 1];
+  }
+
+  const periodOrder = ["le matin", "l'après-midi", "en fin d'après-midi"];
+  const periodSet = new Set(available.map(getPeriod));
+  const periods = periodOrder.filter(p => periodSet.has(p));
+  const periodsSummary = periods.length > 0
+    ? `Plages disponibles : ${frenchList(periods)}.`
+    : 'Aucune plage disponible.';
+
+  return res.json({
+    summary: `Créneaux disponibles : ${availableText}. Créneaux déjà pris : ${bookedText}.`,
+    periods_summary: periodsSummary,
+  });
 }
