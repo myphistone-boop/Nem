@@ -81,10 +81,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const hours = business.hours as { days: number[]; start: string; end: string; saturday_end?: string; slot_duration: number };
 
   const timeRange = TIME_RANGES[time_of_day as string] ?? TIME_RANGES.any;
-  const maxLimit = Math.min(parseInt(limit as string, 10) || 20, 100);
+  const isSingleDay = fromDate === toDate;
+  const maxLimit = isSingleDay ? Infinity : Math.min(parseInt(limit as string, 10) || 20, 100);
 
   const dates = getDatesInRange(fromDate, toDate);
-  const isSingleDay = fromDate === toDate;
 
   type DayResult = { date: string; day: string; periods_summary: string; slots: string[] };
   const dayResults: DayResult[] = [];
