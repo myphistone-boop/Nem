@@ -11,9 +11,9 @@ function generateReference(): string {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { business_slug, first_name, last_name, phone: rawPhone, service, date, time } = req.body;
+  const { business_slug, first_name, last_name = '', phone: rawPhone, service, date, time } = req.body;
 
-  if (!business_slug || !first_name || !last_name || !rawPhone || !service || !date || !time) {
+  if (!business_slug || !first_name || !rawPhone || !service || !date || !time) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
