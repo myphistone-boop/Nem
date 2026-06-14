@@ -5,9 +5,9 @@ import { normalizePhone } from './_sms.js';
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { slug, ref, phone } = req.query;
+  const { slug, ref, phone, first_name } = req.query;
   if (!slug) return res.status(400).json({ error: 'slug required' });
-  if (!ref && !phone) return res.status(400).json({ error: 'ref or phone required' });
+  if (!ref && !phone && !first_name) return res.status(400).json({ error: 'ref, phone or first_name required' });
 
   const sql = getDb();
 
@@ -20,9 +20,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   let bookings;
   if (ref) {
     bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND reference = ${ref} AND status = ${confirmedStatus}`;
-  } else {
+  } else if (phone) {
     const normalizedPhone = normalizePhone(phone as string);
     bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND (client_phone = ${normalizedPhone} OR client_phone = ${phone}) AND status = ${confirmedStatus} ORDER BY date, time`;
+    if (bookings.length === 0 && first_name) {
+      bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND LOWER(client_first_name) = LOWER(${first_name}) AND status = ${confirmedStatus} ORDER BY date, time`;
+    }
+  } else {
+    bookings = await sql`SELECT * FROM bookings WHERE business_id = ${business.id} AND LOWER(client_first_name) = LOWER(${first_name}) AND status = ${confirmedStatus} ORDER BY date, time`;
   }
 
   return res.json({
