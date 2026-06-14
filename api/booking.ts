@@ -34,8 +34,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const hours = business.hours as { slot_duration: number };
 
   const calendarEventId = await createCalendarEvent(
-    `${service} — ${first_name} ${last_name}`,
-    `Client : ${first_name} ${last_name}\nTéléphone : ${phone}\nService : ${service}\nRéférence : ${reference}`,
+    `${service} — ${first_name}`,
+    `Client : ${first_name}\nTéléphone : ${phone}\nService : ${service}\nRéférence : ${reference}`,
     date,
     time,
     hours.slot_duration || 60,

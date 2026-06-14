@@ -28,8 +28,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const newEventId = await createCalendarEvent(
-    `${booking.service} — ${booking.client_first_name} ${booking.client_last_name}`,
-    `Client : ${booking.client_first_name} ${booking.client_last_name}\nTéléphone : ${booking.client_phone}\nService : ${booking.service}\nRéférence : ${reference}`,
+    `${booking.service} — ${booking.client_first_name}`,
+    `Client : ${booking.client_first_name}\nTéléphone : ${booking.client_phone}\nService : ${booking.service}\nRéférence : ${reference}`,
     new_date,
     new_time,
     hours.slot_duration || 60,
@@ -43,7 +43,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     await sendSms(
       booking.business_phone,
       booking.twilio_phone,
-      `Le RDV de ${booking.client_first_name} ${booking.client_last_name} a été déplacé au ${dateFormatted} à ${new_time}.\nService : ${booking.service}\nRéf : ${reference}`
+      `Le RDV de ${booking.client_first_name} a été déplacé au ${dateFormatted} à ${new_time}.\nService : ${booking.service}\nRéf : ${reference}`
     );
   }
 

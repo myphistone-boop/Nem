@@ -29,7 +29,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     bookings: bookings.map((b: any) => ({
       reference: b.reference,
       first_name: b.client_first_name,
-      last_name: b.client_last_name,
       phone: b.client_phone,
       service: b.service,
       date: b.date,
