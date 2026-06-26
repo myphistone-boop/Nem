@@ -60,5 +60,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     },
   };
 
-  return res.json({ slug: business.slug, catalogue, tools_registry });
+  const phrases = {
+    get_days: "Alors attendez je regarde dans notre agenda tout de suite...",
+    find_available_slots: [
+      "Donc pour le {jour} {date}, voyons voir...",
+      "Alors attendez un instant je vérifie ça 2 petites secondes...",
+      "Ok laissez juste vérifier un petit truc...",
+    ],
+    [bookToolName]: "Allez c'est parfait, patientez juste 2 petites secondes, je suis en train de le réserver...",
+    lookup_appointment: "Alors je vais le retrouver, si possible, avec votre numéro de téléphone.",
+    cancel_appointment: [
+      "D'accord, alors attendez 2 secondes que je l'annule...",
+      "Ok et le suivant donc le {jour} {date}, juste un petit instant...",
+    ],
+    reschedule_appointment: [
+      "OK, donc je suis en train de le décaler, deux petites secondes...",
+      "Ok et le {jour} {date}, juste un petit moment...",
+    ],
+  };
+
+  return res.json({ slug: business.slug, catalogue, tools_registry, phrases });
 }
