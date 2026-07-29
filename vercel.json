@@ -1,5 +1,8 @@
 {
   "rewrites": [
+    { "source": "/agent/:path*",       "destination": "https://agent.nemphisia.com/agent/:path*" },
+    { "source": "/agent-api/:path*",    "destination": "https://agent.nemphisia.com/agent-api/:path*" },
+    { "source": "/createur-api/:path*", "destination": "https://agent.nemphisia.com/createur-api/:path*" },
     { "source": "/((?!api|blog|sitemap\\.xml|robots\\.txt).*)", "destination": "/index.html" }
   ],
   "headers": [
