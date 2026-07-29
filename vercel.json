@@ -1,42 +1,92 @@
 {
   "rewrites": [
-    { "source": "/agent/:path*",       "destination": "https://agent.nemphisia.com/agent/:path*" },
-    { "source": "/agent-api/:path*",    "destination": "https://agent.nemphisia.com/agent-api/:path*" },
-    { "source": "/createur-api/:path*", "destination": "https://agent.nemphisia.com/createur-api/:path*" },
-    { "source": "/((?!api|blog|sitemap\\.xml|robots\\.txt).*)", "destination": "/index.html" }
+    {
+      "source": "/agent/:path*",
+      "destination": "https://agent.nemphisia.com/agent/:path*"
+    },
+    {
+      "source": "/agent-api/:path*",
+      "destination": "https://agent.nemphisia.com/agent-api/:path*"
+    },
+    {
+      "source": "/createur-api/:path*",
+      "destination": "https://agent.nemphisia.com/createur-api/:path*"
+    },
+    {
+      "source": "/createur",
+      "destination": "https://agent.nemphisia.com/createur"
+    },
+    {
+      "source": "/createur/:path*",
+      "destination": "https://agent.nemphisia.com/createur/:path*"
+    },
+    {
+      "source": "/((?!api|blog|sitemap\\.xml|robots\\.txt).*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     },
     {
       "source": "/sitemap.xml",
       "headers": [
-        { "key": "Content-Type", "value": "application/xml" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     },
     {
       "source": "/robots.txt",
       "headers": [
-        { "key": "Content-Type", "value": "text/plain" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Content-Type",
+          "value": "text/plain"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     },
     {
       "source": "/blog/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400"
+        }
       ]
     }
   ],
   "crons": [
-    { "path": "/api/remind", "schedule": "0 9 * * *" },
-    { "path": "/api/ping", "schedule": "0 3 * * *" }
+    {
+      "path": "/api/remind",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/ping",
+      "schedule": "0 3 * * *"
+    }
   ]
 }
