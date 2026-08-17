@@ -263,3 +263,53 @@ Keepalive Supabase.
 - `TWILIO_ACCOUNT_SID` — SID du compte Twilio
 - `TWILIO_AUTH_TOKEN` — Token Twilio
 - `CRON_SECRET` — Secret pour sécuriser les crons
+
+---
+
+## Agent ElevenLabs — Configuration
+
+### Vue d'ensemble
+
+Chaque artisan a un agent ElevenLabs dédié configuré pour :
+- Répondre aux appels entrants (redirigés via Twilio)
+- Collecter les infos de prise de rendez-vous (prénom, nom, service, date, créneau)
+- Chercher des créneaux disponibles via l'API
+- Valider et confirmer les réservations via l'API
+- Gérer les annulations et les décalages de RDV
+
+### Exemple de configuration : Coiffure Lyon
+
+**Horaires** : Lundi-Samedi 9h-12h et 13h-18h, fermé dimanche et jours fériés
+**Services** : Coupe, Coloration, Lissage, Permanente, Barbe (Note: barbier services NOT offered — redirect to barber)
+**Slug** : `coiffure-lyon`
+
+### Règles d'optimisation API
+
+**RÈGLE CRITIQUE** : Avant d'appeler `find_available_slots`, TOUJOURS vérifier en premier que l'heure demandée est dans les horaires connus du salon.
+
+Horaires connus par défaut (Coiffure Lyon) :
+- Lundi à samedi : 9h à 12h, puis 13h à 18h
+- Dimanche : FERMÉ
+- Jours fériés : FERMÉ
+
+**Logique à appliquer** :
+
+1. Si le client demande une heure manifestement hors horaires (ex: 19h quand salon ferme à 18h, ou dimanche), réponds IMMÉDIATEMENT sans appeler l'API :
+   - "On est fermé ce soir, le salon ferme à 18 heures."
+   - "On est fermé dimanche, on rouvre lundi à 9 heures."
+
+2. Si le client demande une heure durant la pause déjeuner (12h-13h), réponds IMMÉDIATEMENT :
+   - "On est fermés de 12h à 13h, c'est notre pause déjeuner. Vous pouvez avoir un créneau avant midi ou à partir de 13h."
+
+3. Si l'heure est clairement dans les horaires, ALORS appelle `find_available_slots` pour vérifier la disponibilité réelle.
+
+**Bénéfice** : Réduit les appels API inutiles et rend le service plus fluide et rapide.
+
+### Guardrails
+
+1. **Ne jamais inventer de raison** : Les seules raisons de non-disponibilité sont : closed (dimanche/fériés), full (complet), lunch_break (pause), outside_hours (fermé)
+2. **Ne jamais poser de question dans les réponses d'erreur** : Toujours utiliser des affirmations plates
+3. **Ne jamais re-proposer dimanche** : Le salon est fermé dimanche, point.
+4. **Ne jamais demander 2 fois la même info** : Si le client a dit "à 17h", c'est validé, pas besoin de re-confirmer
+5. **Ne jamais paraphraser** : Récite jamais la demande du client à voix haute
+6. **Auto-collecter le téléphone** : Utiliser `system__caller_id` pour le numéro de téléphone, ne pas le demander au client
