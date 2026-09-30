@@ -2,11 +2,7 @@
 import React from 'react';
 import { Rocket } from 'lucide-react';
 
-interface FooterProps {
-  onOpenLegal: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
+export const Footer: React.FC = () => {
   
   const scrollToSection = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -31,12 +27,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal }) => {
             <a href="#home" onClick={scrollToSection('home')} className="text-textMuted hover:text-textMain text-sm transition-colors">Accueil</a>
             <a href="#services" onClick={scrollToSection('services')} className="text-textMuted hover:text-textMain text-sm transition-colors">Services</a>
             <a href="#contact" onClick={scrollToSection('contact')} className="text-textMuted hover:text-textMain text-sm transition-colors">Contact</a>
-            <button 
-              onClick={onOpenLegal} 
-              className="text-textMuted hover:text-textMain text-sm transition-colors cursor-pointer"
-            >
-              Mentions Légales
-            </button>
           </div>
         </div>
         

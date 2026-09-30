@@ -12,8 +12,6 @@ import { Footer } from './components/Footer';
 import { Pricing } from './components/Pricing';
 import { DemoNav } from './components/ui/DemoNav';
 import { DesignInspiration } from './components/DesignInspiration';
-import { LegalModal } from './components/LegalModal';
-import { WhatsAppButton } from './components/WhatsAppButton';
 import { BlogList } from './components/blog/BlogList';
 import { BlogArticle } from './components/blog/BlogArticle';
 import { BookingPage } from './components/booking/BookingPage';
@@ -44,8 +42,6 @@ const App: React.FC = () => {
   const articleSlug = params.get('article');
   const bookingSlug = params.get('booking');
 
-  const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
-
   // Helper to wrap themes with the Demo Navigation
   const renderTheme = (Component: React.FC) => (
     <>
@@ -66,14 +62,14 @@ const App: React.FC = () => {
     <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
       <Navbar />
       <main className="flex-grow"><BlogArticle slug={articleSlug} /></main>
-      <Footer onOpenLegal={() => setIsLegalModalOpen(true)} />
+      <Footer />
     </div>
   );
   if (page === 'blog') return (
     <div className="font-sans antialiased text-textMain min-h-screen flex flex-col bg-background transition-colors duration-300 relative">
       <Navbar />
       <main className="flex-grow"><BlogList /></main>
-      <Footer onOpenLegal={() => setIsLegalModalOpen(true)} />
+      <Footer />
     </div>
   );
 
@@ -103,13 +99,7 @@ const App: React.FC = () => {
         <FAQ />
         <Contact />
       </main>
-      <Footer onOpenLegal={() => setIsLegalModalOpen(true)} />
-      
-      {/* Bouton WhatsApp flottant (Mobile uniquement) */}
-      <WhatsAppButton />
-      
-      {/* Modale Mentions Légales */}
-      <LegalModal isOpen={isLegalModalOpen} onClose={() => setIsLegalModalOpen(false)} />
+      <Footer />
     </div>
   );
 };

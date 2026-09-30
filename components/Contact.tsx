@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card } from './ui/Card';
-import { Phone, Mail, ArrowRight, MapPin, Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
+import { ArrowRight, Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
 import { Button } from './ui/Button';
 import emailjs from '@emailjs/browser';
 
@@ -26,9 +26,7 @@ export const Contact: React.FC = () => {
   };
 
   const openMailClient = () => {
-    const subject = `Projet Croissance Nemphisia-web: ${formData.firstName} ${formData.lastName}`;
-    const body = `Nom: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    window.location.href = `mailto:contact@nemphisia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Formulaire de contact désactivé
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,8 +38,7 @@ export const Contact: React.FC = () => {
       first_name: formData.firstName,
       last_name: formData.lastName,
       email: formData.email,
-      message: formData.message,
-      to_email: 'contact@nemphisia.com' 
+      message: formData.message
     };
 
     try {
@@ -84,36 +81,6 @@ export const Contact: React.FC = () => {
               Contactez-nous pour une analyse gratuite de votre potentiel de croissance sur internet. Réponse stratégique sous 24h.
             </p>
 
-            <div className="space-y-6">
-              <Card className="p-4 flex items-center gap-4 bg-surface/50 border-border hover:border-fuchsia-500/30 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-fuchsia-600 to-purple-700 flex items-center justify-center text-white shadow-lg">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs text-fuchsia-400 uppercase font-bold tracking-wider">Téléphone / WhatsApp</p>
-                  <a href="tel:+33651553268" className="text-textMain text-lg font-medium hover:text-orange-400 transition-colors">
-                    +33 7 87 81 98 71
-                  </a>
-                </div>
-              </Card>
-
-              <Card className="p-4 flex items-center gap-4 bg-surface/50 border-border hover:border-orange-500/30 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white shadow-lg">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs text-orange-400 uppercase font-bold tracking-wider">Email</p>
-                  <a href="mailto:contact@nemphisia.com" className="text-textMain text-lg font-medium hover:text-fuchsia-400 transition-colors">
-                    contact@nemphisia.com
-                  </a>
-                </div>
-              </Card>
-
-              <div className="flex items-center gap-4 pl-2 opacity-60">
-                <MapPin className="w-5 h-5 text-textMuted" />
-                <span className="text-textMuted">Agence Digitale France</span>
-              </div>
-            </div>
           </div>
 
           {/* Form Side */}
